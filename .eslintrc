@@ -7,7 +7,6 @@
     "plugin:vue/strongly-recommended"
   ],
   "plugins": [
-    "typescript",
     "prettier",
     "vue"
   ],
