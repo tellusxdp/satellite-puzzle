@@ -22,3 +22,9 @@ $ yarn generate
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
+## docker up
+docker engine 18.06.0+以上
+```
+cd .docker
+docker-compose up -d
+```
