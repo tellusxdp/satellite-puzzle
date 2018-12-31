@@ -3,7 +3,7 @@
 > Nuxt.js project
 
 ## Build Setup
-node version 10.13
+node version 10.15
 npm 6.4
 ``` bash
 # install dependencies
