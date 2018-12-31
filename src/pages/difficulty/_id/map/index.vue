@@ -1,5 +1,5 @@
 <template>
   <div>
-    <p>スタート画面</p>
+    <p>マップ選択画面</p>
   </div>
 </template>

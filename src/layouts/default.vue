@@ -16,7 +16,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
 }

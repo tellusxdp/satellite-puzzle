@@ -1,5 +1,5 @@
 <template>
   <div>
-    <p>スタート画面</p>
+    <p>画像ギャラリー画面</p>
   </div>
 </template>

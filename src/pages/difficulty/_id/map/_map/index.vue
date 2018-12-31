@@ -1,5 +1,5 @@
 <template>
   <div>
-    <p>スタート画面</p>
+    <p>パズル画面</p>
   </div>
 </template>
