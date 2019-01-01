@@ -3,7 +3,7 @@
 > Nuxt.js project
 
 ## Build Setup
-node version 10.13
+node version 10.15
 npm 6.4
 ``` bash
 # install dependencies
@@ -22,3 +22,9 @@ $ yarn generate
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
+## docker up
+docker engine 18.06.0+以上
+```
+cd .docker
+docker-compose up -d
+```
