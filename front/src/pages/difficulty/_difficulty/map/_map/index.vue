@@ -4,14 +4,15 @@
       v-if="modal"
       class="modal-background"/>
     <div>
-      <div>ここにタイマーを表示</div>
+      <div v-if="puzzle"><count-up-timer :do-run="run"/></div>
     </div>
     <div class="puzzle-area">
       <div
         v-if="puzzle"
+        @click.once="puzzleStart"
         class="normal-puzzle">
         <normal-puzzle
-          :top=100
+          :top=50
           :left=100
           @puzzle-completed="completed"/>
       </div>
@@ -43,17 +44,20 @@
 
 <script>
 import _ from 'lodash'
+import CountUpTimer from '~/components/CountUpTimer.vue'
 import Modal from '~/components/modal/Retire'
 import PurpleButton from '~/components/buttons/PurpleButton'
 import NormalPuzzle from '~/components/puzzles/Normal'
 export default {
   components: {
+    CountUpTimer,
     Modal,
     PurpleButton,
     NormalPuzzle,
   },
   data() {
     return {
+      run: false,
       modal: false,
       puzzle: true,
     }
@@ -66,6 +70,9 @@ export default {
     500)
   },
   methods: {
+    puzzleStart () {
+      this.run = true
+    },
     completed () {
       alert('パズルが完成しました！') // TODO: アニメーションにする
       const difficulty = this.$route.params.difficulty
@@ -74,9 +81,11 @@ export default {
     },
     openModal() {
       this.modal = true
+      this.run = false
     },
     closeModal() {
       this.modal = false
+      this.run = true
     },
     pushRetry() {
       this.modal = false
