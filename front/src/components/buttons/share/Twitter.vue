@@ -1,0 +1,16 @@
+<template>
+  <div>
+    <a
+      href=""
+      class="twitter-share-button"
+      data-show-count="false"
+    >
+      Tweet
+    </a>
+    <script
+      async
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    />
+  </div>
+</template>
