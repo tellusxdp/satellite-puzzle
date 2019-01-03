@@ -15,7 +15,9 @@
           :key="index"
           :style="{'top': tile.x*50 + 'px', 'left': width/2+(tile.y)*50-125 + 'px'}"
         >
-          <p>{{ tile.no }}</p>
+          <img
+            :src="image(tile)"
+            class="tile--image">
         </div>
       </div>
     </div>
@@ -29,39 +31,39 @@ export default {
       // 開始タイル
       // TODO: ランダム配置
       tiles: [
-       {no:1,  x:0, y:1},
-       {no:2,  x:1, y:0},
-       {no:3,  x:0, y:3},
-       {no:4,  x:2, y:3},
-       {no:5,  x:0, y:0},
-       {no:6,  x:1, y:1},
-       {no:7,  x:1, y:3},
-       {no:8,  x:0, y:2},
-       {no:9,  x:2, y:0},
-       {no:10, x:2, y:1},
-       {no:11, x:1, y:2},
-       {no:12, x:3, y:2},
-       {no:13, x:3, y:0},
-       {no:14, x:3, y:1},
-       {no:15, x:2, y:2}
+       {no:'01', x:0, y:1},
+       {no:'02', x:1, y:0},
+       {no:'03', x:0, y:3},
+       {no:'04', x:2, y:3},
+       {no:'05', x:0, y:0},
+       {no:'06', x:1, y:1},
+       {no:'07', x:1, y:3},
+       {no:'08', x:0, y:2},
+       {no:'09', x:2, y:0},
+       {no:'10', x:2, y:1},
+       {no:'11', x:1, y:2},
+       {no:'12', x:3, y:2},
+       {no:'13', x:3, y:0},
+       {no:'14', x:3, y:1},
+       {no:'15', x:2, y:2}
       ],
       // 正解タイル
       ans: [
-        {no: 1, x: 0, y: 0},
-        {no: 2, x: 0, y: 1},
-        {no: 3, x: 0, y: 2},
-        {no: 4, x: 0, y: 3},
-        {no: 5, x: 1, y: 0},
-        {no: 6, x: 1, y: 1},
-        {no: 7, x: 1, y: 2},
-        {no: 8, x: 1, y: 3},
-        {no: 9, x: 2, y: 0},
-        {no: 10, x: 2, y: 1},
-        {no: 11, x: 2, y: 2},
-        {no: 12, x: 2, y: 3},
-        {no: 13, x: 3, y: 0},
-        {no: 14, x: 3, y: 1},
-        {no: 15, x: 3, y: 2},
+        {no:'01', x: 0, y: 0},
+        {no:'02', x: 0, y: 1},
+        {no:'03', x: 0, y: 2},
+        {no:'04', x: 0, y: 3},
+        {no:'05', x: 1, y: 0},
+        {no:'06', x: 1, y: 1},
+        {no:'07', x: 1, y: 2},
+        {no:'08', x: 1, y: 3},
+        {no:'09', x: 2, y: 0},
+        {no:'10', x: 2, y: 1},
+        {no:'11', x: 2, y: 2},
+        {no:'12', x: 2, y: 3},
+        {no:'13', x: 3, y: 0},
+        {no:'14', x: 3, y: 1},
+        {no:'15', x: 3, y: 2},
       ],
       // 空白タイル
       empty: {x: 3, y: 3},
@@ -88,6 +90,9 @@ export default {
     }
   },
   methods: {
+    image (tile) {
+      return require('~/assets/balls/ball'+tile.no+'.png')
+    },
     handleResize: function() {
       this.width = window.innerWidth;
     },
@@ -151,4 +156,10 @@ export default {
   position: absolute;
   transition: transform 0.5s ease-in-out;
 }
+
+.tile--image {
+  width: 49px;
+  height: 49px;
+}
+
 </style>
