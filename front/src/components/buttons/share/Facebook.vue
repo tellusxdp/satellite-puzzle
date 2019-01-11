@@ -24,7 +24,7 @@
 export default {
   methods: {
     init: function(d) {
-      var js, fjs = d.getElementsByTagName('script')[0]
+      let js, fjs = d.getElementsByTagName('script')[0]
       if (d.getElementById('facebook-jssdk')) {
         return
       }

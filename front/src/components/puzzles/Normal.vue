@@ -73,7 +73,7 @@ export default {
   },
   updated () {
     // 正解判定
-    for (var i = 0; i < this.tiles.length; i++) {
+    for (let i = 0; i < this.tiles.length; i++) {
       if ((this.tiles[i].x !== this.ans[i].x) ||
         (this.tiles[i].y !== this.ans[i].y)) {
         return
@@ -82,7 +82,7 @@ export default {
     // イベントを発火
     this.$emit('puzzle-completed')
   },
-  created: function() {
+  created() {
     if (process.browser) {
       this.handleResize()
       window.addEventListener('resize', this.handleResize, false);
@@ -99,9 +99,9 @@ export default {
     // TODO: フリックでの移動に対応
     move (e) {
       // クリックしたブロックを特定
-      var cName = e.currentTarget.classList
+      let cName = e.currentTarget.classList
       console.log(cName)
-      var target = cName[1].slice(1)
+      let target = cName[1].slice(1)
       console.log(target)
 
       // 移動してもいいか確認する, OKなら移動する

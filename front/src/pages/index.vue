@@ -1,12 +1,12 @@
 <template>
   <div class="wrapper">
     <div>ここにロゴを表示</div>
-    <div @click="start">
-      <grey-button>ゲームスタート</grey-button>
+    <div>
+      <grey-button :next-path="start">ゲームスタート</grey-button>
     </div>
-    <div @click="gallery">
-      <grey-button>画像ギャラリー</grey-button>
-    </div> 
+    <div>
+      <grey-button :next-path="gallery">画像ギャラリー</grey-button>
+    </div>
   </div>
 </template>
 
@@ -16,13 +16,13 @@ export default {
   components: {
     GreyButton,
   },
-  methods: {
-    start() {
-      this.$router.push('/difficulty')
+  computed: {
+    start () {
+      return '/difficulty'
     },
-    gallery() {
-      this.$router.push('/gallery')
-    },
+    gallery () {
+      return '/gallery'
+    }
   }
 }
 </script>

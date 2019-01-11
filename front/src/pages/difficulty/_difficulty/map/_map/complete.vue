@@ -13,14 +13,14 @@
           <div class="share-button"><twitter-share-button/></div>
         </div>
       </div>
-      <div @click="retry">
-        <grey-button>もう一度チャレンジ</grey-button>
+      <div>
+        <grey-button :next-path="retry">もう一度チャレンジ</grey-button>
       </div>
-      <div @click="otherMap">
-        <grey-button>別の画像で遊ぶ</grey-button>
+      <div>
+        <grey-button :next-path="otherMap">別の画像で遊ぶ</grey-button>
       </div>
-      <div @click="top">
-        <grey-button>終了</grey-button>
+      <div>
+        <grey-button :next-path="top">終了</grey-button>
       </div>
     </div>
   </div>
@@ -36,18 +36,18 @@ export default {
     TwitterShareButton,
     FacebookShareButton,
   },
-  methods: {
-    retry() {
+  computed: {
+    retry () {
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
-      this.$router.push('/difficulty/'+difficulty+'/map/'+map)
+      return '/difficulty/'+difficulty+'/map/'+map
     },
     otherMap() {
       const difficulty = this.$route.params.map
-      this.$router.push('/difficulty/'+difficulty+'/map')
+      return '/difficulty/'+difficulty+'/map'
     },
     top() {
-      this.$router.push('/')
+      return '/'
     }
   }
 }
