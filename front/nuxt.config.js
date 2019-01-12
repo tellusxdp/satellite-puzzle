@@ -35,8 +35,16 @@ module.exports = {
   },
   modules: [
     "@nuxtjs/axios",
+    "@nuxtjs/pwa",
     ['nuxt-sass-resources-loader', '@@/assets/css/*.scss']
   ],
+  workbox: {
+    dev: true,
+  },
+  manifest: { // TODO: 仮置き
+    name: "satellite-puzzle",
+    lang: 'ja'
+  },
   plugins: [
     '~/plugins/axios.js'
   ],
