@@ -8,15 +8,9 @@
 
 <script>
 export default {
-  props: {
-    nextPath: {
-      type: String,
-      default: '',
-    }
-  },
   methods: {
     click () {
-      this.$router.push(this.nextPath)
+      this.$emit('onClick')
     }
   }
 }

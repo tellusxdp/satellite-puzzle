@@ -6,13 +6,13 @@
       ここにテキストを表示
     </div>
     <div>
-      <grey-button :next-path="easy">初級</grey-button>
+      <grey-button @onClick="pushEasy">初級</grey-button>
     </div>
     <div>
-      <grey-button :next-path="normal">中級</grey-button>
+      <grey-button @onClick="pushNormal">中級</grey-button>
     </div>
     <div>
-      <grey-button :next-path="hard">上級</grey-button>
+      <grey-button @onClick="pushHard">上級</grey-button>
     </div>
     <div>
       <div>SAR画像とは</div>
@@ -33,16 +33,16 @@ export default {
   components: {
     GreyButton,
   },
-  computed: {
-    easy () {
-      return '/difficulty/easy/map'
+  methods: {
+    pushEasy() {
+      this.$router.push('/difficulty/easy/map')
     },
-    normal () {
-      return '/difficulty/normal/map'
+    pushHard() {
+      this.$router.push('/difficulty/normal/map')
     },
-    hard () {
-      return '/difficulty/hard/map'
+    pushNormal() {
+      this.$router.push('/difficulty/hard/map')
     },
-  }
+  },
 }
 </script>
