@@ -14,40 +14,40 @@
         </div>
       </div>
       <div>
-        <grey-button :next-path="retry">もう一度チャレンジ</grey-button>
+        <gray-button @onClick="pushRetry">もう一度チャレンジ</gray-button>
       </div>
       <div>
-        <grey-button :next-path="otherMap">別の画像で遊ぶ</grey-button>
+        <gray-button @onClick="pushOtherMap">別の画像で遊ぶ</gray-button>
       </div>
       <div>
-        <grey-button :next-path="top">終了</grey-button>
+        <gray-button @onClick="pushTop">終了</gray-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import GreyButton from '~/components/buttons/GreyButton'
+import GrayButton from '~/components/buttons/GrayButton'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
 export default {
   components:{
-    GreyButton,
+    GrayButton,
     TwitterShareButton,
     FacebookShareButton,
   },
-  computed: {
-    retry () {
+  methods: {
+    pushRetry () {
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
-      return '/difficulty/'+difficulty+'/map/'+map
+      this.$router.push('/difficulty/'+difficulty+'/map/'+map)
     },
-    otherMap() {
+    pushOtherMap () {
       const difficulty = this.$route.params.map
-      return '/difficulty/'+difficulty+'/map'
+      this.$router.push('/difficulty/'+difficulty+'/map')
     },
-    top() {
-      return '/'
+    pushTop () {
+      this.$router.push('/')
     }
   }
 }

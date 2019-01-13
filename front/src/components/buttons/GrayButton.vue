@@ -1,7 +1,7 @@
 <template>
   <button 
     @click="click" 
-    class="button--grey">
+    class="button--gray">
     <slot/>
   </button>
 </template>

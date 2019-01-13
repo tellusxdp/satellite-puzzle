@@ -1,33 +1,33 @@
 <template>
   <div class="wrapper">
     <div>
-      <grey-button :next-path="difficulty">レベル選択に戻る</grey-button>
+      <gray-button @onClick="pushDifficulty">レベル選択に戻る</gray-button>
     </div>
     <div>ふつうモード</div>
     <div>
-      <grey-button :next-path="kilauea">キラウエア火山</grey-button>
+      <gray-button @onClick="pushKilauea">キラウエア火山</gray-button>
     </div>
     <div>
-      <grey-button :next-path="kilauea">キラウエア火山</grey-button>
+      <gray-button @onClick="pushKilauea">キラウエア火山</gray-button>
     </div>
     <div>
-      <grey-button :next-path="kilauea">キラウエア火山</grey-button>
+      <gray-button @onClick="pushKilauea">キラウエア火山</gray-button>
     </div>
   </div>
 </template>
 
 <script>
-import GreyButton from '~/components/buttons/GreyButton'
+import GrayButton from '~/components/buttons/GrayButton'
 export default {
   components: {
-    GreyButton,
+    GrayButton,
   },
-  computed: {
-    kilauea () {
-      return '/difficulty/'+this.$route.params.difficulty+'/map/kilauea'
+  methods :{
+    pushKilauea () {
+      this.$router.push('/difficulty/'+this.$route.params.difficulty+'/map/kilauea')
     },
-    difficulty () {
-      return '/difficulty'
+    pushDifficulty () {
+      this.$router.push('/difficulty')
     }
   }
 }

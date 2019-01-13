@@ -6,13 +6,13 @@
       ここにテキストを表示
     </div>
     <div>
-      <grey-button @onClick="pushEasy">初級</grey-button>
+      <gray-button @onClick="pushEasy">初級</gray-button>
     </div>
     <div>
-      <grey-button @onClick="pushNormal">中級</grey-button>
+      <gray-button @onClick="pushNormal">中級</gray-button>
     </div>
     <div>
-      <grey-button @onClick="pushHard">上級</grey-button>
+      <gray-button @onClick="pushHard">上級</gray-button>
     </div>
     <div>
       <div>SAR画像とは</div>
@@ -21,26 +21,26 @@
         ここにテキストを表示
       </div>
       <div>
-        <grey-button>もっと知りたい</grey-button>
+        <gray-button>もっと知りたい</gray-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import GreyButton from '~/components/buttons/GreyButton'
+import GrayButton from '~/components/buttons/GrayButton'
 export default {
   components: {
-    GreyButton,
+    GrayButton,
   },
   methods: {
-    pushEasy() {
+    pushEasy () {
       this.$router.push('/difficulty/easy/map')
     },
-    pushHard() {
+    pushHard () {
       this.$router.push('/difficulty/normal/map')
     },
-    pushNormal() {
+    pushNormal () {
       this.$router.push('/difficulty/hard/map')
     },
   },

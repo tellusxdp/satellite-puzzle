@@ -8,21 +8,21 @@
       <normal-puzzle @puzzle-completed="completed"/>
     </div>
     <div>
-      <grey-button>ヒントを見る</grey-button>
+      <gray-button>ヒントを見る</gray-button>
     </div>
     <div>ここにテキストを表示</div>
     <div>
-      <grey-button>諦める</grey-button>
+      <gray-button>諦める</gray-button>
     </div>
   </div>
 </template>
 
 <script>
-import GreyButton from '~/components/buttons/GreyButton'
+import GrayButton from '~/components/buttons/GrayButton'
 import NormalPuzzle from '~/components/puzzles/Normal'
 export default {
   components: {
-    GreyButton,
+    GrayButton,
     NormalPuzzle,
   },
   methods: {

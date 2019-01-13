@@ -2,19 +2,19 @@
   <div class="wrapper">
     <div>ここにロゴを表示</div>
     <div>
-      <grey-button @onClick="pushStart">ゲームスタート</grey-button>
+      <gray-button @onClick="pushStart">ゲームスタート</gray-button>
     </div>
     <div>
-      <grey-button @onClick="pushGallery">画像ギャラリー</grey-button>
+      <gray-button @onClick="pushGallery">画像ギャラリー</gray-button>
     </div>
   </div>
 </template>
 
 <script>
-import GreyButton from '~/components/buttons/GreyButton'
+import GrayButton from '~/components/buttons/GrayButton'
 export default {
   components: {
-    GreyButton,
+    GrayButton,
   },
   methods: {
     pushGallery () {
