@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <nuxt/>
+  <div class="wrapper">
+    <div class="contents">
+      <nuxt/>
+    </div>
   </div>
 </template>
 
@@ -52,8 +54,10 @@ html {
   background-color: #35495e;
 }
 
-.wrapper {
-  text-align: center;
+.contents {
+  background: url('~assets/images/background/background.png') center center / cover no-repeat;
+  background-size: contain;
+  height: 100vh;
+  width: calc(100vh / 1149 * 640);
 }
 </style>
-
