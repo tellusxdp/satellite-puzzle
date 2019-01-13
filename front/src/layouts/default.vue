@@ -37,7 +37,7 @@ html {
   background-color: #3b8070;
 }
 
-.button--grey {
+.button--gray {
   display: inline-block;
   border-radius: 4px;
   border: 1px solid #35495e;
@@ -47,9 +47,13 @@ html {
   margin-left: 15px;
 }
 
-.button--grey:hover {
+.button--gray:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.wrapper {
+  text-align: center;
 }
 </style>
 

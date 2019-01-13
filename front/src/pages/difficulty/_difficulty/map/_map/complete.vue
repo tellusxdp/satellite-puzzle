@@ -1,45 +1,61 @@
 <template>
-  <div>
-    <p>パズル終了画面</p>
-    <button
-      class="button--green"
-      @click="retry"
-    >
-      もう一度チャレンジ
-    </button>
-    <button
-      class="button--green"
-      @click="otherMap"
-    >
-      別の画像で遊ぶ
-    </button>
-    <button
-      class="button--green"
-      @click="top"
-    >
-      終了ボタン
-    </button>
+  <div class="wrapper">
+    <div>
+      <div>ここに完成画像を表示</div>
+      <div>◯◯◯◯◯◯◯◯（場所名）</div>
+      <div>◯◯分◯秒で完成！</div>
+      <div>あなたの自己ベスト</div>
+      <div>◯◯分◯秒</div>
+      <div>
+        <div>結果をシェア</div>
+        <div>
+          <div class="share-button"><facebook-share-button/></div>
+          <div class="share-button"><twitter-share-button/></div>
+        </div>
+      </div>
+      <div>
+        <gray-button @onClick="pushRetry">もう一度チャレンジ</gray-button>
+      </div>
+      <div>
+        <gray-button @onClick="pushOtherMap">別の画像で遊ぶ</gray-button>
+      </div>
+      <div>
+        <gray-button @onClick="pushTop">終了</gray-button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import GrayButton from '~/components/buttons/GrayButton'
+import TwitterShareButton from '~/components/buttons/share/Twitter'
+import FacebookShareButton from '~/components/buttons/share/Facebook'
 export default {
+  components:{
+    GrayButton,
+    TwitterShareButton,
+    FacebookShareButton,
+  },
   methods: {
-    retry() {
+    pushRetry () {
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
       this.$router.push('/difficulty/'+difficulty+'/map/'+map)
     },
-    otherMap() {
+    pushOtherMap () {
       const difficulty = this.$route.params.map
       this.$router.push('/difficulty/'+difficulty+'/map')
     },
-    top() {
+    pushTop () {
       this.$router.push('/')
     }
   }
 }
-
-
-
 </script>
+
+<style>
+.share-button {
+  display: inline-block;
+  vertical-align: top;
+}
+</style>

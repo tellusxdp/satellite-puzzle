@@ -1,30 +1,28 @@
 <template>
-  <div>
-    <p>スタート画面</p>
-    <button
-      class="button--green"
-      @click="start"
-    >
-      ゲームスタート
-    </button>
-    <button
-      class="button--green"
-      @click="gallery"
-    >
-      画像ギャラリー
-    </button> 
+  <div class="wrapper">
+    <div>ここにロゴを表示</div>
+    <div>
+      <gray-button @onClick="pushStart">ゲームスタート</gray-button>
+    </div>
+    <div>
+      <gray-button @onClick="pushGallery">画像ギャラリー</gray-button>
+    </div>
   </div>
 </template>
 
 <script>
+import GrayButton from '~/components/buttons/GrayButton'
 export default {
+  components: {
+    GrayButton,
+  },
   methods: {
-    start() {
-      this.$router.push('/difficulty')
-    },
-    gallery() {
+    pushGallery () {
       this.$router.push('/gallery')
     },
-  }
+    pushStart () {
+      this.$router.push('/difficulty')
+    },
+  },
 }
 </script>
