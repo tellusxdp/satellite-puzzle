@@ -13,10 +13,10 @@
     <div class="what-is">
       <div class="what-is--title">SAR画像とは？</div>
       <div class="what-is--text">
-        SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
+        SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
       </div>
       <div class="detail">
-        <gray-button>くわしい説明をみる</gray-button>
+        <purple-button>くわしい説明をみる</purple-button>
       </div>
       <div class="sorabatake">※SORABATAKEのサイトへ飛びます</div>
     </div>
@@ -24,10 +24,12 @@
 </template>
 
 <script>
+import PurpleButton from '~/components/buttons/PurpleButton'
 import MoonButton from '~/components/buttons/MoonButton'
 import GrayButton from '~/components/buttons/GrayButton'
 export default {
   components: {
+    PurpleButton,
     MoonButton,
     GrayButton,
   },
@@ -102,9 +104,12 @@ export default {
   background-color: #cfd7ef;
   position: absolute;
   top: 60%;
-  width: calc(100vh / 1149 * 640 * 0.7);
-  height: calc(100vh * 0.3);
-  left: calc((100vh / 1149 * 640 / 2) - ((100vh / 1149 * 640 * 0.7) / 2));
+
+  /* width: 577px;
+  height: 374px; */
+  width: calc(100vh / 1149 * 640 * 0.9);
+  height: calc(100vh * 0.32);
+  left: calc((100vh / 1149 * 640 / 2) - ((100vh / 1149 * 640 * 0.9) / 2));
 }
 
 .what-is--title {
@@ -121,11 +126,14 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #10172b;
+  margin-top: 38px;
+  margin-bottom: 32px;
 }
 
 .what-is--text {
-  width: 471px;
-  height: 96px;
+  /* width: 471px; */
+
+  /* height: 96px; */
 
   /* font-family: NotoSansCJKjp; */
   font-size: 24px;
@@ -136,6 +144,9 @@ export default {
   letter-spacing: normal;
   text-align: left;
   color: #10172b;
+  padding-left: 29px;
+  padding-right: 52px;
+  margin-bottom: 30px;
 }
 
 .detail {

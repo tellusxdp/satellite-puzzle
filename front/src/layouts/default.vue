@@ -59,5 +59,7 @@ html {
   background-size: contain;
   height: 100vh;
   width: calc(100vh / 1149 * 640);
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

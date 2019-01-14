@@ -1,37 +1,41 @@
 <template>
-  <div class="wrapper">
-    <div>
-      <div>ここに完成画像を表示</div>
-      <div>◯◯◯◯◯◯◯◯（場所名）</div>
-      <div>◯◯分◯秒で完成！</div>
-      <div>あなたの自己ベスト</div>
-      <div>◯◯分◯秒</div>
-      <div>
-        <div>結果をシェア</div>
-        <div>
-          <div class="share-button"><facebook-share-button/></div>
-          <div class="share-button"><twitter-share-button/></div>
+  <div class="center">
+    <div class="margin-top-result-area"/>
+    <div class="result-area">
+      <div class="result-area--purple">
+        <div class="map-name">キラウエア火山完成！</div>
+        <div class="record">
+          <span class="time">02</span>
+          <span class="time-unit">分</span>
+          <span class="time">58</span>
+          <span class="time-unit">秒</span>
         </div>
+        <div class="personal-best">あなたの自己ベスト 02分58秒</div>
       </div>
-      <div>
-        <gray-button @onClick="pushRetry">もう一度チャレンジ</gray-button>
-      </div>
-      <div>
-        <gray-button @onClick="pushOtherMap">別の画像で遊ぶ</gray-button>
-      </div>
-      <div>
-        <gray-button @onClick="pushTop">終了</gray-button>
+      <div class="result-area--white">
+        ここに画像を表示
       </div>
     </div>
+    <div class="share">
+      <div class="sns">結果をSNSでシェア!</div>
+      <div>
+        <div class="share-button"/>
+        <span class="blank"/>
+        <div class="share-button"/>
+      </div>
+    </div>
+    <purple-button @onClick="pushTop">はじめの画面に戻る</purple-button>
   </div>
 </template>
 
 <script>
+import PurpleButton from '~/components/buttons/PurpleButton'
 import GrayButton from '~/components/buttons/GrayButton'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
 export default {
   components:{
+    PurpleButton,
     GrayButton,
     TwitterShareButton,
     FacebookShareButton,
@@ -54,8 +58,132 @@ export default {
 </script>
 
 <style>
+.center {
+  text-align: center;
+}
+
+.margin-top-result-area {
+  height: 40px;
+}
+
+.result-area {
+  margin-left: auto;
+  margin-right: auto;
+  width: 578px;
+  height: 802px;
+  background-color: #fff;
+}
+
+.result-area--purple {
+  width: 578px;
+  height: 261px;
+  border-radius: 4px;
+  background-color: #6c53f3;
+}
+
+.record {
+  text-align: center;
+}
+
+.time {
+  width: 68px;
+  height: 45px;
+
+  /* font-family: LTUnivers-Cond; */
+  font-size: 61.3px;
+  font-weight: 900;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: 1.64;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+}
+
+.time-unit {
+  width: 24px;
+  height: 23px;
+
+  /* font-family: NotoSansCJKjp; */
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #fff;
+}
+
+.personal-best {
+  /* width: 280px; */
+
+  /* height: 19px; */
+
+  /* font-family: RodinProN-DB; */
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.8;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+}
+
+.result-area--white {
+  width: 578px;
+  height: 541px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.map-name {
+  /* width: 306px; */
+
+  /* height: 31px; */
+
+  /* font-family: NotoSansCJKjp; */
+  font-size: 32px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.88;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+}
+
+.sns {
+  /* width: 220px; */
+
+  /* height: 23px; */
+
+  /* font-family: NotoSansCJKjp; */
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+}
+
+.share {
+  text-align: center;
+  padding-bottom: 63px;
+}
+
+.blank {
+  padding-left: 40px;
+}
+
 .share-button {
   display: inline-block;
   vertical-align: top;
+  width: 81px;
+  height: 81px;
+  background-color: #e3e5f7;
 }
+
 </style>

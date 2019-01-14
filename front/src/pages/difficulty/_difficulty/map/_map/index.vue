@@ -1,28 +1,32 @@
 <template>
-  <div class="wrapper">
+  <div>
     <div>
-      <div>スタートから</div>
       <div>ここにタイマーを表示</div>
     </div>
-    <div>
-      <normal-puzzle @puzzle-completed="completed"/>
+    <div class="puzzle-area">
+      <div class="normal-puzzle">
+        <normal-puzzle @puzzle-completed="completed"/>
+      </div>
     </div>
-    <div>
-      <gray-button>ヒントを見る</gray-button>
+    <br>
+    <div class="sar">
+      <p>ボタンを押している間、<br>SAR画像が可視光画像に変わるよ</p>
     </div>
-    <div>ここにテキストを表示</div>
-    <div>
-      <gray-button>諦める</gray-button>
+    <br>
+    <div class="center">
+      <purple-button>可視光画像を見る</purple-button>
     </div>
+    <br>
+    <div class="retire">諦める</div>
   </div>
 </template>
 
 <script>
-import GrayButton from '~/components/buttons/GrayButton'
+import PurpleButton from '~/components/buttons/PurpleButton'
 import NormalPuzzle from '~/components/puzzles/Normal'
 export default {
   components: {
-    GrayButton,
+    PurpleButton,
     NormalPuzzle,
   },
   methods: {
@@ -35,3 +39,64 @@ export default {
   }
 }
 </script>
+
+<style>
+.puzzle-area {
+  height: 50vh;
+
+  /* position: relative; */
+}
+
+.normal-puzzle {
+  margin-top: 20vh;
+}
+
+.center {
+  text-align: center;
+}
+
+.sar {
+  /* width: 360px; */
+
+  /* height: 59px; */
+
+  /* font-family: RodinProN-DB; */
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #192342;
+}
+
+.retire {
+  /* width: 69px; */
+
+  /* height: 22px; */
+
+  /* font-family: RodinProN-DB; */
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3f444e;
+}
+
+.contents {
+  background-image:
+    url('~assets/images/moon/moon.png'),
+    url('~assets/images/background/moon/moon.png'),
+    url('~assets/images/background/moon/background-2.png'),
+    url('~assets/images/background/background.png');
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 20vh, 24vh, cover, contain;
+  background-position: -5vh -5vh, -7vh -7vh, center 50vh, center center;
+  height: auto, auto, auto, 100vh;
+  width: auto, auto, auto, calc(100vh / 1149 * 640);
+}
+</style>
