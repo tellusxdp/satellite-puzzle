@@ -13,7 +13,7 @@
           :class="'_' + index"
           @click="move"
           :key="index"
-          :style="{'top': tile.x*50 + 'px', 'left': width/2+(tile.y)*50-125 + 'px'}"
+          :style="{'top': tile.x*100 + 'px', 'left': width/2+(tile.y)*100-175 + 'px'}"
         >
           <img
             :src="image(tile)"
@@ -145,21 +145,22 @@ export default {
 <style>
 .pazzle {
   position: relative;
-  margin: 30px;
-  height: 200px;
+
+  /* margin: auto;
+  height: auto; */
 }
 
 .tile {
-  width: 49px;
-  height: 49px;
+  width: 99px;
+  height: 99px;
   border: 1px solid blue;
   position: absolute;
   transition: transform 0.5s ease-in-out;
 }
 
 .tile--image {
-  width: 49px;
-  height: 49px;
+  width: 99px;
+  height: 99px;
 }
 
 </style>
