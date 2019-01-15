@@ -1,8 +1,7 @@
 <template>
   <div>
-    <!-- <title-logo :class="logo"/> -->
     <div class="title-logo">
-      <p>TITLELAOGO<br>TITLELOGO</p>
+      <p>衛星<br>パズル</p>
     </div>
     <div>
       <p class="title-logo-sub">だいち２号のSAR画像でパズル編</p>
@@ -25,28 +24,25 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .title-logo {
-  /* width: 462px; */
+  padding-top: 239px;
 
-  /* width: calc(100vh / 1149 * 640 * 0.7); */
-  height: 127px;
+  /* width: 357px; */
 
-  /* font-family: LTUnivers-Cond; */
+  /* height: 234px; */
   font-size: 88px;
   font-weight: 900;
   font-style: italic;
   font-stretch: normal;
-  line-height: 0.68;
+  line-height: 1;
   letter-spacing: normal;
   text-align: center;
   color: #fff;
 }
 
 .title-logo-sub {
-  /* width: 356px; */
-
-  /* height: 24px; */
+  padding-top: 50px;
 
   /* font-family: NotoSansCJKjp; */
   font-size: 24px;
@@ -60,6 +56,7 @@ export default {
 }
 
 .button-center {
+  padding-top: 88px;
   text-align: center;
 }
 

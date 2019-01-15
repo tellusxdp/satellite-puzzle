@@ -45,5 +45,6 @@ export default {
   font-stretch: normal;
   line-height: 1.5;
   color: #fff;
+  text-align: center;
 }
 </style>
