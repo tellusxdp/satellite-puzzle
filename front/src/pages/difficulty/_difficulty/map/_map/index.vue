@@ -45,13 +45,13 @@ export default {
 
 <style>
 .puzzle-area {
-  height: 50vh;
-
-  /* position: relative; */
+  width: 540px;
+  height: 540px;
 }
 
 .normal-puzzle {
-  margin-top: 20vh;
+  width: 540px;
+  height: 540px;
 }
 
 .center {
@@ -72,6 +72,7 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #192342;
+  margin-top: 30px;
 }
 
 .retire {
