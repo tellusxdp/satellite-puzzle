@@ -1,15 +1,22 @@
 <template>
   <div>
+    <div
+      v-if="modal"
+      class="modal-background"/>
     <div>
       <div>ここにタイマーを表示</div>
     </div>
     <div class="puzzle-area">
-      <div class="normal-puzzle">
+      <div
+        v-if="puzzle"
+        class="normal-puzzle">
         <normal-puzzle
-          :top=0
+          :top=100
           :left=100
           @puzzle-completed="completed"/>
       </div>
+      <div
+        v-else>{{ resetPuzzle }}</div>
     </div>
     <br>
     <div class="sar">
@@ -20,17 +27,43 @@
       <purple-button>可視光画像を見る</purple-button>
     </div>
     <br>
-    <div class="retire">諦める</div>
+    <div
+      class="retire"
+      @click="openModal">
+      諦める
+    </div>
+    <modal
+      class="modal-area"
+      @close="closeModal"
+      @retry="pushRetry"
+      @top="pushTop"
+      v-if="modal"/>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
+import Modal from '~/components/modal/Retire'
 import PurpleButton from '~/components/buttons/PurpleButton'
 import NormalPuzzle from '~/components/puzzles/Normal'
 export default {
   components: {
+    Modal,
     PurpleButton,
     NormalPuzzle,
+  },
+  data() {
+    return {
+      modal: false,
+      puzzle: true,
+    }
+  },
+  watch: {
+    // 暫定対応：一定時間パズルをv-ifで破棄し、その後再描画することで初期値に戻す
+    puzzle: _.debounce(function(newVal, oldVal) {
+      this.puzzle = true
+    },
+    500)
   },
   methods: {
     completed () {
@@ -38,20 +71,33 @@ export default {
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
       this.$router.push('/difficulty/'+difficulty+'/map/'+map+'/complete')
-    }
-  }
+    },
+    openModal() {
+      this.modal = true
+    },
+    closeModal() {
+      this.modal = false
+    },
+    pushRetry() {
+      this.modal = false
+      this.puzzle = false
+    },
+    pushTop() {
+      this.$router.push('/')
+    },
+}
 }
 </script>
 
 <style>
 .puzzle-area {
-  height: 50vh;
-
-  /* position: relative; */
+  width: 540px;
+  height: 540px;
 }
 
 .normal-puzzle {
-  margin-top: 20vh;
+  width: 540px;
+  height: 540px;
 }
 
 .center {
@@ -72,6 +118,7 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #192342;
+  margin-top: 30px;
 }
 
 .retire {
@@ -88,6 +135,18 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #3f444e;
+}
+
+.modal-background {
+  position: absolute;
+  width: 640px;
+  height: 1149px;
+  opacity: 0.6;
+  background-color: #10172b;
+}
+
+.modal-area {
+  position: relative;
 }
 
 .contents {
