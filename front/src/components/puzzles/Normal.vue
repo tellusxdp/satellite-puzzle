@@ -1,7 +1,9 @@
 <template>
   <div class="pazzle">
     <!-- パズルの枠 -->
-    <div v-show="!ready">
+    <div
+      class="not-ready"
+      v-show="!ready">
       準備中です
     </div>
     <div v-show="ready">
@@ -13,7 +15,7 @@
           :class="'_' + index"
           @click="move"
           :key="index"
-          :style="{'top': tile.x*100 + 'px', 'left': width/2+(tile.y)*100-175 + 'px'}"
+          :style="{'top': top + tile.x*100 + 'px', 'left': left + (tile.y)*100 + 'px'}"
         >
           <img
             :src="image(tile)"
@@ -26,6 +28,16 @@
 
 <script>
 export default {
+  props: {
+    top: {
+      type: Number,
+      default: 0,
+    },
+    left: {
+      type: Number,
+      default: 0,
+    }
+  },
   data: () => {
     return {
       // 開始タイル
@@ -84,17 +96,12 @@ export default {
   },
   created() {
     if (process.browser) {
-      this.handleResize()
-      window.addEventListener('resize', this.handleResize, false);
       this.ready = true
     }
   },
   methods: {
     image (tile) {
       return require('~/assets/balls/ball'+tile.no+'.png')
-    },
-    handleResize: function() {
-      this.width = window.innerWidth;
     },
     // TODO: フリックでの移動に対応
     move (e) {
@@ -143,11 +150,12 @@ export default {
 </script>
 
 <style>
+.not-ready {
+  text-align: center;
+}
+
 .pazzle {
   position: relative;
-
-  /* margin: auto;
-  height: auto; */
 }
 
 .tile {

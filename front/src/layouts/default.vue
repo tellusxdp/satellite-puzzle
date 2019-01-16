@@ -57,8 +57,11 @@ html {
 .contents {
   background: url('~assets/images/background/background.png') center center / cover no-repeat;
   background-size: contain;
-  height: 100vh;
-  width: calc(100vh / 1149 * 640);
+  width: 640px;
+  height: 1148px;
+
+  /* height: 100vh;
+  width: calc(100vh / 1149 * 640); */
   margin-left: auto;
   margin-right: auto;
 }

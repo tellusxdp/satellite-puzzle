@@ -1,15 +1,21 @@
 <template>
   <div class="difficulty">
     <div class="mode">MODE</div>
-    <moon-button
-      @onClick="pushEasy"
-      class="button--moon easy">やさしい</moon-button>
-    <moon-button
-      @onClick="pushNormal"
-      class="button--moon normal">ふつう</moon-button>
-    <moon-button
-      @onClick="pushHard"
-      class="button--moon hard">むずかしい</moon-button>
+    <div class="easy">
+      <moon-button
+        @onClick="pushEasy"
+        class="button--moon">やさしい</moon-button>
+    </div>
+    <div class="normal">
+      <moon-button
+        @onClick="pushNormal"
+        class="button--moon">ふつう</moon-button>
+    </div>
+    <div class="hard">
+      <moon-button
+        @onClick="pushHard"
+        class="button--moon">むずかしい</moon-button>
+    </div>
     <div class="what-is">
       <div class="what-is--title">SAR画像とは？</div>
       <div class="what-is--text">
@@ -18,7 +24,7 @@
       <div class="detail">
         <purple-button>くわしい説明をみる</purple-button>
       </div>
-      <div class="sorabatake">※SORABATAKEのサイトへ飛びます</div>
+      <div class="sorabatake">別ウィンドウが開きます</div>
     </div>
   </div>
 </template>
@@ -48,11 +54,11 @@ export default {
 </script>
 
 <style>
-.difficulty {
+/* .difficulty {
   position: relative;
   width: 100%;
   height: 100%;
-}
+} */
 
 .mode {
   width: 78px;
@@ -66,57 +72,39 @@ export default {
   line-height: 1.29;
   letter-spacing: normal;
   text-align: center;
-  position: absolute;
-  top: 5%;
-  left: calc((100vh / 1149 * 640 / 2) - (78px / 2));
+  padding-top: 79px;
+  padding-left: 280px;
   color: #fff;
 }
 
 /* button */
 .button--moon {
-  text-align: center;
-  width: 15vh;
-  height: 15vh;
+  width: 140px;
+  height: 140px;
 }
 
 .easy {
-  position: absolute;
-  top: 10%;
-  left: 10%;
+  padding-top: 30px;
+  padding-left: 133px;
 }
 
 .normal {
-  position: absolute;
-  top: 25%;
-  right: 10%;
+  padding-left: 408px;
 }
 
 .hard {
-  position: absolute;
-  top: 40%;
-  left: 20%;
+  padding-left: 133px;
 }
 
 .what-is {
-  /* width: 577px; */
-
-  /* height: 374px; */
+  margin-top: 74px;
+  margin-left: 32px;
+  width: 577px;
+  height: 374px;
   background-color: #cfd7ef;
-  position: absolute;
-  top: 60%;
-
-  /* width: 577px;
-  height: 374px; */
-  width: calc(100vh / 1149 * 640 * 0.9);
-  height: calc(100vh * 0.32);
-  left: calc((100vh / 1149 * 640 / 2) - ((100vh / 1149 * 640 * 0.9) / 2));
 }
 
 .what-is--title {
-  /* width: 209px; */
-
-  /* height: 30px; */
-
   /* font-family: NotoSansCJKjp; */
   font-size: 32px;
   font-weight: normal;
@@ -126,8 +114,7 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #10172b;
-  margin-top: 38px;
-  margin-bottom: 32px;
+  padding-top: 38px;
 }
 
 .what-is--text {
@@ -146,18 +133,15 @@ export default {
   color: #10172b;
   padding-left: 29px;
   padding-right: 52px;
-  margin-bottom: 30px;
+  padding-top: 32px;
 }
 
 .detail {
+  padding-top: 30px;
   text-align: center;
 }
 
 .sorabatake {
-  /* width: 323px; */
-
-  /* height: 19px; */
-
   /* font-family: NotoSansCJKjp; */
   font-size: 20px;
   font-weight: normal;
@@ -167,6 +151,7 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #10172b;
+  margin-top: 19px;
 }
 </style>
 

@@ -5,7 +5,10 @@
     </div>
     <div class="puzzle-area">
       <div class="normal-puzzle">
-        <normal-puzzle @puzzle-completed="completed"/>
+        <normal-puzzle
+          :top=0
+          :left=100
+          @puzzle-completed="completed"/>
       </div>
     </div>
     <br>
