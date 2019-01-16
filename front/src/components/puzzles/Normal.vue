@@ -7,7 +7,8 @@
       準備中です
     </div>
     <div v-show="ready">
-      <div>
+      <!-- SAR画像 -->
+      <div v-show="showSar">
         <!-- タイル -->
         <div
           class="tile"
@@ -17,9 +18,29 @@
           :key="index"
           :style="{'top': top + tile.x*100 + 'px', 'left': left + (tile.y)*100 + 'px'}"
         >
-          <img
-            :src="image(tile)"
-            class="tile--image">
+          <div :v-show="showSar === true">
+            <img
+              :src="image(tile)"
+              class="tile--image">
+          </div>
+        </div>
+      </div>
+      <!-- 可視光画像 -->
+      <div v-show="!showSar">
+        <!-- タイル -->
+        <div
+          class="tile"
+          v-for="(tile, index) in tiles"
+          :class="'_' + index"
+          @click="move"
+          :key="index"
+          :style="{'top': top + tile.x*100 + 'px', 'left': left + (tile.y)*100 + 'px'}"
+        >
+          <div :v-show="showSar === true">
+            <img
+              :src="image(tile)"
+              class="tile--image light">
+          </div>
         </div>
       </div>
     </div>
@@ -36,6 +57,11 @@ export default {
     left: {
       type: Number,
       default: 0,
+    },
+    // SAR画像と可視光画像を切り替えるパラメーター
+    showSar: {
+      type: Boolean,
+      default: true,
     }
   },
   data: () => {
@@ -169,6 +195,10 @@ export default {
 .tile--image {
   width: 99px;
   height: 99px;
+}
+
+.light {
+  background-color: white;
 }
 
 </style>

@@ -14,6 +14,7 @@
         <normal-puzzle
           :top=50
           :left=100
+          :show-sar=showSar
           @puzzle-completed="completed"/>
       </div>
       <div
@@ -94,7 +95,14 @@ export default {
     pushTop() {
       this.$router.push('/')
     },
-}
+  },
+  computed: {
+    // 可視光画像を表示する時間を指定
+    showSar () {
+      const sec = this.$store.state.sec
+      return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
+    }
+  }
 }
 </script>
 
