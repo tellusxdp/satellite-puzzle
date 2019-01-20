@@ -17,53 +17,70 @@
 </template>
 
 <script>
-const countUp = t => {
-  return () => {
-    if (t.msec === 99) {
-      if (t.sec === 59) {
-        t.min ++
-        t.sec = 0
-      }
-      t.sec ++
-      t.msec = 0
-    }
-      t.msec ++
-  }
-}
-
-const format = i => {
-  return ('0' + i).slice(-2)
-}
-
 export default {
   data: () => {
     return {
-      min: 0,
-      sec: 0,
-      msec: 0,
-      isRun: false,
-      timerObj: null,
+      isRun: false,   // カウントアップ中か
+      timerObj: null, // setInterval用
     }
   },
+  computed: {
+    min: {
+      get () { return this.$store.getters.min },
+    },
+    sec: {
+      get () { return this.$store.getters.sec }
+    },
+    msec: {
+      get () { return this.$store.getters.msec }
+    },
+  },
   props: {
-    doRun: {
+    doRun: { // カウントアップの指示があるか
       type: Boolean,
       default: false,
     }
   },
-  beforeUpdate: function() {
+  methods: {
+    // storeの値を更新する
+    countUp () {
+      if (this.msec === 99) {
+        this.$store.commit('resetMsec')
+        if (this.sec === 59) {
+          this.$store.commit('resetSec')
+          this.$store.commit('inclementMin')
+        } else {
+          this.$store.commit('inclementSec')
+        }
+      } else {
+        this.$store.commit('inclementMsec')
+      }
+    },
+  },
+  // マウントされる前の処理
+  beforeMount () {
+    // タイマーの値をリセット
+    this.$store.commit('resetMin')
+    this.$store.commit('resetSec')
+    this.$store.commit('resetMsec')
+  },
+  // データが変更され、DOMに適用される前の処理
+  beforeUpdate () {
+    // タイマーを動かすかどうかを判定する
     if (!this.isRun && this.doRun) {
       this.isRun = true
-      this.timerObj = setInterval(countUp(this), 10)
+      this.timerObj = setInterval(this.countUp, 10)
     } else if (this.isRun && !this.doRun) {
       this.isRun = false
       clearInterval(this.timerObj)
     }
   },
-  computed: {
-    formatTimer () {
-      return format(this.min) + ':' + format(this.sec)+ ':' + format(this.msec)
-    }
+  // Vueインスタンスが破棄される前の処理
+  beforeDestroy () {
+    // タイマーを停止する
+    this.isRun = false
+    this.doRun = false
+    clearInterval(this.timerObj)
   },
 }
 </script>

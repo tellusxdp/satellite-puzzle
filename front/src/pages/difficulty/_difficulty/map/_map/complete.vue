@@ -5,9 +5,9 @@
       <div class="result-area--purple">
         <div class="map-name">キラウエア火山完成！</div>
         <div class="record">
-          <span class="time">02</span>
+          <span class="time">{{ $store.state.min }}</span>
           <span class="time-unit">分</span>
-          <span class="time">58</span>
+          <span class="time">{{ $store.state.sec }}</span>
           <span class="time-unit">秒</span>
         </div>
         <div class="personal-best">あなたの自己ベスト 02分58秒</div>

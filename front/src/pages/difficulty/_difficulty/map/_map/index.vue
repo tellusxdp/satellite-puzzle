@@ -8,23 +8,34 @@
     </div>
     <div class="puzzle-area">
       <div
-        v-if="puzzle"
-        @click.once="puzzleStart"
-        class="normal-puzzle">
-        <normal-puzzle
-          :top=50
-          :left=100
-          @puzzle-completed="completed"/>
+        v-show="hint"
+        class="light-image">
+        完成した可視光画像を表示
       </div>
-      <div
-        v-else>{{ resetPuzzle }}</div>
+      <div v-show="!hint">
+        <div
+          v-if="puzzle"
+          @click.once="puzzleStart"
+          class="normal-puzzle">
+          <normal-puzzle
+            :top=50
+            :left=100
+            :show-sar=showSar
+            @puzzle-completed="completed"/>
+        </div>
+        <div
+          v-else>{{ resetPuzzle }}</div>
+      </div>
     </div>
     <br>
     <div class="sar">
       <p>ボタンを押している間、<br>SAR画像が可視光画像に変わるよ</p>
     </div>
     <br>
-    <div class="center">
+    <div
+      @mousedown="dispHint"
+      @mouseup="noDispHint"
+      class="center">
       <purple-button>可視光画像を見る</purple-button>
     </div>
     <br>
@@ -60,6 +71,7 @@ export default {
       run: false,
       modal: false,
       puzzle: true,
+      hint: false,
     }
   },
   watch: {
@@ -94,7 +106,20 @@ export default {
     pushTop() {
       this.$router.push('/')
     },
-}
+    dispHint () {
+      this.hint = true
+    },
+    noDispHint () {
+      this.hint = false
+    }
+  },
+  computed: {
+    // 可視光画像を表示する時間を指定
+    showSar () {
+      const sec = this.$store.state.sec
+      return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
+    }
+  }
 }
 </script>
 
@@ -128,6 +153,16 @@ export default {
   text-align: center;
   color: #192342;
   margin-top: 30px;
+}
+
+.light-image {
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 100px;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  text-align: center;
 }
 
 .retire {
