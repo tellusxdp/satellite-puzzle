@@ -6,9 +6,9 @@
     <div class="timer-text">TIME</div>
     <div class="timer">
       <div class="record">
-        <span class="time">{{ $store.state.min }}</span>
+        <span class="time">{{ min }}</span>
         <span class="time-unit">分</span>
-        <span class="time">{{ $store.state.sec }}</span>
+        <span class="time">{{ sec }}</span>
         <span class="time-unit">秒</span>
       </div>
     </div>
@@ -24,6 +24,17 @@ export default {
       timerObj: null, // setInterval用
     }
   },
+  computed: {
+    min: {
+      get () { return this.$store.getters.min },
+    },
+    sec: {
+      get () { return this.$store.getters.sec }
+    },
+    msec: {
+      get () { return this.$store.getters.msec }
+    },
+  },
   props: {
     doRun: { // カウントアップの指示があるか
       type: Boolean,
@@ -33,9 +44,9 @@ export default {
   methods: {
     // storeの値を更新する
     countUp () {
-      if (this.$store.state.msec === 99) {
+      if (this.msec === 99) {
         this.$store.commit('resetMsec')
-        if (this.$store.state.sec === 59) {
+        if (this.sec === 59) {
           this.$store.commit('resetSec')
           this.$store.commit('inclementMin')
         } else {

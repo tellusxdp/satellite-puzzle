@@ -7,6 +7,11 @@ const createStore = () => {
       sec: 0,
       msec: 0,
     }),
+    getters: {
+      min(state) { return state.min },
+      sec(state) { return state.sec },
+      msec(state) { return state.msec },
+    },
     mutations: {
       resetMin(state) { state.min = 0 },
       resetSec(state) { state.sec = 0 },
