@@ -39,14 +39,15 @@ module.exports = {
     ['nuxt-sass-resources-loader', '@@/assets/css/*.scss']
   ],
   workbox: {
-    dev: true,
+    dev: false, // yarn dev でもworkboxを有効にしたい場合はtrue
   },
   manifest: { // TODO: 仮置き
     name: "satellite-puzzle",
     lang: 'ja'
   },
   plugins: [
-    '~/plugins/axios.js'
+    '~/plugins/axios.js',
+    { src: '~/plugins/localStorage.js', ssr: false }
   ],
   css: [
     '~/../node_modules/ress/dist/ress.min.css',
