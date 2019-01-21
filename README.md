@@ -40,12 +40,23 @@ make
 ```
 ### request example
 画像種類: landsat8
-x: 7249
-y: 7249
+x: 7248
+y: 3226
 z: 13
 split_n: 3(画像の分割数)
 ```
-curl http://localhost:5000\?z\=13\&x\=7249\&y\=3226\&kind\=landsat8\&split_n\=3
+curl http://localhost:5000\?z\=13\&x\=7248\&y\=3226\&kind\=landsat8\&split_n\=3
+```
+
+### docker request example
+画像種類: landsat8
+x: 7248
+y: 3226
+z: 13
+split_n: 3(画像の分割数)
+```
+docker exec -it satellite-puzzle-front sh
+curl http://localhost:4999\?z\=13\&x\=7248\&y\=3226\&kind\=landsat8\&split_n\=3
 ```
 
 

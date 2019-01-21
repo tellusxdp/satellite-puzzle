@@ -16,7 +16,21 @@ services:
       - satellite-puzzle-front:satellite-puzzle-front
   satellite-puzzle-front:
     build:
-      context: ../
-      dockerfile: .docker/Dockerfile
+      context: ../front
+      dockerfile: ../.docker/Dockerfile
     container_name: satellite-puzzle-front
+    volumes:
+      - satellite-puzzle-storage:/app/src/static/images
+  satellite-puzzle-image_processing:
+    build:
+      context: ../image_processing
+      dockerfile: ../.docker/image.Dockerfile
+    container_name: satellite-puzzle-image_processing
+    volumes:
+      - satellite-puzzle-storage:/app/dst
+
+volumes:
+  satellite-puzzle-storage:
+    driver: local
+
 
