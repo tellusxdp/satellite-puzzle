@@ -20,7 +20,7 @@ services:
       dockerfile: ../.docker/Dockerfile
     container_name: satellite-puzzle-front
     volumes:
-      - satellite-puzzle-storage:/app/src/static/images
+      - satellite-puzzle-storage:/app/src/assets/images/maps
   satellite-puzzle-image_processing:
     build:
       context: ../image_processing
