@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 services:
   satellite-puzzle-proxy:
     image: nginx:1.15.8-alpine
@@ -21,16 +21,17 @@ services:
     container_name: satellite-puzzle-front
     volumes:
       - satellite-puzzle-storage:/app/src/assets/images/maps
-  satellite-puzzle-image_processing:
+    links:
+      - satellite-puzzle-image-processing
+  satellite-puzzle-image-processing:
     build:
       context: ../image_processing
       dockerfile: ../.docker/image.Dockerfile
-    container_name: satellite-puzzle-image_processing
+    container_name: satellite-puzzle-image-processing
     volumes:
       - satellite-puzzle-storage:/app/dst
 
 volumes:
   satellite-puzzle-storage:
     driver: local
-
 

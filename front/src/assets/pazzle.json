@@ -1,0 +1,26 @@
+{
+  "puzzles": [
+    {
+      "name": "富士山",
+      "description": "この画像は富士山です",
+      "difficulty": [3, 4, 5],
+      "parameters": {
+        "kind": "landsat8",
+        "z": 13,
+        "x": 7248,
+        "y": 3226
+      }
+    },
+    {
+      "name": "キラウエア火山",
+      "description": "この画像はキラウエア火山です",
+      "difficulty": [3, 4, 5],
+      "parameters": {
+        "kind": "landsat8",
+        "z": 13,
+        "x": 7249,
+        "y": 3226
+      }
+    }
+  ]
+}
