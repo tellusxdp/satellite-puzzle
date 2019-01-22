@@ -33,7 +33,7 @@ export const actions = {
       const fs = require('fs')
       const sprintf = require('sprintf-js').vsprintf
       // アプリケーション起動時にパズルの設定ファイルを読み込み、画像を分割する処理をリクエストする
-      const puzzleSettings = require('../pazzle.json')
+      const puzzleSettings = require('../puzzle.json')
       let promises = []
       puzzleSettings.puzzles.forEach(e => {
         e.parameters.forEach(p => {
