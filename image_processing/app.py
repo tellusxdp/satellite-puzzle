@@ -76,7 +76,7 @@ def index():
 def make_img_path(save_img_directory):
     p = pathlib.Path(save_img_directory)
     if p.exists():
-        return true
+        return True
     else:
         p.mkdir(parents=True)
         return p.is_dir()

@@ -50,6 +50,7 @@
     "nuxt": "^2.0.0",
     "nuxt-property-decorator": "^1.2.0",
     "nuxt-sass-resources-loader": "^2.0.5",
+    "path": "^0.12.7",
     "prettier": "^1.15.3",
     "ress": "^1.2.2",
     "sprintf-js": "^1.1.2",
@@ -63,6 +64,7 @@
     "eslint": "^4.19.1",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.1.1",
+    "fs": "0.0.1-security",
     "eslint-plugin-vue": "^4.0.0",
     "sass-loader": "^7.0.3",
     "ts-loader": "^3.5.0"

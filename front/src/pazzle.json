@@ -3,24 +3,55 @@
     {
       "name": "富士山",
       "description": "この画像は富士山です",
-      "difficulties": [3, 4, 5],
-      "parameters": {
-        "kind": "landsat8",
-        "z": 13,
-        "x": 7248,
-        "y": 3226
-      }
+      "parameters": [
+        {
+          "kind": "landsat8",
+          "z": 13,
+          "x": 7248,
+          "y": 3226,
+          "split_n": 3
+        },
+        {
+          "kind": "landsat8",
+          "z": 13,
+          "x": 7248,
+          "y": 3226,
+          "split_n": 4
+        },
+        {
+          "kind": "landsat8",
+          "z": 13,
+          "x": 7248,
+          "y": 3226,
+          "split_n": 5
+        }
+      ]
     },
     {
       "name": "キラウエア火山",
       "description": "この画像はキラウエア火山です",
-      "difficulties": [3, 4, 5],
-      "parameters": {
-        "kind": "landsat8",
-        "z": 13,
-        "x": 7249,
-        "y": 3226
-      }
+      "parameters": [
+        {
+          "kind": "landsat8",
+          "z": 13,
+          "x": 7249,
+          "y": 3226,
+          "split_n": 4
+        }
+      ]
+    },
+    {
+      "name": "未釜山",
+      "description": "この画像は未釜山です",
+      "parameters": [
+        {
+          "kind": "landsat8",
+          "z": 13,
+          "x": 7249,
+          "y": 3226,
+          "split_n": 4
+        }
+      ]
     }
   ]
 }

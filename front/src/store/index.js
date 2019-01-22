@@ -27,22 +27,28 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit({ commit, state }, { app }) {
-    const sprintf = require('sprintf-js').vsprintf
+  async nuxtServerInit({ commit, state }, { app }) {
     try {
+      const path = require('path')
+      const fs = require('fs')
+      const sprintf = require('sprintf-js').vsprintf
+      // アプリケーション起動時にパズルの設定ファイルを読み込み、画像を分割する処理をリクエストする
       const puzzleSettings = require('../pazzle.json')
-      puzzleSettings.puzzles.forEach((e) => {
-        console.log(e)
-        const params = e.parameters
-        e.difficulties.forEach((difficulty) => {
-          const reqQuery = sprintf('?z=%d&x=%d&y=%d&kind=%s&split_n=%d',
-            [params.z, params.x, params.y, params.kind, difficulty])
-          console.log(reqQuery)
-          const res = this.$axios.get('http://satellite-puzzle-image-processing:5000'+reqQuery).then((res) => {
-            console.log("ssjidjso", res)
-          }).catch((err) => console.log("あああああ", err))
+      let promises = []
+      puzzleSettings.puzzles.forEach(e => {
+        e.parameters.forEach(p => {
+          // TODO: このやり方かなり微妙なんでしゅうせいしたい
+          const dirpath = sprintf("%s/src/assets/images/maps/%s/%d_%d_%d_%d/completed.png",
+            [path.resolve(''), p.kind, p.z, p.x, p.y, p.split_n])
+          fs.access(dirpath, fs.constants.F_OK, (err) => {
+            if (err && err.code === 'ENOENT') {
+              // TODO: あとで環境変数化する
+              promises.push(this.$axios.get('http://localhost:5000', { params: p }))
+            }
+          })
         })
       })
+      promises && await Promise.all(promises)
     } catch (err) {
       throw err
     }
