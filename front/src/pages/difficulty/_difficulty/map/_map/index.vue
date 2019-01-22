@@ -13,18 +13,25 @@
         完成した可視光画像を表示
       </div>
       <div v-show="!hint">
-        <div
-          v-if="puzzle"
-          @click.once="puzzleStart"
-          class="normal-puzzle">
-          <normal-puzzle
-            :top=50
-            :left=100
-            :show-sar=showSar
-            @puzzle-completed="completed"/>
+        <div v-if="difficulty === 'easy'">
+          <easy-puzzle class="easy-puzzle"/>
         </div>
-        <div
-          v-else>{{ resetPuzzle }}</div>
+        <div v-else-if="difficulty === 'normal'">
+          <div
+            v-if="puzzle"
+            @click.once="puzzleStart"
+            class="normal-puzzle">
+            <normal-puzzle
+              :top=50
+              :left=100
+              :show-sar=showSar
+              @puzzle-completed="completed"/>
+          </div>
+          <div v-else>{{ resetPuzzle }}</div>
+        </div>
+        <div v-else>
+          <hard-puzzle class="hard-puzzle"/>
+        </div>
       </div>
     </div>
     <br>
@@ -58,13 +65,17 @@ import _ from 'lodash'
 import CountUpTimer from '~/components/CountUpTimer.vue'
 import Modal from '~/components/modal/Retire'
 import PurpleButton from '~/components/buttons/PurpleButton'
+import EasyPuzzle from '~/components/puzzles/Easy'
 import NormalPuzzle from '~/components/puzzles/Normal'
+import HardPuzzle from '~/components/puzzles/Hard'
 export default {
   components: {
     CountUpTimer,
     Modal,
     PurpleButton,
+    EasyPuzzle,
     NormalPuzzle,
+    HardPuzzle,
   },
   data() {
     return {
@@ -118,7 +129,8 @@ export default {
     showSar () {
       const sec = this.$store.state.sec
       return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
-    }
+    },
+    difficulty () { return this.$route.params.difficulty },
   }
 }
 </script>
@@ -129,7 +141,21 @@ export default {
   height: 540px;
 }
 
+.easy-puzzle {
+  top: 50px;
+  left: 50px;
+  width: 540px;
+  height: 540px;
+}
+
 .normal-puzzle {
+  width: 540px;
+  height: 540px;
+}
+
+.hard-puzzle {
+  top: 50px;
+  left: 50px;
   width: 540px;
   height: 540px;
 }
