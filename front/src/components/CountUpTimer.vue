@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex"
 export default {
   data: () => {
     return {
@@ -26,14 +27,15 @@ export default {
   },
   computed: {
     min: {
-      get () { return this.$store.getters.min },
+      get () { return this.min },
     },
     sec: {
-      get () { return this.$store.getters.sec }
+      get () { return this.sec }
     },
     msec: {
-      get () { return this.$store.getters.msec }
+      get () { return this.msec }
     },
+  ...mapGetters(["min", "sec", "msec"]),
   },
   props: {
     doRun: { // カウントアップの指示があるか
@@ -45,24 +47,32 @@ export default {
     // storeの値を更新する
     countUp () {
       if (this.msec === 99) {
-        this.$store.commit('resetMsec')
+        this.resetMsec()
         if (this.sec === 59) {
-          this.$store.commit('resetSec')
-          this.$store.commit('inclementMin')
+          this.resetSec()
+          this.inclementMin()
         } else {
-          this.$store.commit('inclementSec')
+          this.inclementSec()
         }
       } else {
-        this.$store.commit('inclementMsec')
+        this.inclementMsec()
       }
     },
+    ...mapActions(
+      ["resetMin",
+       "resetSec", 
+       "resetMsec",
+       "inclementMin",
+       "inclementSec",
+       "inclementMsec"]
+      ),
   },
   // マウントされる前の処理
   beforeMount () {
     // タイマーの値をリセット
-    this.$store.commit('resetMin')
-    this.$store.commit('resetSec')
-    this.$store.commit('resetMsec')
+    this.resetMin()
+    this.resetSec()
+    this.resetMsec()
   },
   // データが変更され、DOMに適用される前の処理
   beforeUpdate () {
