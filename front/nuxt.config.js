@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   srcDir: 'src',
   head: {
@@ -30,6 +32,9 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+        config.node = {
+          fs: 'empty'
+        }
       }
     }
   },

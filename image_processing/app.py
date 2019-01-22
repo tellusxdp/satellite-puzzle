@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_api import status
 from PIL import Image
 import os.path
 import requests
 from exception import MyException
 from io import BytesIO
 import logging
+import pathlib
 
 app = Flask(__name__)
 
@@ -22,7 +24,7 @@ map_kinds = {
 @app.errorhandler(Exception)
 def handle_exception(error):
     logging.exception(error)
-    return jsonify({'message': 'error'})
+    return jsonify({'message': 'internal server error'}), status.HTTP_500_INTERNAL_SERVER_ERROR
 
 @app.errorhandler(MyException)
 def handle_my_exception(error):
@@ -41,6 +43,17 @@ def index():
     res = requests.get(req_url)
     img = Image.open(BytesIO(res.content))
 
+    # 画像保存パラメータ
+    img_quality = 95
+    save_img_directory = 'dst/%s/%d_%d_%d_%d' % (map_kinds[map_kind], z, x, y, split_n)
+    if not make_img_path(save_img_directory):
+        raise MyException("img directory couldn't not be made", 500)
+
+    save_img_path = '%s/completed.png' % save_img_directory
+
+    # 最終完成イメージ保存
+    img.save(save_img_path, quality = img_quality)
+
     # 切り取り間隔を取得
     ver_s, hori_s, ver_interval, hori_interval = calc_interval(img, split_n)
 
@@ -52,12 +65,22 @@ def index():
             box = (left, upper, right, lower)
 
             # 画像を保存するパス
-            save_img_path = 'dst/%d.png' % ((ver_i * split_n) + hori_i)
+            save_img_path = '%s/%d.png' % (save_img_directory, ((ver_i * split_n) + hori_i))
             # 画像切り取り、保存
-            img.crop(box).save(save_img_path, quality = 95)
+            img.crop(box).save(save_img_path, quality = img_quality)
     img.close()
 
     return jsonify({'message': 'image processing was completed'})
+
+# 画像保存先のディレクトリ作成
+def make_img_path(save_img_directory):
+    p = pathlib.Path(save_img_directory)
+    if p.exists():
+        return True
+    else:
+        p.mkdir(parents=True)
+        return p.is_dir()
+
 
 # 切り取り画像のいちを計算
 def calc_img_pozition(hori_i, ver_i, hori_interval, ver_interval):

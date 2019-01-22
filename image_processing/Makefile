@@ -1,4 +1,4 @@
-.PHONY: setup devrun
+.PHONY: setup devrun prdrun
 
 all: main
 
@@ -9,5 +9,8 @@ setup:
 	pipenv install
 
 devrun:
-	pipenv run start
+	pipenv run devstart
+
+prdrun:
+	pipenv run prdstart
 
