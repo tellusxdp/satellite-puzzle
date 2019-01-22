@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.7'
 services:
   satellite-puzzle-proxy:
     image: nginx:1.15.8-alpine
@@ -27,6 +27,8 @@ services:
     build:
       context: ../image_processing
       dockerfile: ../.docker/image.Dockerfile
+    expose:
+      - "5000"
     container_name: satellite-puzzle-image-processing
     volumes:
       - satellite-puzzle-storage:/app/dst
