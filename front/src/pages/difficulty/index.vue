@@ -1,3 +1,4 @@
+// 難易度選択
 <template>
   <div class="difficulty">
     <div class="mode">MODE</div>

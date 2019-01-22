@@ -1,3 +1,4 @@
+// マップ選択
 <template>
   <div class="map">
     <div class="return">
@@ -18,6 +19,11 @@
 <script>
 import KilaueaMap from '~/components/map/Kilauea'
 export default {
+  validate({ params }) {
+    const d = params.difficulty
+    // 難易度チェック
+    return (d === 'easy' || d === 'normal' || d === 'hard')
+  },
   components: {
     KilaueaMap
   },

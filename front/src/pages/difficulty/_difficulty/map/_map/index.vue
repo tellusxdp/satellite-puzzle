@@ -1,3 +1,4 @@
+// パズル
 <template>
   <div>
     <div
@@ -69,6 +70,13 @@ import EasyPuzzle from '~/components/puzzles/Easy'
 import NormalPuzzle from '~/components/puzzles/Normal'
 import HardPuzzle from '~/components/puzzles/Hard'
 export default {
+  validate ({ params }) {
+    const d = params.difficulty
+    // 難易度チェック
+    return (d === 'easy' || d === 'normal' || d === 'hard')
+    // マップチェック
+    // TODO: マップチェック
+  },
   components: {
     CountUpTimer,
     Modal,
