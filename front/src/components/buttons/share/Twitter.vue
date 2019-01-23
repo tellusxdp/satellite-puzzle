@@ -1,16 +1,68 @@
 <template>
-  <div>
+  <div class="twitter-share-button">
     <a
-      href=""
-      class="twitter-share-button"
-      data-show-count="false"
-    >
-      Tweet
+      :href="href"
+      target="_blank">
+      <img
+        class="twitter-share-button--image"
+        src="~assets/images/twitter/icon.png"
+      >
     </a>
-    <script
-      async
-      src="https://platform.twitter.com/widgets.js"
-      charset="utf-8"
-    />
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    click () {
+      this.$emit("onClick", this.href)
+    },
+  },
+  props: {
+    url: {
+      type: String,
+      default: "",
+    },
+    via: {
+      type: String,
+      default: "",
+    },
+    related: {
+      type: String,
+      default: "",
+    },
+    hashtags: {
+      type: String,
+      default: "",
+    },
+    text: {
+      type: String,
+      default: "",
+    },
+  },
+  computed: {
+    href () {
+      // TODO: 結合方法は要件が決まったら修正する
+      return "https://twitter.com/share?"
+               +"url="+this.url
+               +"&via="+this.via
+               +"&related="+this.related
+               +"&hashtags="+this.hashtags
+               +"&text="+this.text
+    }
+  }
+}
+</script>
+
+<style scoped>
+.twitter-share-button {
+  width: 80px;
+  height: 80px;
+}
+
+.twitter-share-button--image {
+  width: 80px;
+  height: 80px;
+}
+</style>
+
