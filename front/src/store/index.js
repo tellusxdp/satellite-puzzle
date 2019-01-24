@@ -38,10 +38,10 @@ export const actions = {
         // FIXME: このやり方かなりイケてないので、修正したい
         // TODO: hostを環境変数で制御する
         const imageUrl = sprintf("%s/images/%s/%d-%d-%d-%d/completed.png",
-          ['${CLIENT_URL}', p.kind, p.z, p.x, p.y, p.split_n])
+          [`${process.env.CLIENT_URL}`, p.kind, p.z, p.x, p.y, p.split_n])
         this.$axios.get(imageUrl)
           .catch((err) => {
-            promises.push(this.$axios.get('${API_URL}', { params: p }))
+            promises.push(this.$axios.get(`${process.env.API_URL}`, { params: p }))
           })
       })
     })

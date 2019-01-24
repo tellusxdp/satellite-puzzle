@@ -1,5 +1,5 @@
 const path = require('path')
-const NODE_ENV = process.env.NODE_ENV || 'local'
+const NODE_ENV = process.env.NODE_ENV
 const env = require(`./envs/${NODE_ENV}`)
 
 module.exports = {
