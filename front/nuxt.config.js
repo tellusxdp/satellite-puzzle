@@ -1,7 +1,11 @@
 const path = require('path')
+const NODE_ENV = process.env.NODE_ENV || 'local'
+const env = require(`./envs/${NODE_ENV}`)
 
 module.exports = {
   srcDir: 'src',
+  env: {
+  },
   head: {
     title: 'satellite-puzzle',
     meta: [
@@ -32,9 +36,6 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
-        config.node = {
-          fs: 'empty'
-        }
       }
     }
   },

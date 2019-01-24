@@ -5,8 +5,6 @@ WORKDIR /app
 COPY package.json yarn.lock /app/
 RUN yarn
 ADD ./ /app
-ARG NODE_ENV
-RUN echo $NODE_ENV
 RUN yarn build
 ENV HOST 0.0.0.0
 ENTRYPOINT ["yarn", "start"]

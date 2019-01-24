@@ -45,7 +45,7 @@ def index():
 
     # 画像保存パラメータ
     img_quality = 95
-    save_img_directory = 'dst/%s/%d_%d_%d_%d' % (map_kinds[map_kind], z, x, y, split_n)
+    save_img_directory = 'dst/%s/%d-%d-%d-%d' % (map_kinds[map_kind], z, x, y, split_n)
     if not make_img_path(save_img_directory):
         raise MyException("img directory couldn't not be made", 500)
 

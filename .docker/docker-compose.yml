@@ -17,16 +17,18 @@ services:
   satellite-puzzle-front:
     build:
       context: ../front
-      dockerfile: ../.docker/Dockerfile
+      dockerfile: "../.docker/Dockerfile"
+      args:
+        NODE_ENV: $NODE_ENV
     container_name: satellite-puzzle-front
     volumes:
-      - satellite-puzzle-storage:/app/src/assets/images/maps
+      - satellite-puzzle-storage:/app/src/static/images
     links:
       - satellite-puzzle-image-processing
   satellite-puzzle-image-processing:
     build:
       context: ../image_processing
-      dockerfile: ../.docker/image.Dockerfile
+      dockerfile: "../.docker/image.Dockerfile"
     expose:
       - "5000"
     container_name: satellite-puzzle-image-processing
