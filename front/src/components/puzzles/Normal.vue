@@ -1,5 +1,5 @@
 <template>
-  <div class="pazzle">
+  <div class="normal-puzzle">
     <!-- パズルの枠 -->
     <div
       class="not-ready"
@@ -180,7 +180,7 @@ export default {
   text-align: center;
 }
 
-.pazzle {
+.normal-puzzle {
   position: relative;
 }
 

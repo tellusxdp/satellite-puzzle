@@ -1,3 +1,4 @@
+// パズル終了
 <template>
   <div class="center">
     <div class="margin-top-result-area"/>
@@ -39,6 +40,13 @@ export default {
     GrayButton,
     TwitterShareButton,
     FacebookShareButton,
+  },
+  validate ({ params }) {
+    const d = params.difficulty
+    // 難易度チェック
+    return (d === 'easy' || d === 'normal' || d === 'hard')
+    // マップチェック
+    // TODO: マップチェック
   },
   methods: {
     pushRetry () {
