@@ -28,26 +28,26 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ commit, state }, { app }) {
-    try {
-      const path = require('path')
-      const fs = require('fs')
-      const sprintf = require('sprintf-js').vsprintf
-      // アプリケーション起動時にパズルの設定ファイルを読み込み、画像を分割する処理をリクエストする
-      const puzzleSettings = require('../puzzle.json')
-      let promises = []
-      puzzleSettings.puzzles.forEach(e => {
-        e.parameters.forEach(p => {
-          // TODO: このやり方かなり微妙なんでしゅうせいしたい
-          const dirpath = sprintf("%s/src/assets/images/maps/%s/%d_%d_%d_%d/completed.png",
-            [path.resolve(''), p.kind, p.z, p.x, p.y, p.split_n])
-          fs.access(dirpath, fs.constants.F_OK, (err) => {
-            if (err && err.code === 'ENOENT') {
-              // TODO: あとで環境変数化する
-              promises.push(this.$axios.get('http://localhost:5000', { params: p }))
-            }
+    const path = require('path')
+    const sprintf = require('sprintf-js').vsprintf
+
+    const puzzleSettings = require('../pazzle.json')
+    let promises = []
+    puzzleSettings.puzzles.forEach(e => {
+      e.parameters.forEach(p => {
+        // FIXME: このやり方かなりイケてないので、修正したい
+        // TODO: hostを環境変数で制御する
+        const imageUrl = sprintf("%s/images/%s/%d-%d-%d-%d/completed.png",
+          [`${process.env.CLIENT_URL}`, p.kind, p.z, p.x, p.y, p.split_n])
+        this.$axios.get(imageUrl)
+          .catch((err) => {
+            promises.push(this.$axios.get(`${process.env.API_URL}`, { params: p }))
           })
-        })
       })
+    })
+
+    // アプリケーション起動時にパズルの設定ファイルを読み込み、画像を分割する処理をリクエストする
+    try {
       promises && await Promise.all(promises)
     } catch (err) {
       throw err

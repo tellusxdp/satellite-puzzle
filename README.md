@@ -59,10 +59,23 @@ docker exec -it satellite-puzzle-front sh
 curl http://localhost:5000\?z\=13\&x\=7248\&y\=3226\&kind\=landsat8\&split_n\=3
 ```
 
+## deploy
+### production
+```
+cd .deploy
+sh production.sh
+```
 
-## docker up
-docker engine 18.06.0+以上
+### staging
 ```
-cd .docker
-docker-compose up -d
+cd .deploy
+sh staging.sh
 ```
+
+### local
+```
+cd .deploy
+sh local.sh
+```
+access to http://localhost:3000
+
