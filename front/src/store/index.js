@@ -31,7 +31,10 @@ export const actions = {
     const path = require('path')
     const sprintf = require('sprintf-js').vsprintf
 
-    const puzzleSettings = require('../pazzle.json')
+    const puzzleSettings = require('../puzzle.json')
+
+    commit('SET_PUZZLE_SETTING', puzzleSettings.puzzles)
+
     let promises = []
     puzzleSettings.puzzles.forEach(e => {
       e.parameters.forEach(p => {

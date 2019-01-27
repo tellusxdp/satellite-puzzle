@@ -1,6 +1,7 @@
 {
   "puzzles": [
     {
+      "id": "mt-fuji",
       "name": "富士山",
       "description": "この画像は富士山です",
       "parameters": [
@@ -28,6 +29,7 @@
       ]
     },
     {
+      "id": "mt-kilauea",
       "name": "キラウエア火山",
       "description": "この画像はキラウエア火山です",
       "parameters": [
@@ -41,6 +43,7 @@
       ]
     },
     {
+      "id": "mt-busan",
       "name": "未釜山",
       "description": "この画像は未釜山です",
       "parameters": [
