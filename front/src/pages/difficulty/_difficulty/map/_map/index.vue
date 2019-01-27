@@ -1,10 +1,10 @@
 // パズル
 <template>
-  <div>
+  <div class="container">
     <div
       v-if="modal"
       class="modal-background"/>
-    <div>
+    <div class="timer-area">
       <div v-if="puzzle"><count-up-timer :do-run="run"/></div>
     </div>
     <div class="puzzle-area">
@@ -143,7 +143,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.timer-area {
+  text-align: left;
+  padding-top: 58px;
+  width: 256px;
+}
+
 .puzzle-area {
   width: 540px;
   height: 540px;
@@ -224,19 +230,18 @@ export default {
 }
 
 .modal-area {
-  position: relative;
+  position: absolute;
 }
 
-.contents {
+.container {
   background-image:
-    url('~assets/images/moon/moon.png'),
-    url('~assets/images/background/moon/moon.png'),
+    url('~assets/images/moon/img_pzlmoon.png'),
     url('~assets/images/background/moon/background-2.png'),
     url('~assets/images/background/background.png');
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-  background-size: 20vh, 24vh, cover, contain;
-  background-position: -5vh -5vh, -7vh -7vh, center 50vh, center center;
-  height: auto, auto, auto, 100vh;
-  width: auto, auto, auto, calc(100vh / 1149 * 640);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: initial, 1902px, contain;
+  background-position: 0 0, center 636px, center center;
+  width: 640px;
+  height: 1148px;
 }
 </style>
