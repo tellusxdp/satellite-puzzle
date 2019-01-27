@@ -1,19 +1,28 @@
 <template>
   <div>
     <div v-if="error.statusCode === 403">
-      <div class="error-title">403</div>
-      <br>
-      <div class="error-message">Forbidden area In Space</div>
+      <div class="error-text">
+        <img src="~/assets/images/error/text_403.png">
+      </div>
+      <div class="error-image">
+        <img src="~/assets/images/error/img_corn.png">
+      </div>
     </div>
     <div v-else-if="error.statusCode === 404">
-      <div class="error-title">404</div>
-      <br>
-      <div class="error-message">Lost In Space</div>
+      <div class="error-text">
+        <img src="~/assets/images/error/text_404.png">
+      </div>
+      <div class="error-image">
+        <img src="~/assets/images/error/img_cat.png">
+      </div>
     </div>
-    <div v-else-if="error.statusCode === 505">
-      <div class="error-title">505</div>
-      <br>
-      <div class="error-message">Internal Server Error</div>
+    <div v-else>
+      <div class="error-text">
+        <img src="~/assets/images/error/text_403.png">
+      </div>
+      <div class="error-image">
+        <img src="~/assets/images/error/img_corn.png">
+      </div>
     </div>
   </div>
 </template>
@@ -29,28 +38,15 @@ export default {
 </script>
 
 <style scoped>
-.error-title {
+.error-text {
   text-align: center;
+  margin: 0 auto;
   padding-top: 239px;
-  font-size: 160px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 0.15;
-  letter-spacing: normal;
-  color: #fff;
 }
 
-.error-message {
+.error-image {
   text-align: center;
-  padding-top: 32px;
-  font-size: 28px;
-  font-weight: 900;
-  font-style: italic;
-  font-stretch: normal;
-  line-height: 1.29;
-  letter-spacing: normal;
-  color: #fff;
+  margin: 0 auto;
+  padding-top: 22px;
 }
-
 </style>
