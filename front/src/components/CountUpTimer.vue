@@ -3,14 +3,12 @@
 // doRun = false に変更すると停止
 <template>
   <div class="count-up-timer">
-    <div class="timer-text">TIME</div>
-    <div class="timer">
-      <div class="record">
-        <span class="time">{{ min }}</span>
-        <span class="time-unit">分</span>
-        <span class="time">{{ sec }}</span>
-        <span class="time-unit">秒</span>
-      </div>
+    <div class="count-up-timer--text">TIME</div>
+    <div class="count-up-timer--record">
+      <span class="time">{{ min }}</span>
+      <span class="time-unit">分</span>
+      <span class="time">{{ sec }}</span>
+      <span class="time-unit">秒</span>
     </div>
     <div style="display:none;">{{ doRun }}</div>
   </div>
@@ -100,9 +98,10 @@ export default {
   width: 256px;
 }
 
-.timer-text {
+.count-up-timer--text {
   width: 58px;
   height: 20px;
+  margin-left: 93px;
 
   /* font-family: LTUnivers-Cond; */
   font-size: 28px;
@@ -111,8 +110,12 @@ export default {
   font-stretch: normal;
   line-height: 1.29;
   letter-spacing: normal;
-  text-align: center;
   color: #fff;
+}
+
+.count-up-timer--record {
+  width: 256px;
+  margin-left: 29px;
 }
 
 .time {
@@ -126,7 +129,6 @@ export default {
   font-stretch: normal;
   line-height: 1.64;
   letter-spacing: normal;
-  text-align: center;
   color: #fff;
 }
 
