@@ -1,42 +1,42 @@
 <template>
-  <div>
-    <div
-      class="fb-share-button"
-      data-href="https://developers.facebook.com/docs/plugins/"
-      data-layout="button"
-      data-size="small"
-      data-mobile-iframe="false"
-    >
-      <a
-        target="_blank"
-        href=""
-        class="fb-xfbml-parse-ignore"
+  <div class="facebook-share-button">
+    <a
+      :href="href"
+      rel="nofollow"
+      target="_blank">
+      <img
+        class="facebook-share-button--image"
+        src="~assets/images/icon/icon_fb.png"
       >
-        シェア
-      </a>
-    </div>
-    <div id="fb-root"/>
+    </a>
   </div>
 </template>
 
-
 <script>
 export default {
-  methods: {
-    init: function(d) {
-      let js, fjs = d.getElementsByTagName('script')[0]
-      if (d.getElementById('facebook-jssdk')) {
-        return
-      }
-      js = d.createElement('script'); js.id = 'facebook-jssdk'
-      js.src = 'https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2'
-      fjs.parentNode.insertBefore(js, fjs)
+  props: {
+    url: {
+      type: String,
+      default: "",
     }
   },
-  created () {
-    if (process.browser) {
-      this.init(document)
+  computed: {
+    href () {
+      return `http://www.facebook.com/share.php?u=${this.url}`
     }
-  },
+  }
 }
 </script>
+
+<style scoped>
+.facebook-share-button {
+  width: 80px;
+  height: 80px;
+}
+
+.facebook-share-button--image {
+  width: 80px;
+  height: 80px;
+}
+</style>
+
