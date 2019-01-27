@@ -12,11 +12,45 @@
         @click="pushStart"
         class="button--alos-2"/>
     </div>
+    <div class="share-area">
+      <div class="share-area--text">ゲームをSNSでシェア</div>
+      <div class="share-area--buttons">
+        <facebook-share-button
+          :url="url"/>
+        <twitter-share-button
+          :url="url"
+          :via="via"
+          :related="related"
+          :hashtags="hashtags"
+          :text="text"/>
+        <hatena-share-button
+          :url="url"
+          :title="title"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import FacebookShareButton from '~/components/buttons/share/Facebook'
+import TwitterShareButton from '~/components/buttons/share/Twitter'
+import HatenaShareButton from '~/components/buttons/share/Hatena'
 export default {
+  components: {
+    FacebookShareButton,
+    TwitterShareButton,
+    HatenaShareButton,
+  },
+  data () {
+    return {
+      url: 'sample_url',
+      via: 'sample_via',
+      related: 'sample_related',
+      hashtags: ['sample_hashtag1', 'sample_hashtag2'],
+      text: 'sample_text',
+      title: 'sample_title'
+    }
+  },
   methods: {
     pushStart () {
       this.$router.push('/difficulty')
@@ -69,4 +103,41 @@ export default {
   height: 77px;
 }
 
+.share-area {
+  width: 528px;
+  height: 288px;
+  padding-top: 94px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.share-area--text {
+  padding-top: 78px;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  text-align: center;
+  color: #fff;
+}
+
+.share-area--buttons {
+  padding-top: 35px;
+  text-align: center;
+}
+
+.facebook-share-button {
+  display: inline-block;
+}
+
+.twitter-share-button {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.hatena-share-button {
+  display: inline-block;
+  margin-left: 20px;
+}
 </style>

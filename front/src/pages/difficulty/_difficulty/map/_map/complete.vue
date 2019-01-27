@@ -17,15 +17,22 @@
         ここに画像を表示
       </div>
     </div>
-    <div class="share">
-      <div class="sns">結果をSNSでシェア!</div>
-      <div>
-        <div class="share-button"/>
-        <span class="blank"/>
-        <div class="share-button"/>
+    <div class="share-area">
+      <div class="share-area--text">結果をSNSでシェア!</div>
+      <div class="share-area--buttons">
+        <facebook-share-button
+          :url="url"/>
+        <twitter-share-button
+          :url="url"
+          :via="via"
+          :related="related"
+          :hashtags="hashtags"
+          :text="text"/>
       </div>
     </div>
-    <purple-button @onClick="pushTop">はじめの画面に戻る</purple-button>
+    <div class="button-area">
+      <purple-button @onClick="pushTop">はじめの画面に戻る</purple-button>
+    </div>
   </div>
 </template>
 
@@ -47,6 +54,15 @@ export default {
     return (d === 'easy' || d === 'normal' || d === 'hard')
     // マップチェック
     // TODO: マップチェック
+  },
+  data() {
+    return {
+      url: 'sample_url',
+      via: 'sample_via',
+      related: 'sample_related',
+      hashtags: ['sample_hashtag1', 'sample_hashtag2'],
+      text: 'sample_text'
+    }
   },
   methods: {
     pushRetry () {
@@ -111,8 +127,6 @@ export default {
 .time-unit {
   width: 24px;
   height: 23px;
-
-  /* font-family: NotoSansCJKjp; */
   font-size: 24px;
   font-weight: 500;
   font-style: normal;
@@ -123,11 +137,6 @@ export default {
 }
 
 .personal-best {
-  /* width: 280px; */
-
-  /* height: 19px; */
-
-  /* font-family: RodinProN-DB; */
   font-size: 20px;
   font-weight: normal;
   font-style: normal;
@@ -146,11 +155,6 @@ export default {
 }
 
 .map-name {
-  /* width: 306px; */
-
-  /* height: 31px; */
-
-  /* font-family: NotoSansCJKjp; */
   font-size: 32px;
   font-weight: bold;
   font-style: normal;
@@ -161,37 +165,37 @@ export default {
   color: #fff;
 }
 
-.sns {
-  /* width: 220px; */
+.share-area {
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  /* height: 23px; */
-
-  /* font-family: NotoSansCJKjp; */
+.share-area--text {
+  padding-top: 10px;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: bold;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.5;
-  letter-spacing: normal;
   text-align: center;
   color: #fff;
 }
 
-.share {
+.share-area--buttons {
+  padding-top: 31px;
   text-align: center;
-  padding-bottom: 63px;
 }
 
-.blank {
-  padding-left: 40px;
-}
-
-.share-button {
+.facebook-share-button {
   display: inline-block;
-  vertical-align: top;
-  width: 81px;
-  height: 81px;
-  background-color: #e3e5f7;
 }
 
+.twitter-share-button {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.button-area {
+  margin-top: 49px;
+}
 </style>

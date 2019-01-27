@@ -5,7 +5,7 @@
       target="_blank">
       <img
         class="twitter-share-button--image"
-        src="~assets/images/twitter/icon.png"
+        src="~assets/images/icon/icon_tw.png"
       >
     </a>
   </div>
