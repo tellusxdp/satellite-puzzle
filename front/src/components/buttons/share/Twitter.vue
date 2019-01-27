@@ -42,13 +42,7 @@ export default {
   },
   computed: {
     href () {
-      // TODO: 結合方法は要件が決まったら修正する
-      return "https://twitter.com/share?"
-               +"url="+this.url
-               +"&via="+this.via
-               +"&related="+this.related
-               +"&hashtags="+this.hashtags
-               +"&text="+this.text
+      return `https://twitter.com/share?url=${this.url}&via=${this.via}&related=${this.related}&hashtags=${this.hashtags}&text=${this.text}`
     }
   }
 }

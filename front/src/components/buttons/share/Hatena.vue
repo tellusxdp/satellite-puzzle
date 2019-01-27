@@ -25,7 +25,7 @@ export default {
   },
   computed: {
       href () {
-          return "http://b.hatena.ne.jp/add?mode=confirm&url="+this.url+"&title="+this.title
+          return `http://b.hatena.ne.jp/add?mode=confirm&url=${this.url}&title=${this.title}`
       }
   }
 }

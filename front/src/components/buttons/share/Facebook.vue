@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     href () {
-      return 'http://www.facebook.com/share.php?u=' + this.url
+      return `http://www.facebook.com/share.php?u=${this.url}`
     }
   }
 }
