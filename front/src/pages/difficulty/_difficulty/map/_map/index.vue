@@ -82,11 +82,7 @@ export default {
 
     // マップチェック
     const selectedMap = this.selectedMap
-    if (selectedMap === null) {
-      return false
-    }
-
-  return true
+    return selectedMap !== null
   },
   components: {
     CountUpTimer,
@@ -180,13 +176,13 @@ export default {
       }
 
       const p = parameter[0]
-      const kind = p.landsat8
+      const kind = p.kind
       const x = p.x
       const y = p.y
       const z = p.z
       const n = p.split_n
 
-      return `${z}-${x}-${y}-${n}`
+      return `${kind}/${z}-${x}-${y}-${n}`
     }
   }
 }

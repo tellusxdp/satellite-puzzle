@@ -11,7 +11,7 @@
           :key="index">
           <map-image
             :map-name="map.name"
-            :map-image="`${map.z}-${map.x}-${map.y}-${map.n}`"
+            :map-image="`${map.kind}/${map.z}-${map.x}-${map.y}-${map.n}`"
             @onClick="pushPuzzle(map.id)"/>
           <br>
         </div>
@@ -68,6 +68,7 @@ export default {
         target.push({
           id: e.id,
           name: e.name,
+          kind: p[0].kind,
           x: p[0].x,
           y: p[0].y,
           z: p[0].z,
