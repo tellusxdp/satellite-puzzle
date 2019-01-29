@@ -13,7 +13,20 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Nuxt.js project' },
+      // OGP共通設定
+      { prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/websaite#'},
+      { property: 'og:url', content: '' }, // ページのURLを設定
+      { property: 'og:type', content: '' }, // ページの種類
+      { property: 'og:title', content: '' }, // ページタイトル
+      { property: 'og:description', content: '' }, // ページの説明文
+      { property: 'og:site_name', content: '' }, // サイト名
+      { property: 'og:image', content: '/OGP_Start.jpg' }, // サムネイルのURL
+      // Twitter
+      { name: 'twitter:card', content: 'Summary Card' }, // カード種類
+      { name: 'twitter:site', content: ''}, // @ユーザー名
+      // Facebook
+      { property: 'fb:app_id', content: ''},
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
