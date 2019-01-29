@@ -131,7 +131,7 @@ export default {
   },
   methods: {
     image (tile) {
-      return `/images/maps/${this.mapImages}/${tile.no}.png`
+      return `/images/${this.mapImages}/${tile.no}.png`
     },
     // TODO: フリックでの移動に対応
     move (e) {

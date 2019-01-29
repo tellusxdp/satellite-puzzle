@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     src () {
-      return `/images/maps/${this.mapImage}/completed.png`
+      return `/images/${this.mapImage}/completed.png`
     }
   }
 }
