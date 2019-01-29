@@ -5,6 +5,8 @@ export const state = () => ({
   min: 0,
   sec: 0,
   msec: 0,
+  bestRecords: [],
+  bestRecord: {},
 })
 
 export const getters = {
@@ -12,6 +14,8 @@ export const getters = {
   min: state => state.min,
   sec: state => state.sec,
   msec: state => state.msec,
+  bestRecords: state => state.bestRecords,
+  bestRecord: state => state.bestRecord,
 }
 
 export const mutations = {
@@ -24,6 +28,25 @@ export const mutations = {
   INCLEMENT_MIN(state) { state.min++ },
   INCLEMENT_SEC(state) { state.sec++ },
   INCLEMENT_MSEC(state) { state.msec++ },
+  UPDATE_BEST_RECORD(state, record) {
+    const i = state.bestRecords.findIndex(v => {
+      return v.difficulty === record.difficulty && v.map === record.map
+    })
+
+    if (i > -1) {
+      state.bestRecords[i] = record
+      return
+    }
+    state.bestRecords.push({
+      difficulty: record.difficulty,
+      map: record.map,
+      min: record.min,
+      sec: record.sec
+    })
+  },
+  SET_BEST_RECORD(state, record) {
+    state.bestRecord = { min: record.min, sec: record.sec }
+  }
 }
 
 export const actions = {
@@ -62,4 +85,10 @@ export const actions = {
   inclementMin({ commit }) { commit('INCLEMENT_MIN') },
   inclementSec({ commit }) { commit('INCLEMENT_SEC') },
   inclementMsec({ commit }) { commit('INCLEMENT_MSEC') },
+  updateBestRecord({ commit }, record) {
+    commit('UPDATE_BEST_RECORD', record)
+  },
+  setBestRecord({ commit }, record) {
+    commit('SET_BEST_RECORD', record)
+  }
 }

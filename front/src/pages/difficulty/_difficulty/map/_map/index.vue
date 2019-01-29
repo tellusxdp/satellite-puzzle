@@ -90,7 +90,7 @@ import PurpleButton from '~/components/buttons/PurpleButton'
 import EasyPuzzle from '~/components/puzzles/Easy'
 import NormalPuzzle from '~/components/puzzles/Normal'
 import HardPuzzle from '~/components/puzzles/Hard'
-import { mapGetters } from "vuex"
+import { mapGetters, mapActions } from 'vuex'
 export default {
   validate ({ params }) {
     // 難易度チェック
@@ -133,6 +133,10 @@ export default {
     500)
   },
   methods: {
+    ...mapActions({
+      updateBestRecord: 'updateBestRecord',
+      setBestRecord: 'setBestRecord'
+    }),
     puzzleStart () {
       this.run = true
     },
@@ -140,6 +144,19 @@ export default {
       alert('パズルが完成しました！') // TODO: アニメーションにする
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
+
+      const best = this.bestRecords.filter(v => {
+        return v.difficulty === difficulty && v.map === map
+      })
+      if (best.length === 0 || this.min < best[0].min || this.min === best[0].min && this.sec < best[0].sec) {
+        this.updateBestRecord({
+          difficulty: difficulty,
+          map: map,
+          min: this.min,
+          sec: this.sec
+        })
+        this.setBestRecord({ min: this.min, sec: this.sec })
+      }
       this.$router.push('/difficulty/'+difficulty+'/map/'+map+'/complete')
     },
     openModal() {
@@ -165,6 +182,11 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      min: 'min',
+      sec: 'sec',
+      bestRecords: 'bestRecords',
+    }),
     // 可視光画像を表示する時間を指定
     showSar () {
       const sec = this.$store.state.sec

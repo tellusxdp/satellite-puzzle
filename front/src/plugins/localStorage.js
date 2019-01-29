@@ -4,7 +4,7 @@ export default ({store}) => {
   window.onNuxtReady(() => {
     createPersistedState({
         key: 'satellite-puzzle',
-        // paths: ['msec'] とするとmsecがローカルストレージに入る
+        paths: ['min', 'sec', 'msec', 'bestRecords', 'bestRecord']
     })(store)
   })
 }
