@@ -61,11 +61,10 @@
       <p>ボタンを押している間、<br>SAR画像が可視光画像に変わるよ</p>
     </div>
     <br>
-    <div
-      @mousedown="dispHint"
-      @mouseup="noDispHint"
-      class="center">
-      <purple-button>可視光画像を見る</purple-button>
+    <div class="center">
+      <prs-button
+        @isPrs="dispHint"
+        @isNotPrs="noDispHint">可視光画像を見る</prs-button>
     </div>
     <br>
     <div
@@ -86,7 +85,7 @@
 import _ from 'lodash'
 import CountUpTimer from '~/components/CountUpTimer.vue'
 import Modal from '~/components/modal/Retire'
-import PurpleButton from '~/components/buttons/PurpleButton'
+import PrsButton from '~/components/buttons/PrsButton'
 import EasyPuzzle from '~/components/puzzles/Easy'
 import NormalPuzzle from '~/components/puzzles/Normal'
 import HardPuzzle from '~/components/puzzles/Hard'
@@ -107,7 +106,7 @@ export default {
   components: {
     CountUpTimer,
     Modal,
-    PurpleButton,
+    PrsButton,
     EasyPuzzle,
     NormalPuzzle,
     HardPuzzle,
