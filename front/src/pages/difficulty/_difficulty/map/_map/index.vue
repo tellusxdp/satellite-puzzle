@@ -8,11 +8,10 @@
       <div v-if="puzzle"><count-up-timer :do-run="run"/></div>
     </div>
     <div class="puzzle-area">
-      <div
+      <img
         v-show="hint"
-        class="light-image">
-        完成した可視光画像を表示
-      </div>
+        class="completed-image"
+        :src="completedImage">
       <div v-show="!hint">
         <div v-if="difficulty === 'easy'">
           <div
@@ -58,13 +57,15 @@
     </div>
     <br>
     <div class="sar">
-      <p>ボタンを押している間、<br>SAR画像が可視光画像に変わるよ</p>
+      <!-- TODO: 文言修正 -->
+      <p>ボタンを押している間、<br>完成画像を見ることができるよ</p>
     </div>
     <br>
     <div class="center">
+      <!-- TODO: 文言修正 -->
       <prs-button
         @isPrs="dispHint"
-        @isNotPrs="noDispHint">可視光画像を見る</prs-button>
+        @isNotPrs="noDispHint">完成画像を見る</prs-button>
     </div>
     <br>
     <div
@@ -207,6 +208,11 @@ export default {
       const n = p.split_n
 
       return `${kind}/${z}-${x}-${y}-${n}`
+    },
+    completedImage () {
+      const img = `${this.mapImages}/completed.png`
+      console.log(img)
+      return `/images/${this.mapImages}/completed.png`
     }
   }
 }
@@ -264,7 +270,7 @@ export default {
   margin-top: 30px;
 }
 
-.light-image {
+.completed-image {
   position: absolute;
   margin-top: 50px;
   margin-left: 100px;
