@@ -62,6 +62,10 @@ export default {
     showSar: {
       type: Boolean,
       default: true,
+    },
+    mapImages: {
+      type: String,
+      default: "",
     }
   },
   data: () => {
@@ -69,15 +73,15 @@ export default {
       // 開始タイル
       // TODO: ランダム配置
       tiles: [
-       {no:'01', x:0, y:1},
-       {no:'02', x:1, y:0},
-       {no:'03', x:0, y:3},
-       {no:'04', x:2, y:3},
-       {no:'05', x:0, y:0},
-       {no:'06', x:1, y:1},
-       {no:'07', x:1, y:3},
-       {no:'08', x:0, y:2},
-       {no:'09', x:2, y:0},
+       {no:'1', x:0, y:1},
+       {no:'2', x:1, y:0},
+       {no:'3', x:0, y:3},
+       {no:'4', x:2, y:3},
+       {no:'5', x:0, y:0},
+       {no:'6', x:1, y:1},
+       {no:'7', x:1, y:3},
+       {no:'8', x:0, y:2},
+       {no:'9', x:2, y:0},
        {no:'10', x:2, y:1},
        {no:'11', x:1, y:2},
        {no:'12', x:3, y:2},
@@ -87,15 +91,15 @@ export default {
       ],
       // 正解タイル
       ans: [
-        {no:'01', x: 0, y: 0},
-        {no:'02', x: 0, y: 1},
-        {no:'03', x: 0, y: 2},
-        {no:'04', x: 0, y: 3},
-        {no:'05', x: 1, y: 0},
-        {no:'06', x: 1, y: 1},
-        {no:'07', x: 1, y: 2},
-        {no:'08', x: 1, y: 3},
-        {no:'09', x: 2, y: 0},
+        {no:'1', x: 0, y: 0},
+        {no:'2', x: 0, y: 1},
+        {no:'3', x: 0, y: 2},
+        {no:'4', x: 0, y: 3},
+        {no:'5', x: 1, y: 0},
+        {no:'6', x: 1, y: 1},
+        {no:'7', x: 1, y: 2},
+        {no:'8', x: 1, y: 3},
+        {no:'9', x: 2, y: 0},
         {no:'10', x: 2, y: 1},
         {no:'11', x: 2, y: 2},
         {no:'12', x: 2, y: 3},
@@ -127,7 +131,7 @@ export default {
   },
   methods: {
     image (tile) {
-      return require('~/assets/balls/ball'+tile.no+'.png')
+      return `/images/${this.mapImages}/${tile.no}.png`
     },
     // TODO: フリックでの移動に対応
     move (e) {

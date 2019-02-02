@@ -26,6 +26,7 @@
               :top=50
               :left=100
               :show-sar=showSar
+              :map-images=mapImages
               @puzzle-completed="completed"/>
           </div>
           <div v-else>{{ resetPuzzle }}</div>
@@ -69,13 +70,19 @@ import PurpleButton from '~/components/buttons/PurpleButton'
 import EasyPuzzle from '~/components/puzzles/Easy'
 import NormalPuzzle from '~/components/puzzles/Normal'
 import HardPuzzle from '~/components/puzzles/Hard'
+import { mapGetters } from "vuex"
 export default {
   validate ({ params }) {
-    const d = params.difficulty
     // 難易度チェック
-    return (d === 'easy' || d === 'normal' || d === 'hard')
+    const d = params.difficulty
+    const difficulty = (d === 'easy' || d === 'normal' || d === 'hard')
+    if (!difficulty) {
+      return false
+    }
+
     // マップチェック
-    // TODO: マップチェック
+    const selectedMap = this.selectedMap
+    return selectedMap !== null
   },
   components: {
     CountUpTimer,
@@ -139,6 +146,44 @@ export default {
       return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
     },
     difficulty () { return this.$route.params.difficulty },
+    ...mapGetters(["puzzles"]),
+    // 選択したマップを返す（不正な値の場合はnull）
+    selectedMap () {
+      const m = this.puzzles
+      const selected = m.filter(v => {
+        return v.id === this.$route.params.map
+      })
+      if (!selected) {
+        return null
+      }
+      if (selected.length !== 1) {
+        return null
+      }
+      return selected[0]
+    },
+    mapImages () {
+      const parameters = this.selectedMap.parameters
+      const parameter =  parameters.filter(v => {
+        return (v.split_n === 4)
+      })
+
+      // TODO: エラー処理
+      if (!parameter) {
+        return null
+      }
+      if (parameter.length !== 1) {
+        return null
+      }
+
+      const p = parameter[0]
+      const kind = p.kind
+      const x = p.x
+      const y = p.y
+      const z = p.z
+      const n = p.split_n
+
+      return `${kind}/${z}-${x}-${y}-${n}`
+    }
   }
 }
 </script>
