@@ -6,12 +6,12 @@
       <div class="result-area--purple">
         <div class="map-name">キラウエア火山完成！</div>
         <div class="record">
-          <span class="time">{{ $store.state.min }}</span>
+          <span class="time">{{ min }}</span>
           <span class="time-unit">分</span>
-          <span class="time">{{ $store.state.sec }}</span>
+          <span class="time">{{ sec }}</span>
           <span class="time-unit">秒</span>
         </div>
-        <div class="personal-best">あなたの自己ベスト 02分58秒</div>
+        <div class="personal-best">あなたの自己ベスト {{ bestRecord.min }}分{{ bestRecord.sec }}秒</div>
       </div>
       <div class="result-area--white">
         ここに画像を表示
@@ -41,6 +41,7 @@ import PurpleButton from '~/components/buttons/PurpleButton'
 import GrayButton from '~/components/buttons/GrayButton'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   components:{
     PurpleButton,
@@ -60,9 +61,17 @@ export default {
       url: 'sample_url',
       via: 'sample_via',
       related: 'sample_related',
-      hashtags: ['sample_hashtag1', 'sample_hashtag2'],
+      hashtags: 'sample_hashtag',
       text: 'sample_text'
     }
+  },
+  computed: {
+    ...mapGetters({
+      min: 'min',
+      sec: 'sec',
+      bestRecords: 'bestRecords',
+      bestRecord: 'bestRecord'
+    }),
   },
   methods: {
     pushRetry () {
@@ -76,7 +85,7 @@ export default {
     },
     pushTop () {
       this.$router.push('/')
-    }
+    },
   }
 }
 </script>
