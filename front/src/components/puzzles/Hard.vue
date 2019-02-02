@@ -155,9 +155,7 @@ export default {
     move (e) {
       // クリックしたブロックを特定
       let cName = e.currentTarget.classList
-      console.log(cName)
       let target = cName[1].slice(1)
-      console.log(target)
 
       // 移動してもいいか確認する, OKなら移動する
       // x + 1に移動
