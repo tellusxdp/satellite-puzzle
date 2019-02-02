@@ -15,7 +15,17 @@
       </div>
       <div v-show="!hint">
         <div v-if="difficulty === 'easy'">
-          <easy-puzzle class="easy-puzzle"/>
+          <div
+            v-if="puzzle"
+            @click.once="puzzleStart"
+            class="easy-puzzle">
+            <easy-puzzle
+              :top=50
+              :left=85
+              :show-sar=showSar
+              :map-images=mapImages
+              @puzzle-completed="completed"/>
+          </div>
         </div>
         <div v-else-if="difficulty === 'normal'">
           <div
@@ -32,7 +42,17 @@
           <div v-else>{{ resetPuzzle }}</div>
         </div>
         <div v-else>
-          <hard-puzzle class="hard-puzzle"/>
+          <div
+            v-if="puzzle"
+            @click.once="puzzleStart"
+            class="hard-puzzle">
+            <hard-puzzle
+              :top=-40
+              :left=-25
+              :show-sar=showSar
+              :map-images=mapImages
+              @puzzle-completed="completed"/>
+          </div>
         </div>
       </div>
     </div>
@@ -98,6 +118,11 @@ export default {
       modal: false,
       puzzle: true,
       hint: false,
+      difficultyMap: {
+        easy: 3,
+        normal: 4,
+        hard: 5,
+      }
     }
   },
   watch: {
@@ -164,7 +189,7 @@ export default {
     mapImages () {
       const parameters = this.selectedMap.parameters
       const parameter =  parameters.filter(v => {
-        return (v.split_n === 4)
+        return (v.split_n === this.difficultyMap[this.$route.params.difficulty])
       })
 
       // TODO: エラー処理
