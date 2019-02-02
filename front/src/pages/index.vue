@@ -46,7 +46,7 @@ export default {
       url: 'sample_url',
       via: 'sample_via',
       related: 'sample_related',
-      hashtags: ['sample_hashtag1', 'sample_hashtag2'],
+      hashtags: 'sample_hashtag1',
       text: 'sample_text',
       title: 'sample_title'
     }

@@ -134,7 +134,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      updateBestRecord: 'updateBestRecord',
+      updateBestRecords: 'updateBestRecords',
       setBestRecord: 'setBestRecord'
     }),
     puzzleStart () {
@@ -149,7 +149,7 @@ export default {
         return v.difficulty === difficulty && v.map === map
       })
       if (best.length === 0 || this.min < best[0].min || this.min === best[0].min && this.sec < best[0].sec) {
-        this.updateBestRecord({
+        this.updateBestRecords({
           difficulty: difficulty,
           map: map,
           min: this.min,
