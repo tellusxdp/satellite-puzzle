@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.facebook-share-button
+  facebook-share-button
     base-button(:href="href", :src="require('~/assets/images/icon/icon_fb.png')")
 </template>
 

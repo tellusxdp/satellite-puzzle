@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.twitter-share-button
+  twitter-share-button
     base-button(:href="href", :src="require('~/assets/images/icon/icon_tw.png')")
 </template>
 

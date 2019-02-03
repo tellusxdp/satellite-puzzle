@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.hatena-share-button
+  hatena-share-button
     base-button(:href="href", :src="require('~/assets/images/icon/icon_htn.png')")
 </template>
 
