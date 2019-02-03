@@ -1,19 +1,14 @@
-<template>
-  <div class="facebook-share-button">
-    <a
-      :href="href"
-      rel="nofollow"
-      target="_blank">
-      <img
-        class="facebook-share-button--image"
-        src="~assets/images/icon/icon_fb.png"
-      >
-    </a>
-  </div>
+<template lang="pug">
+  div.facebook-share-button
+    base-button(:href="href", :src="require('~/assets/images/icon/icon_fb.png')")
 </template>
 
 <script>
+import BaseButton from '~/components/buttons/share/Base'
 export default {
+  components: {
+    BaseButton
+  },
   props: {
     url: {
       type: String,
@@ -27,16 +22,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.facebook-share-button {
-  width: 80px;
-  height: 80px;
-}
-
-.facebook-share-button--image {
-  width: 80px;
-  height: 80px;
-}
-</style>
-

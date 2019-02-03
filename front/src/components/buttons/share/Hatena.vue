@@ -1,18 +1,14 @@
-<template>
-  <div class="hatena-share-button">
-    <a
-      :href="href"
-      target="_blank"
-      rel="nofollow">
-      <img
-        class="hatena-share-button--image"
-        src="~assets/images/icon/icon_htn.png">
-    </a>
-  </div>
+<template lang="pug">
+  div.hatena-share-button
+    base-button(:href="href", :src="require('~/assets/images/icon/icon_htn.png')")
 </template>
 
 <script>
+import BaseButton from '~/components/buttons/share/Base'
 export default {
+  components: {
+    BaseButton
+  },
   props: {
     url: {
       type: String,
@@ -30,15 +26,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.hatena-share-button {
-  width: 80px;
-  height: 80px;
-}
-
-.hatena-share-button--image {
-  width: 80px;
-  height: 80px;
-}
-</style>
