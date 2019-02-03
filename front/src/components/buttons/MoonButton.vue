@@ -1,5 +1,5 @@
 <template>
-  <div class="moon">
+  <div class="moon-button">
     <button
       @click="click" 
       class="button">
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style>
-.moon {
+.moon-button {
   width: 100%;
   height: 100%;
 }

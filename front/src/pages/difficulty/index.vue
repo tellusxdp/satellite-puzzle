@@ -1,33 +1,19 @@
 // 難易度選択
-<template>
-  <div class="difficulty">
-    <div class="mode">MODE</div>
-    <div class="easy">
-      <moon-button
-        @onClick="pushEasy"
-        class="button--moon">やさしい</moon-button>
-    </div>
-    <div class="normal">
-      <moon-button
-        @onClick="pushNormal"
-        class="button--moon">ふつう</moon-button>
-    </div>
-    <div class="hard">
-      <moon-button
-        @onClick="pushHard"
-        class="button--moon">むずかしい</moon-button>
-    </div>
-    <div class="what-is">
-      <div class="what-is--title">SAR画像とは？</div>
-      <div class="what-is--text">
-        SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
-      </div>
-      <div class="detail">
-        <purple-button>くわしい説明をみる</purple-button>
-      </div>
-      <div class="sorabatake">別ウィンドウが開きます</div>
-    </div>
-  </div>
+<template lang="pug">
+  div.difficulty
+    div.mode MODE
+    div.easy
+      moon-button(@onClick="pushEasy") やさしい
+    div.normal
+      moon-button(@onClick="pushNormal") ふつう
+    div.hard
+      moon-button(@onClick="pushHard") むずかしい
+    div.what-is
+      p SAR画像とは
+      div.description SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
+      div.detail
+        purple-button くわしい説明をみる
+        p 別ウィンドウが開きます
 </template>
 
 <script>
@@ -44,23 +30,17 @@ export default {
     pushEasy () {
       this.$router.push('/difficulty/easy/map')
     },
-    pushHard () {
+    pushNormal () {
       this.$router.push('/difficulty/normal/map')
     },
-    pushNormal () {
+    pushHard () {
       this.$router.push('/difficulty/hard/map')
     },
   },
 }
 </script>
 
-<style>
-/* .difficulty {
-  position: relative;
-  width: 100%;
-  height: 100%;
-} */
-
+<style lang="scss" scoped>
 .mode {
   width: 78px;
   height: 22px;
@@ -78,8 +58,7 @@ export default {
   color: #fff;
 }
 
-/* button */
-.button--moon {
+.moon-button {
   width: 140px;
   height: 140px;
 }
@@ -103,56 +82,52 @@ export default {
   width: 577px;
   height: 374px;
   background-color: #cfd7ef;
-}
 
-.what-is--title {
-  /* font-family: NotoSansCJKjp; */
-  font-size: 32px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.13;
-  letter-spacing: normal;
-  text-align: center;
-  color: #10172b;
-  padding-top: 38px;
-}
+  p {
+    // font-family: NotoSansCJKjp;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: center;
+    color: #10172b;
+    padding-top: 38px;
+  }
 
-.what-is--text {
-  /* width: 471px; */
+  .description {
+    // font-family: NotoSansCJKjp;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #10172b;
+    padding-left: 29px;
+    padding-right: 52px;
+    padding-top: 32px;
+  }
 
-  /* height: 96px; */
+  .detail {
+    padding-top: 30px;
+    text-align: center;
 
-  /* font-family: NotoSansCJKjp; */
-  font-size: 24px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
-  text-align: left;
-  color: #10172b;
-  padding-left: 29px;
-  padding-right: 52px;
-  padding-top: 32px;
-}
-
-.detail {
-  padding-top: 30px;
-  text-align: center;
-}
-
-.sorabatake {
-  /* font-family: NotoSansCJKjp; */
-  font-size: 20px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.8;
-  letter-spacing: normal;
-  text-align: center;
-  color: #10172b;
-  margin-top: 19px;
+    p {
+      // font-family: NotoSansCJKjp;
+      font-size: 20px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.8;
+      letter-spacing: normal;
+      text-align: center;
+      color: #10172b;
+      margin-top: 19px;
+    }
+  }
 }
 </style>
 

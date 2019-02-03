@@ -1,86 +1,57 @@
 // パズル
-<template>
-  <div class="container">
-    <div
-      v-if="modal"
-      class="modal-background"/>
-    <div class="timer-area">
-      <div v-if="puzzle"><count-up-timer :do-run="run"/></div>
-    </div>
-    <div class="puzzle-area">
-      <img
-        v-show="hint"
-        class="completed-image"
-        :src="completedImage">
-      <div v-show="!hint">
-        <div v-if="difficulty === 'easy'">
-          <div
+<template lang="pug">
+  div.container
+    div.modal-background(v-if="modal")
+    div.timer-area
+      div(v-if="puzzle")
+        count-up-timer(:do-run="run")
+    div.puzzle-area
+      div.hint-area(v-show="hint")
+        div.shadow
+          img.completed-image(:src="completedImage")
+      div(v-show="!hint")
+        div(v-if="difficulty === 'easy'")
+          div.easy-puzzle(v-if="puzzle", @click.once="puzzleStart")
+            easy-puzzle(
+              :show-sar="showSar"
+              :map-images="mapImages"
+              @puzzle-completed="completed")
+        div(v-else-if="difficulty === 'normal'")
+          div.normal-puzzle(
             v-if="puzzle"
-            @click.once="puzzleStart"
-            class="easy-puzzle">
-            <easy-puzzle
-              :top=50
-              :left=85
-              :show-sar=showSar
-              :map-images=mapImages
-              @puzzle-completed="completed"/>
-          </div>
-        </div>
-        <div v-else-if="difficulty === 'normal'">
-          <div
+            @click.once="puzzleStart")
+            normal-puzzle(
+              :show-sar="showSar"
+              :map-images="mapImages"
+              @puzzle-completed="completed")
+          div(v-else) {{ resetPuzzle }}
+        div(v-else)
+          div.hard-puzzle(
             v-if="puzzle"
-            @click.once="puzzleStart"
-            class="normal-puzzle">
-            <normal-puzzle
-              :top=50
-              :left=100
-              :show-sar=showSar
-              :map-images=mapImages
-              @puzzle-completed="completed"/>
-          </div>
-          <div v-else>{{ resetPuzzle }}</div>
-        </div>
-        <div v-else>
-          <div
-            v-if="puzzle"
-            @click.once="puzzleStart"
-            class="hard-puzzle">
-            <hard-puzzle
-              :top=-40
-              :left=-25
-              :show-sar=showSar
-              :map-images=mapImages
-              @puzzle-completed="completed"/>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div class="sar">
-      <!-- TODO: 文言修正 -->
-      <p>ボタンを押している間、<br>完成画像を見ることができるよ</p>
-    </div>
-    <br>
-    <div class="center">
-      <!-- TODO: 文言修正 -->
-      <prs-button
+            @click.once="puzzleStart")
+            hard-puzzle(
+              :show-sar="showSar"
+              :map-images="mapImages"
+              @puzzle-completed="completed")
+    br
+    div.sar
+      p ボタンを押している間、
+        br
+        | 完成画像を見ることができるよ
+    br
+    div.center
+      prs-button(
         @isPrs="dispHint"
-        @isNotPrs="noDispHint">完成画像を見る</prs-button>
-    </div>
-    <br>
-    <div
-      class="retire"
-      @click="openModal">
-      諦める
-    </div>
-    <modal
-      class="modal-area"
+        @isNotPrs="noDispHint") 完成画像を見る
+    br
+    div.retire(@click="openModal") 諦める
+    modal.modal-area(
       @close="closeModal"
       @retry="pushRetry"
       @top="pushTop"
-      v-if="modal"/>
-  </div>
+      v-if="modal")
 </template>
+
 
 <script>
 import _ from 'lodash'
@@ -232,15 +203,14 @@ export default {
       return `${kind}/${z}-${x}-${y}-${n}`
     },
     completedImage () {
-      const img = `${this.mapImages}/completed.png`
-      console.log(img)
       return `/images/${this.mapImages}/completed.png`
     }
   }
 }
 </script>
 
-<style scoped>
+
+<style lang="scss" scoped>
 .timer-area {
   text-align: left;
   padding-top: 58px;
@@ -248,6 +218,8 @@ export default {
 }
 
 .puzzle-area {
+  padding-left: 50px;
+  padding-top: 20px;
   width: 540px;
   height: 540px;
 }
@@ -292,12 +264,24 @@ export default {
   margin-top: 30px;
 }
 
-.completed-image {
+.hint-area {
+  border: inset 20px #5d41f3;
+  border-radius: 8px;
+  width: 540px;
+  height: 540px;
   position: absolute;
-  margin-top: 50px;
-  margin-left: 100px;
-  width: 400px;
-  height: 400px;
+
+  .shadow {
+    border: solid 10px #192342;
+    width: 500px;
+    height: 500px;
+    position: relative;
+  }
+}
+
+.completed-image {
+  width: 480px;
+  height: 480px;
   background-color: white;
   text-align: center;
 }
