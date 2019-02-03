@@ -1,22 +1,13 @@
-<template>
-  <div class="twitter-share-button">
-    <a
-      :href="href"
-      target="_blank">
-      <img
-        class="twitter-share-button--image"
-        src="~assets/images/icon/icon_tw.png"
-      >
-    </a>
-  </div>
+<template lang="pug">
+  twitter-share-button
+    base-button(:href="href", :src="require('~/assets/images/icon/icon_tw.png')")
 </template>
 
 <script>
+import BaseButton from '~/components/buttons/share/Base'
 export default {
-  methods: {
-    click () {
-      this.$emit("onClick", this.href)
-    },
+  components: {
+    BaseButton
   },
   props: {
     url: {
@@ -47,16 +38,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.twitter-share-button {
-  width: 80px;
-  height: 80px;
-}
-
-.twitter-share-button--image {
-  width: 80px;
-  height: 80px;
-}
-</style>
-

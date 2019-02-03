@@ -57,7 +57,7 @@ module.exports = {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
-    ['nuxt-sass-resources-loader', '@@/assets/css/*.scss']
+    ['@nuxtjs/style-resources', '~/assets/css/*.scss'],
   ],
   workbox: {
     dev: false, // yarn dev でもworkboxを有効にしたい場合はtrue
