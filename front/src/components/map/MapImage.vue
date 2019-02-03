@@ -1,6 +1,6 @@
 <template>
   <div
-    class="map-"
+    class="map-image"
     @click="click">
     <div class="map--background">
       <img
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style>
-.map- {
+.map-image {
   width: 449px;
   height: 455px;
   position: relative;

@@ -1,50 +1,18 @@
-<template>
-  <div class="normal-puzzle">
-    <!-- パズルの枠 -->
-    <div
-      class="not-ready"
-      v-show="!ready">
-      準備中です
-    </div>
-    <div v-show="ready">
-      <!-- SAR画像 -->
-      <div v-show="showSar">
-        <!-- タイル -->
-        <div
-          class="tile"
-          v-for="(tile, index) in tiles"
-          :class="'_' + index"
+<template lang="pug">
+  div.normal-puzzle
+    div.not-ready(v-show="!ready") 準備中です
+    div.puzzle-area(v-show="ready")
+      div.shadow
+        div.tile(
+          v-for="(tile, index) in tiles",
+          :class="`_${index}`"
           @click="move"
           :key="index"
-          :style="{'top': top + tile.x*100 + 'px', 'left': left + (tile.y)*100 + 'px'}"
-        >
-          <div :v-show="showSar === true">
-            <img
-              :src="image(tile)"
-              class="tile--image">
-          </div>
-        </div>
-      </div>
-      <!-- 可視光画像 -->
-      <div v-show="!showSar">
-        <!-- タイル -->
-        <div
-          class="tile"
-          v-for="(tile, index) in tiles"
-          :class="'_' + index"
-          @click="move"
-          :key="index"
-          :style="{'top': top + tile.x*100 + 'px', 'left': left + (tile.y)*100 + 'px'}"
-        >
-          <div :v-show="showSar === true">
-            <img
-              :src="image(tile)"
-              class="tile--image light">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          :style="{'top': tile.x*120 + 'px', 'left': (tile.y)*120 + 'px'}")
+          div(v-show="showSar")
+            img.tile--image(:src="image(tile)")
+          div(v-show="!showSar")
+            img.tile--image(:src="image(tile)")
 </template>
 
 <script>
@@ -177,7 +145,8 @@ export default {
 }
 </script>
 
-<style>
+
+<style lang="scss" scoped>
 .not-ready {
   text-align: center;
 }
@@ -186,21 +155,30 @@ export default {
   position: relative;
 }
 
-.tile {
-  width: 99px;
-  height: 99px;
-  border: 1px solid blue;
+.puzzle-area {
+  border: inset 20px #5d41f3;
+  border-radius: 8px;
+  width: 540px;
+  height: 540px;
   position: absolute;
-  transition: transform 0.5s ease-in-out;
-}
 
-.tile--image {
-  width: 99px;
-  height: 99px;
-}
+  .shadow {
+    border: solid 10px #192342;
+    width: 500px;
+    height: 500px;
+    position: relative;
+  }
 
-.light {
-  background-color: white;
-}
+  .tile {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+  }
 
+  .tile--image {
+    width: 120px;
+    height: 120px;
+    border: outset 6px;
+  }
+}
 </style>

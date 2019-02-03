@@ -1,39 +1,30 @@
 // パズル終了
-<template>
-  <div class="center">
-    <div class="margin-top-result-area"/>
-    <div class="result-area">
-      <div class="result-area--purple">
-        <div class="map-name">キラウエア火山完成！</div>
-        <div class="record">
-          <span class="time">{{ min }}</span>
-          <span class="time-unit">分</span>
-          <span class="time">{{ sec }}</span>
-          <span class="time-unit">秒</span>
-        </div>
-        <div class="personal-best">あなたの自己ベスト {{ bestRecord.min }}分{{ bestRecord.sec }}秒</div>
-      </div>
-      <div class="result-area--white">
-        ここに画像を表示
-      </div>
-    </div>
-    <div class="share-area">
-      <div class="share-area--text">結果をSNSでシェア!</div>
-      <div class="share-area--buttons">
-        <facebook-share-button
-          :url="url"/>
-        <twitter-share-button
+<template lang="pug">
+  div
+    div.margin-top-result-area
+    div.result-area
+      div.result-area--purple
+        div.map-name {{ mapName }}完成！
+        div.record
+          span.time {{ min }}
+          span.time-unit 分
+          span.time {{ sec }}
+          span.time-unit 秒
+        div.personal-best あなたの自己ベスト {{ bestRecord.min }}分{{ bestRecord.sec }}秒
+      div.result-area--white
+        img.completed-image(:src="completedImage")
+    div.share-area
+      div.share-area--text 結果をSNSでシェア!
+      div.share-area--buttons
+        facebook-share-button.facebook-share-button(:url="url")
+        twitter-share-button.twitter-share-button(
           :url="url"
           :via="via"
           :related="related"
           :hashtags="hashtags"
-          :text="text"/>
-      </div>
-    </div>
-    <div class="button-area">
-      <purple-button @onClick="pushTop">はじめの画面に戻る</purple-button>
-    </div>
-  </div>
+          :text="text")
+    div.button-area
+      purple-button(@onClick="pushTop") はじめの画面に戻る
 </template>
 
 <script>
@@ -62,7 +53,12 @@ export default {
       via: 'sample_via',
       related: 'sample_related',
       hashtags: 'sample_hashtag',
-      text: 'sample_text'
+      text: 'sample_text',
+      difficultyMap: {
+        easy: 3,
+        normal: 4,
+        hard: 5,
+      }
     }
   },
   computed: {
@@ -70,8 +66,52 @@ export default {
       min: 'min',
       sec: 'sec',
       bestRecords: 'bestRecords',
-      bestRecord: 'bestRecord'
+      bestRecord: 'bestRecord',
+      puzzles: 'puzzles'
     }),
+    // 選択したマップを返す（不正な値の場合はnull）
+    selectedMap () {
+      const m = this.puzzles
+      const selected = m.filter(v => {
+        return v.id === this.$route.params.map
+      })
+      if (!selected) {
+        return null
+      }
+      if (selected.length !== 1) {
+        return null
+      }
+      return selected[0]
+    },
+    mapName () {
+      return this.selectedMap.name
+    },
+    mapImages () {
+      const parameters = this.selectedMap.parameters
+      const parameter =  parameters.filter(v => {
+        return (v.split_n === this.difficultyMap[this.$route.params.difficulty])
+      })
+
+      // TODO: エラー処理
+      if (!parameter) {
+        return null
+      }
+      if (parameter.length !== 1) {
+        return null
+      }
+
+      const p = parameter[0]
+      const kind = p.kind
+      const x = p.x
+      const y = p.y
+      const z = p.z
+      const n = p.split_n
+
+      return `${kind}/${z}-${x}-${y}-${n}`
+    },
+    completedImage () {
+      return `/images/${this.mapImages}/completed.png`
+    }
   },
   methods: {
     pushRetry () {
@@ -90,11 +130,7 @@ export default {
 }
 </script>
 
-<style>
-.center {
-  text-align: center;
-}
-
+<style lang="scss" scoped>
 .margin-top-result-area {
   height: 40px;
 }
@@ -174,6 +210,13 @@ export default {
   color: #fff;
 }
 
+.completed-image {
+  width: 421px;
+  height: 421px;
+  margin-top: 40px;
+  margin-left: 70px;
+}
+
 .share-area {
   margin-left: auto;
   margin-right: auto;
@@ -206,5 +249,6 @@ export default {
 
 .button-area {
   margin-top: 49px;
+  text-align: center;
 }
 </style>

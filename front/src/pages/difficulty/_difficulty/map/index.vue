@@ -1,23 +1,15 @@
 // マップ選択
-<template>
-  <div class="map">
-    <div class="return">
-      <button @click="pushDifficulty">←レベル選択に戻る</button>
-    </div>
-    <div class="map-area">
-      <div class="map-list">
-        <div
-          v-for="(map, index) in mapList"
-          :key="index">
-          <map-image
-            :map-name="map.name"
-            :map-image="`${map.kind}/${map.z}-${map.x}-${map.y}-${map.n}`"
-            @onClick="pushPuzzle(map.id)"/>
-          <br>
-        </div>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  div.map
+    div.return
+      button(@click="pushDifficulty") ←レベル選択に戻る
+    div.map-area
+      div.map-list
+        div(v-for="(map, index) in mapList", :key="index")
+          map-image(
+            :map-name="map.name",
+            :map-image="`${map.kind}/${map.z}-${map.x}-${map.y}-${map.n}`",
+            @onClick="pushPuzzle(map.id)")
 </template>
 
 <script>
@@ -83,13 +75,10 @@ export default {
 }
 </script>
 
-<style>
+
+<style lang="scss" scoped>
 .return {
-  /* width: 213px; */
-
-  /* height: 24px; */
-
-  /* font-family: NotoSansCJKjp; */
+  // font-family: NotoSansCJKjp;
   font-size: 24px;
   font-weight: bold;
   font-style: normal;
@@ -99,11 +88,11 @@ export default {
   color: #fff;
   position: relative;
   left: 34px;
-  top: 97px;
+  top: 47px;
 }
 
 .map-area {
-  margin-top: 211px;
+  margin-top: 59px;
   margin-left: 81px;
 }
 
@@ -115,5 +104,9 @@ export default {
 .map {
   margin-left: auto;
   margin-right: auto;
+}
+
+.map-image {
+  margin-top: 60px;
 }
 </style>

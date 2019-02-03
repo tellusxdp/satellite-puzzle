@@ -1,42 +1,26 @@
 // TOP
-<template>
-  <div>
-    <div class="title-logo">
-      <p>衛星<br>パズル</p>
-    </div>
-    <div>
-      <p class="title-logo-sub">だいち２号のSAR画像でパズル編</p>
-    </div>
-    <div class="button-center">
-      <button
-        @click="pushStart"
-        class="button--alos-2"/>
-    </div>
-    <div class="share-area">
-      <div class="share-area--text">ゲームをSNSでシェア</div>
-      <div class="share-area--buttons">
-        <facebook-share-button
-          :url="url"/>
-        <twitter-share-button
-          :url="url"
-          :via="via"
-          :related="related"
-          :hashtags="hashtags"
-          :text="text"/>
-        <hatena-share-button
-          :url="url"
-          :title="title"/>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  div
+    title-logo
+    alos2(@onClick="pushStart")
+    div.share-area
+      p ゲームをSNSでシェア
+      div.share-area--buttons
+        facebook-share-button.facebook-share-button(:url="url")
+        twitter-share-button.twitter-share-button(:url="url", :via="via", :related="related", :hashtags="hashtags", :text="text")
+        hatena-share-button.hatena-share-button(:url="url", :title="title")
 </template>
 
 <script>
+import TitleLogo from '~/components/logo/TitleLogo'
+import Alos2 from '~/components/buttons/Alos2'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import HatenaShareButton from '~/components/buttons/share/Hatena'
 export default {
   components: {
+    TitleLogo,
+    Alos2,
     FacebookShareButton,
     TwitterShareButton,
     HatenaShareButton,
@@ -54,90 +38,58 @@ export default {
   methods: {
     pushStart () {
       this.$router.push('/difficulty')
-    },
-  },
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .title-logo {
   padding-top: 239px;
-
-  /* width: 357px; */
-
-  /* height: 234px; */
-  font-size: 88px;
-  font-weight: 900;
-  font-style: italic;
-  font-stretch: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
 }
 
-.title-logo-sub {
-  padding-top: 50px;
-
-  /* font-family: NotoSansCJKjp; */
-  font-size: 24px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
-}
-
-.button-center {
+.alos2 {
   padding-top: 88px;
   text-align: center;
 }
 
-.button--alos-2 {
-  background-image: url('~assets/images/alos-2/alos-2.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 289px;
-  height: 77px;
-}
-
 .share-area {
+  padding-top: 172px;
   width: 528px;
   height: 288px;
-  padding-top: 94px;
   margin-left: auto;
   margin-right: auto;
+
+  p {
+    padding-top: 78px;
+    // font-family: "NotoSansCJKjp";
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    text-align: center;
+    color: #fff;
+  }
+
+  &--buttons {
+    padding-top: 35px;
+    text-align: center;
+  }
+
+  .facebook-share-button {
+    display: inline-block;
+  }
+
+  .twitter-share-button {
+    display: inline-block;
+    margin-left: 20px;
+  }
+
+  .hatena-share-button {
+    display: inline-block;
+    margin-left: 20px;
+  }
 }
 
-.share-area--text {
-  padding-top: 78px;
-  font-size: 24px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.5;
-  text-align: center;
-  color: #fff;
-}
-
-.share-area--buttons {
-  padding-top: 35px;
-  text-align: center;
-}
-
-.facebook-share-button {
-  display: inline-block;
-}
-
-.twitter-share-button {
-  display: inline-block;
-  margin-left: 20px;
-}
-
-.hatena-share-button {
-  display: inline-block;
-  margin-left: 20px;
-}
 </style>
