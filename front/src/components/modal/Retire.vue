@@ -1,27 +1,29 @@
-<template>
-  <div class="modal">
-    <div class="modal-contents">
-      <img
-        class="alos-2"
-        src="~assets/images/alos-2/alos-2.png">
-      <div class="button">
-        <purple-button @onClick="$emit('close')">ゲーム画面に戻る</purple-button>
-      </div>
-      <div class="button">
-        <purple-button @onClick="$emit('retry')">最初からやりなおす</purple-button>
-      </div>
-      <div class="button">
-        <purple-button @onClick="$emit('top')">終了</purple-button>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  .modal
+    .modal-contents
+      img.alos-2(src="~assets/images/alos-2/alos-2.png")
+      .button
+        click-button(
+          @onClick="$emit('close')",
+          :src="require('~/assets/images/button/btn_bktogame.png')",
+          :srcActive="require('~/assets/images/button/btn_prs_bktogame.png')")
+      .button
+        click-button(
+          @onClick="$emit('retry')",
+          :src="require('~/assets/images/button/btn_renew.png')",
+          :srcActive="require('~/assets/images/button/btn_prs_renew.png')")
+      .button
+        click-button(
+          @onClick="$emit('top')",
+          :src="require('~/assets/images/button/btn_finish.png')",
+          :srcActive="require('~/assets/images/button/btn_prs_finish.png')")
 </template>
 
 <script>
-import PurpleButton from '~/components/buttons/PurpleButton'
+import ClickButton from '~/components/buttons/ClickButton'
 export default {
   components: {
-    PurpleButton,
+    ClickButton,
   }
 }
 </script>

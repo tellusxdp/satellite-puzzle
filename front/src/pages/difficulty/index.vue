@@ -9,20 +9,23 @@
     div.hard
       moon-button(@onClick="pushHard") むずかしい
     div.what-is
-      p SAR画像とは
+      p.what-is--text SAR画像とは
       div.description SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
       div.detail
-        purple-button くわしい説明をみる
-        p 別ウィンドウが開きます
+        click-button(
+          :src="require('~/assets/images/button/btn_detail.png')"
+          :srcActive="require('~/assets/images/button/btn_prs_detail.png')")
+        p.detail--text 別ウィンドウが開きます
 </template>
 
 <script>
+import ClickButton from '~/components/buttons/ClickButton'
 import PurpleButton from '~/components/buttons/PurpleButton'
 import MoonButton from '~/components/buttons/MoonButton'
 import GrayButton from '~/components/buttons/GrayButton'
 export default {
   components: {
-    PurpleButton,
+    ClickButton,
     MoonButton,
     GrayButton,
   },
@@ -83,7 +86,7 @@ export default {
   height: 374px;
   background-color: #cfd7ef;
 
-  p {
+  &--text {
     // font-family: NotoSansCJKjp;
     font-size: 32px;
     font-weight: normal;
@@ -115,17 +118,16 @@ export default {
     padding-top: 30px;
     text-align: center;
 
-    p {
+    &--text {
+      padding-top: 19px;
       // font-family: NotoSansCJKjp;
       font-size: 20px;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
-      line-height: 1.8;
       letter-spacing: normal;
       text-align: center;
       color: #10172b;
-      margin-top: 19px;
     }
   }
 }

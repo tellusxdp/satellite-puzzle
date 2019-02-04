@@ -35,16 +35,20 @@
               @puzzle-completed="completed")
     br
     div.sar
-      p ボタンを押している間、
+      p ボタンを押すと、
         br
-        | 完成画像を見ることができるよ
+        | 完成版のSAR画像が見れるよ
     br
     div.center
       prs-button(
         @isPrs="dispHint"
-        @isNotPrs="noDispHint") 完成画像を見る
+        @isNotPrs="noDispHint")
     br
-    div.retire(@click="openModal") 諦める
+    div.center
+      click-button(
+      @onClick="openModal"
+      :src="require('~/assets/images/button/btn_giveup.png')"
+      :srcActive="require('~/assets/images/button/btn_prs_giveup.png')")
     modal.modal-area(
       @close="closeModal"
       @retry="pushRetry"
@@ -58,6 +62,7 @@ import _ from 'lodash'
 import CountUpTimer from '~/components/CountUpTimer.vue'
 import Modal from '~/components/modal/Retire'
 import PrsButton from '~/components/buttons/PrsButton'
+import ClickButton from '~/components/buttons/ClickButton'
 import EasyPuzzle from '~/components/puzzles/Easy'
 import NormalPuzzle from '~/components/puzzles/Normal'
 import HardPuzzle from '~/components/puzzles/Hard'
@@ -79,6 +84,7 @@ export default {
     CountUpTimer,
     Modal,
     PrsButton,
+    ClickButton,
     EasyPuzzle,
     NormalPuzzle,
     HardPuzzle,
@@ -248,6 +254,8 @@ export default {
 }
 
 .sar {
+  position: relative;
+
   /* width: 360px; */
 
   /* height: 59px; */
@@ -262,6 +270,30 @@ export default {
   text-align: center;
   color: #192342;
   margin-top: 30px;
+}
+
+.sar::before {
+  content: "";
+  border-left: solid #192342;
+  border-left-width: 2px;
+  transform: rotate(-20deg);
+  position: absolute;
+  top: 0;
+  left: 110px;
+  width: 31px;
+  height: 74px;
+}
+
+.sar::after {
+  content: "";
+  border-left: solid #192342;
+  border-left-width: 2px;
+  transform: rotate(20deg);
+  position: absolute;
+  top: 0;
+  left: 520px;
+  width: 31px;
+  height: 74px;
 }
 
 .hint-area {
@@ -287,19 +319,7 @@ export default {
 }
 
 .retire {
-  /* width: 69px; */
-
-  /* height: 22px; */
-
-  /* font-family: RodinProN-DB; */
-  font-size: 24px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
   text-align: center;
-  color: #3f444e;
 }
 
 .modal-background {

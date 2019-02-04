@@ -1,18 +1,15 @@
 // パズル終了
 <template lang="pug">
-  div
+  div.container
     div.margin-top-result-area
     div.result-area
-      div.result-area--purple
-        div.map-name {{ mapName }}完成！
-        div.record
-          span.time {{ min }}
-          span.time-unit 分
-          span.time {{ sec }}
-          span.time-unit 秒
-        div.personal-best あなたの自己ベスト {{ bestRecord.min }}分{{ bestRecord.sec }}秒
-      div.result-area--white
-        img.completed-image(:src="completedImage")
+      result(
+        :mapName="mapName",
+        :completedImage="completedImage",
+        :min="min",
+        :sec="sec",
+        :bestMin="bestRecord.min",
+        :bestSec="bestRecord.sec")
     div.share-area
       div.share-area--text 結果をSNSでシェア!
       div.share-area--buttons
@@ -28,15 +25,15 @@
 </template>
 
 <script>
+import Result from '~/components/Result'
 import PurpleButton from '~/components/buttons/PurpleButton'
-import GrayButton from '~/components/buttons/GrayButton'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   components:{
+    Result,
     PurpleButton,
-    GrayButton,
     TwitterShareButton,
     FacebookShareButton,
   },
@@ -138,83 +135,6 @@ export default {
 .result-area {
   margin-left: auto;
   margin-right: auto;
-  width: 578px;
-  height: 802px;
-  background-color: #fff;
-}
-
-.result-area--purple {
-  width: 578px;
-  height: 261px;
-  border-radius: 4px;
-  background-color: #6c53f3;
-}
-
-.record {
-  text-align: center;
-}
-
-.time {
-  width: 68px;
-  height: 45px;
-
-  /* font-family: LTUnivers-Cond; */
-  font-size: 61.3px;
-  font-weight: 900;
-  font-style: italic;
-  font-stretch: normal;
-  line-height: 1.64;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
-}
-
-.time-unit {
-  width: 24px;
-  height: 23px;
-  font-size: 24px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
-  color: #fff;
-}
-
-.personal-best {
-  font-size: 20px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.8;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
-}
-
-.result-area--white {
-  width: 578px;
-  height: 541px;
-  border-radius: 4px;
-  background-color: #fff;
-}
-
-.map-name {
-  font-size: 32px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.88;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
-}
-
-.completed-image {
-  width: 421px;
-  height: 421px;
-  margin-top: 40px;
-  margin-left: 70px;
 }
 
 .share-area {
@@ -250,5 +170,16 @@ export default {
 .button-area {
   margin-top: 49px;
   text-align: center;
+}
+
+.container {
+  background-image:
+    url('~assets/images/moon/img_pzlmoon.png'),
+    url('~assets/images/background/background.png');
+  background-repeat: no-repeat, no-repeat;
+  background-size: initial, contain;
+  background-position: 0 0, center center;
+  width: 640px;
+  height: 1148px;
 }
 </style>
