@@ -184,6 +184,7 @@ export default {
     width: 500px;
     height: 500px;
     position: relative;
+    background-color: #4a34c2;
   }
 
   .tile {

@@ -3,11 +3,11 @@
 // doRun = false に変更すると停止
 <template>
   <div class="count-up-timer">
-    <div class="count-up-timer--text">TIME</div>
+    <p class="count-up-timer--text">TIME</p>
     <div class="count-up-timer--record">
-      <span class="time">{{ min }}</span>
+      <span class="time">{{ formatMin }}</span>
       <span class="time-unit">分</span>
-      <span class="time">{{ sec }}</span>
+      <span class="time">{{ formatSec }}</span>
       <span class="time-unit">秒</span>
     </div>
     <div style="display:none;">{{ doRun }}</div>
@@ -24,14 +24,11 @@ export default {
     }
   },
   computed: {
-    min: {
-      get () { return this.min },
+    formatMin: {
+      get () { return ('00' + this.min).slice(-2) },
     },
-    sec: {
-      get () { return this.sec }
-    },
-    msec: {
-      get () { return this.msec }
+    formatSec: {
+      get () { return ('00' + this.sec).slice(-2) }
     },
   ...mapGetters(["min", "sec", "msec"]),
   },
@@ -99,13 +96,11 @@ export default {
 }
 
 .count-up-timer--text {
-  width: 58px;
   height: 20px;
-  margin-left: 93px;
+  text-align: center;
 
   /* font-family: LTUnivers-Cond; */
   font-size: 28px;
-  font-weight: 500;
   font-style: italic;
   font-stretch: normal;
   line-height: 1.29;
@@ -115,7 +110,7 @@ export default {
 
 .count-up-timer--record {
   width: 256px;
-  margin-left: 29px;
+  text-align: center;
 }
 
 .time {

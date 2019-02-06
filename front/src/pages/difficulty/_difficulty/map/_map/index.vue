@@ -35,9 +35,9 @@
               @puzzle-completed="completed")
     br
     div.sar
-      p ボタンを押すと、
+      p ボタンを押したら、
         br
-        | 完成版のSAR画像が見れるよ
+        | 完成画像が見れるよ
     br
     div.center
       prs-button(
@@ -218,7 +218,6 @@ export default {
 
 <style lang="scss" scoped>
 .timer-area {
-  text-align: left;
   padding-top: 58px;
   width: 256px;
 }
@@ -254,6 +253,7 @@ export default {
 }
 
 .sar {
+  padding-top: 62.9px;
   position: relative;
 
   /* width: 360px; */
@@ -269,7 +269,6 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #192342;
-  margin-top: 30px;
 }
 
 .sar::before {
@@ -278,7 +277,7 @@ export default {
   border-left-width: 2px;
   transform: rotate(-20deg);
   position: absolute;
-  top: 0;
+  top: 62.9px;
   left: 110px;
   width: 31px;
   height: 74px;
@@ -290,7 +289,7 @@ export default {
   border-left-width: 2px;
   transform: rotate(20deg);
   position: absolute;
-  top: 0;
+  top: 62.9px;
   left: 520px;
   width: 31px;
   height: 74px;
