@@ -65,6 +65,8 @@ sh production.sh
 ```
 
 ### staging
+## auto deploy
+https://github.com/tkuchiki/ghooks-cmd-runner/releases
 ```
 cd .deploy
 sh staging.sh
