@@ -1,6 +1,4 @@
 # satellite-puzzle
-
-
 ## front
 node version 10.15
 npm 6.4
