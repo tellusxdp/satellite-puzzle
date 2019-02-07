@@ -1,23 +1,17 @@
-<template>
-  <div
-    class="map-image"
-    @click="click">
-    <div class="map--background">
-      <img
-        class="map--background--image"
-        :src="src">
-    </div>
-    <div class="map-label">
-      <img
-        src="~assets/images/map/label/label.png"
-        class="map-label--image">
-      <div class="map-label--text">{{ mapName }}</div>
-    </div>
-  </div>
+<template lang="pug">
+  .puzzle-map(@click="click")
+    .puzzle-map--background
+      img.puzzle-map--image(:src="src")
+    .puzzle-map--label
+      map-ribbon {{ mapName }}
 </template>
 
 <script>
+import MapRibbon from '~/components/ribbon/MapRibbon'
 export default {
+  components: {
+    MapRibbon
+  },
   props: {
     mapName: {
       type: String,
@@ -41,46 +35,29 @@ export default {
 }
 </script>
 
-<style>
-.map-image {
-  width: 449px;
+<style lang="scss" scoped>
+.puzzle-map {
+  width: 498px;
   height: 455px;
-  position: relative;
-}
+  // position: relative;
 
-.map--background {
-  width: 419px;
-  height: 455px;
-  background-color: #fff;
-  position: absolute;
-  left: 30px;
-}
+  &--background {
+    width: 401px;
+    height: 477px;
+    border-radius: 4px;
+    background-color: #fff;
+    margin: auto auto;
+  }
 
-.map--background--image {
-  width: 350px;
-  height: 400px;
-  position: absolute;
-  top: 36px;
-  left: 33px;
-}
+  &--image {
+    width: 353px;
+    height: 353px;
+    margin: 24px;
+  }
 
-.map-label {
-  position: relative;
-}
-
-.map-label--image {
-  width: 249px;
-  height: 70px;
-  position: absolute;
-  top: 344px;
-}
-
-.map-label--text {
-  position: absolute;
-  top: 367px;
-  left: 42px;
-  color: #fff;
-  font-size: 24px;
-  line-height: 36px;
+  &--label {
+    margin-top: -124px;
+    margin-left: 28px;
+  }
 }
 </style>
