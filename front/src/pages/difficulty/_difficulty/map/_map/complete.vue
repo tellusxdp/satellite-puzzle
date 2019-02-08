@@ -133,8 +133,7 @@ export default {
 }
 
 .result-area {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 50px auto;
 }
 
 .share-area {
@@ -143,7 +142,7 @@ export default {
 }
 
 .share-area--text {
-  padding-top: 10px;
+  padding-top: 22px;
   font-size: 24px;
   font-weight: bold;
   font-style: normal;
@@ -154,7 +153,7 @@ export default {
 }
 
 .share-area--buttons {
-  padding-top: 31px;
+  padding-top: 26px;
   text-align: center;
 }
 

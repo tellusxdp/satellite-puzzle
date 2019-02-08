@@ -72,7 +72,8 @@ module.exports = {
   ],
   css: [
     '~/../node_modules/ress/dist/ress.min.css',
-    '~/assets/css/main.css'
+    '~/assets/css/main.css',
+    { src: '~assets/css/style.scss' }
   ],
   axios: {}
 }
