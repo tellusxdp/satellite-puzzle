@@ -6,23 +6,23 @@
     div.map-area
       div.map-list
         div(v-for="(map, index) in mapList", :key="index")
-          map-image(
+          puzzle-map(
             :map-name="map.name",
             :map-image="`${map.kind}/${map.z}-${map.x}-${map.y}-${map.n}`",
             @onClick="pushPuzzle(map.id)")
 </template>
 
 <script>
-import MapImage from '~/components/map/MapImage'
+import PuzzleMap from '~/components/map/MapImage'
 import { mapGetters } from 'vuex';
 export default {
+  components: {
+    PuzzleMap,
+  },
   validate({ params }) {
     const d = params.difficulty
     // 難易度チェック
     return (d === 'easy' || d === 'normal' || d === 'hard')
-  },
-  components: {
-    MapImage,
   },
   methods: {
     pushPuzzle (id) {
@@ -78,27 +78,28 @@ export default {
 
 <style lang="scss" scoped>
 .return {
-  // font-family: NotoSansCJKjp;
+  padding-top: 42px;
+  margin-left: 34px;
+  // width: 213px;
+  height: 24px;
+  font-family: NotoSansCJKjp;
   font-size: 24px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.5;
   letter-spacing: normal;
+  text-align: left;
   color: #fff;
-  position: relative;
-  left: 34px;
-  top: 47px;
 }
 
 .map-area {
-  margin-top: 59px;
-  margin-left: 81px;
+  margin-top: 90px;
 }
 
 .map-list {
   overflow: auto;
-  height: 90vh;
+  height: 1000px;
 }
 
 .map {
@@ -106,7 +107,9 @@ export default {
   margin-right: auto;
 }
 
-.map-image {
-  margin-top: 60px;
+.puzzle-map {
+  margin-bottom: 82px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

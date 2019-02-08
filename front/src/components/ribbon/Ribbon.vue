@@ -16,16 +16,25 @@
   .center {
     z-index: 2;
     height: 77px;
-    width: 420px;
+    width: 456px;
     display: inline-block;
     position: absolute;
     color: #fff;
     background: #9988f3;
 
     p {
-      margin-top: 10px;
+      margin-top: 22px;
+      width: 415px;
+      height: 26px;
+      font-family: NotoSansCJKjp;
+      font-size: 28px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.29;
+      letter-spacing: normal;
       text-align: center;
-      font-size: 32px;
+      color: #fefeff;
     }
 
     &::before {
@@ -50,25 +59,25 @@
 
 .left {
   position: absolute;
-  top: 10px;
+  top: 16px;
   left: -30px;
   width: 49px;
-  height: 77px;
+  height: 70px;
   border-style: solid;
   border-color: #7b65f3 #7b65f3 #7b65f3 transparent;
-  border-width: 39px 0 39px 15px;
+  border-width: 35px 0 35px 15px;
   z-index: 1;
 }
 
 .right {
   position: absolute;
-  top: 10px;
-  left: 400px;
+  top: 16px;
+  left: 436px;
   width: 49px;
-  height: 77px;
+  height: 70px;
   border-style: solid;
   border-color: #7b65f3 transparent #7b65f3 #7b65f3;
-  border-width: 39px 15px 39px 0;
+  border-width: 35px 15px 35px 0;
   z-index: 1;
 }
 </style>

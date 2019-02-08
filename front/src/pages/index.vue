@@ -49,31 +49,33 @@ export default {
 }
 
 .alos2 {
-  padding-top: 88px;
+  margin-top: 94px;
   text-align: center;
 }
 
 .share-area {
-  padding-top: 172px;
+  margin-top: 164px;
   width: 528px;
-  height: 288px;
+  height: 248px;
   margin-left: auto;
   margin-right: auto;
 
   p {
-    padding-top: 78px;
-    // font-family: "NotoSansCJKjp";
+    // width: 238px;
+    height: 23px;
+    font-family: NotoSansCJKjp;
     font-size: 24px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.5;
+    letter-spacing: normal;
     text-align: center;
     color: #fff;
   }
 
   &--buttons {
-    padding-top: 35px;
+    margin-top: 42px;
     text-align: center;
   }
 

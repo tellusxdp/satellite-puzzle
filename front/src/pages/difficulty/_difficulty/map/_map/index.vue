@@ -35,16 +35,16 @@
               @puzzle-completed="completed")
     br
     div.sar
-      p ボタンを押すと、
+      p ボタンを押したら、
         br
-        | 完成版のSAR画像が見れるよ
+        | 完成画像が見れるよ
     br
-    div.center
+    .hint-button
       prs-button(
         @isPrs="dispHint"
         @isNotPrs="noDispHint")
     br
-    div.center
+    .giveup-button
       click-button(
       @onClick="openModal"
       :src="require('~/assets/images/button/btn_giveup.png')"
@@ -218,14 +218,13 @@ export default {
 
 <style lang="scss" scoped>
 .timer-area {
-  text-align: left;
-  padding-top: 58px;
+  padding-top: 50px;
   width: 256px;
 }
 
 .puzzle-area {
-  padding-left: 50px;
-  padding-top: 20px;
+  padding-left: 48px;
+  padding-top: 30px;
   width: 540px;
   height: 540px;
 }
@@ -249,18 +248,24 @@ export default {
   height: 540px;
 }
 
-.center {
+.hint-button {
+  margin-top: 80px;
   text-align: center;
 }
 
+.giveup-button {
+  text-align: center;
+  margin-top: 10px;
+}
+
 .sar {
+  padding-top: 70px;
   position: relative;
+  margin-left: 20px;
 
-  /* width: 360px; */
-
-  /* height: 59px; */
-
-  /* font-family: RodinProN-DB; */
+  // width: 305px;
+  height: 60px;
+  font-family: NotoSansCJKjp;
   font-size: 24px;
   font-weight: normal;
   font-style: normal;
@@ -269,17 +274,16 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #192342;
-  margin-top: 30px;
 }
 
 .sar::before {
   content: "";
   border-left: solid #192342;
   border-left-width: 2px;
-  transform: rotate(-20deg);
+  transform: rotate(-22deg);
   position: absolute;
-  top: 0;
-  left: 110px;
+  top: 66px;
+  left: 88px;
   width: 31px;
   height: 74px;
 }
@@ -288,10 +292,10 @@ export default {
   content: "";
   border-left: solid #192342;
   border-left-width: 2px;
-  transform: rotate(20deg);
+  transform: rotate(22deg);
   position: absolute;
-  top: 0;
-  left: 520px;
+  top: 78px;
+  left: 502px;
   width: 31px;
   height: 74px;
 }
@@ -341,7 +345,7 @@ export default {
     url('~assets/images/background/background.png');
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-size: initial, 1902px, contain;
-  background-position: 0 0, center 636px, center center;
+  background-position: 0 0, center 648px, center center;
   width: 640px;
   height: 1148px;
 }

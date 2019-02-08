@@ -1,22 +1,24 @@
 <template lang="pug">
   .modal
     .modal-contents
-      img.alos-2(src="~assets/images/alos-2/alos-2.png")
-      .button
-        click-button(
-          @onClick="$emit('close')",
-          :src="require('~/assets/images/button/btn_bktogame.png')",
-          :srcActive="require('~/assets/images/button/btn_prs_bktogame.png')")
-      .button
-        click-button(
-          @onClick="$emit('retry')",
-          :src="require('~/assets/images/button/btn_renew.png')",
-          :srcActive="require('~/assets/images/button/btn_prs_renew.png')")
-      .button
-        click-button(
-          @onClick="$emit('top')",
-          :src="require('~/assets/images/button/btn_finish.png')",
-          :srcActive="require('~/assets/images/button/btn_prs_finish.png')")
+      .image-area
+        img.alos-2(src="~assets/images/alos-2/loading.png")
+      .button-area
+        .button
+          click-button(
+            @onClick="$emit('close')",
+            :src="require('~/assets/images/button/btn_bktogame.png')",
+            :srcActive="require('~/assets/images/button/btn_prs_bktogame.png')")
+        .button
+          click-button(
+            @onClick="$emit('retry')",
+            :src="require('~/assets/images/button/btn_renew.png')",
+            :srcActive="require('~/assets/images/button/btn_prs_renew.png')")
+        .button
+          click-button(
+            @onClick="$emit('top')",
+            :src="require('~/assets/images/button/btn_finish.png')",
+            :srcActive="require('~/assets/images/button/btn_prs_finish.png')")
 </template>
 
 <script>
@@ -28,15 +30,13 @@ export default {
 }
 </script>
 
-
-<style scoped>
+<style lang="scss" scoped>
 .modal {
+  margin-left: 28px;
   align-items: center;
-
-  /* justify-content: center; */
+  justify-content: center;
   position: absolute;
   top: 98px;
-  left: calc(50% - 290px);
   width: 580px;
   height: 795px;
   border-radius: 4px;
@@ -47,8 +47,17 @@ export default {
   text-align: center;
 }
 
+.image-area {
+  height: 394px;
+}
+
 .alos-2 {
-  margin-top: 161px;
+  margin-top: 152px;
+  margin-left: -56px;
+}
+
+.buton-area {
+  top: 304px;
 }
 
 .button {

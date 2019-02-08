@@ -1,17 +1,15 @@
 // 親での使用方法
 // doRun = true に変更すると開始
 // doRun = false に変更すると停止
-<template>
-  <div class="count-up-timer">
-    <div class="count-up-timer--text">TIME</div>
-    <div class="count-up-timer--record">
-      <span class="time">{{ min }}</span>
-      <span class="time-unit">分</span>
-      <span class="time">{{ sec }}</span>
-      <span class="time-unit">秒</span>
-    </div>
-    <div style="display:none;">{{ doRun }}</div>
-  </div>
+<template lang="pug">
+  .count-up-timer
+    p.count-up-timer--text TIME
+    .count-up-timer--record
+      span.time {{ formatMin }}
+      span.time-unit 分
+      span.time {{ formatSec }}
+      span.time-unit 秒
+    span(style="display:none;") {{ doRun }}
 </template>
 
 <script>
@@ -24,14 +22,11 @@ export default {
     }
   },
   computed: {
-    min: {
-      get () { return this.min },
+    formatMin: {
+      get () { return ('00' + this.min).slice(-2) },
     },
-    sec: {
-      get () { return this.sec }
-    },
-    msec: {
-      get () { return this.msec }
+    formatSec: {
+      get () { return ('00' + this.sec).slice(-2) }
     },
   ...mapGetters(["min", "sec", "msec"]),
   },
@@ -93,19 +88,19 @@ export default {
 }
 </script>
 
-<style>
+
+<style lang="scss" scoped>
 .count-up-timer {
   width: 256px;
 }
 
 .count-up-timer--text {
-  width: 58px;
+  margin-left: 86px;
+  // width: 60px;
   height: 20px;
-  margin-left: 93px;
-
-  /* font-family: LTUnivers-Cond; */
+  font-family: OpenSans;
   font-size: 28px;
-  font-weight: 500;
+  font-weight: 600;
   font-style: italic;
   font-stretch: normal;
   line-height: 1.29;
@@ -115,34 +110,38 @@ export default {
 
 .count-up-timer--record {
   width: 256px;
-  margin-left: 29px;
+  text-align: center;
+  margin-top: 4px;
+  margin-left: -6px;
 }
 
 .time {
-  width: 68px;
+  margin-left: 8px;
+  width: 67px;
   height: 45px;
-
-  /* font-family: LTUnivers-Cond; */
-  font-size: 61.3px;
-  font-weight: 900;
+  font-family: OpenSans-ExtraboldItalic;
+  font-size: 61.5px;
+  font-weight: 800;
   font-style: italic;
   font-stretch: normal;
-  line-height: 1.64;
+  line-height: 1.63;
   letter-spacing: normal;
+  text-align: center;
   color: #fff;
 }
 
 .time-unit {
+  margin-left: 2px;
   width: 24px;
   height: 23px;
-
-  /* font-family: NotoSansCJKjp; */
+  font-family: NotoSansCJKjp;
   font-size: 24px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.5;
   letter-spacing: normal;
+  text-align: center;
   color: #fff;
 }
 </style>
