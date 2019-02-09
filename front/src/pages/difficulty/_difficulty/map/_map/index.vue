@@ -1,38 +1,46 @@
 // パズル
 <template lang="pug">
-  div.container
-    div.modal-background(v-if="modal")
-    div.timer-area
+  .container
+    .modal-background(v-if="modal")
+    .timer-area
       div(v-if="puzzle")
         count-up-timer(:do-run="run")
-    div.puzzle-area
-      div.hint-area(v-show="hint")
-        div.shadow
-          img.completed-image(:src="completedImage")
+    .puzzle-area
+      .hint-area(v-show="hint")
+          .shadow
+            img.completed-image(:src="completedImage")
       div(v-show="!hint")
         div(v-if="difficulty === 'easy'")
-          div.easy-puzzle(v-if="puzzle", @click.once="puzzleStart")
+          .easy-puzzle(
+            v-if="puzzle",
+            @click.once="puzzleStart")
             easy-puzzle(
               :show-sar="showSar"
               :map-images="mapImages"
-              @puzzle-completed="completed")
+              :completed-image="completedImage"
+              @puzzleComplete="stopTimer"
+              @pushComplete="pushComplete")
         div(v-else-if="difficulty === 'normal'")
-          div.normal-puzzle(
+          .normal-puzzle(
             v-if="puzzle"
             @click.once="puzzleStart")
             normal-puzzle(
               :show-sar="showSar"
               :map-images="mapImages"
-              @puzzle-completed="completed")
+              :completed-image="completedImage"
+              @puzzleComplete="stopTimer"
+              @pushComplete="pushComplete")
           div(v-else) {{ resetPuzzle }}
         div(v-else)
-          div.hard-puzzle(
+          .hard-puzzle(
             v-if="puzzle"
             @click.once="puzzleStart")
             hard-puzzle(
               :show-sar="showSar"
               :map-images="mapImages"
-              @puzzle-completed="completed")
+              :completed-image="completedImage"
+              @puzzleComplete="stopTimer"
+              @pushComplete="pushComplete")
     br
     div.sar
       p ボタンを押したら、
@@ -42,7 +50,9 @@
     .hint-button
       prs-button(
         @isPrs="dispHint"
-        @isNotPrs="noDispHint")
+        @isNotPrs="noDispHint"
+        :src="require('~/assets/images/button/btn_btn_showimg.png')"
+        :srcPrs="require('~/assets/images/button/btn_btn_prs_showimg.png')")
     br
     .giveup-button
       click-button(
@@ -95,6 +105,7 @@ export default {
       modal: false,
       puzzle: true,
       hint: false,
+      isComplete: false,
       difficultyMap: {
         easy: 3,
         normal: 4,
@@ -117,8 +128,10 @@ export default {
     puzzleStart () {
       this.run = true
     },
-    completed () {
-      alert('パズルが完成しました！') // TODO: アニメーションにする
+    stopTimer () {
+      // タイマーを止める
+      this.run = false
+      // ベストレコードを記録する
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
 
@@ -134,6 +147,10 @@ export default {
         })
         this.setBestRecord({ min: this.min, sec: this.sec })
       }
+    },
+    pushComplete () {
+      const difficulty = this.$route.params.difficulty
+      const map = this.$route.params.map
       this.$router.push('/difficulty/'+difficulty+'/map/'+map+'/complete')
     },
     openModal() {
@@ -283,7 +300,7 @@ export default {
   transform: rotate(-22deg);
   position: absolute;
   top: 66px;
-  left: 88px;
+  left: 138px;
   width: 31px;
   height: 74px;
 }
@@ -295,7 +312,7 @@ export default {
   transform: rotate(22deg);
   position: absolute;
   top: 78px;
-  left: 502px;
+  left: 462px;
   width: 31px;
   height: 74px;
 }

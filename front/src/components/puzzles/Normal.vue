@@ -1,18 +1,29 @@
 <template lang="pug">
-  div.normal-puzzle
-    div.not-ready(v-show="!ready") 準備中です
-    div.puzzle-area(v-show="ready")
-      div.shadow
-        div.tile(
-          v-for="(tile, index) in tiles",
-          :class="`_${index}`"
-          @click="move"
-          :key="index"
-          :style="{'top': tile.x*120 + 'px', 'left': (tile.y)*120 + 'px'}")
-          div(v-show="showSar")
-            img.tile--image(:src="image(tile)")
-          div(v-show="!showSar")
-            img.tile--image(:src="image(tile)")
+  .normal-puzzle
+    .not-ready(v-show="!ready") 準備中です
+    .puzzle-area(v-show="ready")
+      .shadow
+        transition(
+          name="fade-in"
+          @after-enter="pushComplete")
+          .completed-image(
+            v-show="isComplete")
+            img.completed-image(:src="completedImage")
+        transition(name="fade-out")
+          div(v-show="!isComplete")
+            .tiles(v-for="(tile, index) in tiles")
+              .tile(
+                :class="`_${index}`"
+                @click="tile.move = true"
+                :key="index")
+                transition(
+                  @leave="tileMove(index)"
+                  @after-leave="tileMoved(index)")
+                  div(v-show="!tile.move")
+                    div(v-show="showSar")
+                      img.tile--image(:src="image(tile.no)")
+                    div(v-show="!showSar")
+                      img.tile--image(:src="image(tile.no)")
 </template>
 
 <script>
@@ -34,52 +45,66 @@ export default {
     mapImages: {
       type: String,
       default: "",
+    },
+    completedImage: {
+      type: String,
+      default: "",
     }
   },
   data: () => {
     return {
+      // 完成判定
+      isComplete: false,
       // 開始タイル
       // TODO: ランダム配置
       tiles: [
-       {no:'1', x:0, y:1},
-       {no:'2', x:1, y:0},
-       {no:'3', x:0, y:3},
-       {no:'4', x:2, y:3},
-       {no:'5', x:0, y:0},
-       {no:'6', x:1, y:1},
-       {no:'7', x:1, y:3},
-       {no:'8', x:0, y:2},
-       {no:'9', x:2, y:0},
-       {no:'10', x:2, y:1},
-       {no:'11', x:1, y:2},
-       {no:'12', x:3, y:2},
-       {no:'13', x:3, y:0},
-       {no:'14', x:3, y:1},
-       {no:'15', x:2, y:2}
+        {no:1,  x: 0, y: 0, move: false},
+        {no:2,  x: 0, y: 1, move: false},
+        {no:3,  x: 0, y: 2, move: false},
+        {no:4,  x: 0, y: 3, move: false},
+        {no:5,  x: 1, y: 0, move: false},
+        {no:6,  x: 1, y: 1, move: false},
+        {no:7,  x: 1, y: 2, move: false},
+        {no:8,  x: 1, y: 3, move: false},
+        {no:9,  x: 2, y: 0, move: false},
+        {no:10, x: 2, y: 1, move: false},
+        {no:11, x: 2, y: 2, move: false},
+        {no:12, x: 2, y: 3, move: false},
+        {no:13, x: 3, y: 0, move: false},
+        {no:14, x: 3, y: 1, move: false},
+        {no:15, x: 3, y: 2, move: false},
       ],
       // 正解タイル
       ans: [
-        {no:'1', x: 0, y: 0},
-        {no:'2', x: 0, y: 1},
-        {no:'3', x: 0, y: 2},
-        {no:'4', x: 0, y: 3},
-        {no:'5', x: 1, y: 0},
-        {no:'6', x: 1, y: 1},
-        {no:'7', x: 1, y: 2},
-        {no:'8', x: 1, y: 3},
-        {no:'9', x: 2, y: 0},
-        {no:'10', x: 2, y: 1},
-        {no:'11', x: 2, y: 2},
-        {no:'12', x: 2, y: 3},
-        {no:'13', x: 3, y: 0},
-        {no:'14', x: 3, y: 1},
-        {no:'15', x: 3, y: 2},
+        {no:1, x: 0, y: 0},
+        {no:2, x: 0, y: 1},
+        {no:3, x: 0, y: 2},
+        {no:4, x: 0, y: 3},
+        {no:5, x: 1, y: 0},
+        {no:6, x: 1, y: 1},
+        {no:7, x: 1, y: 2},
+        {no:8, x: 1, y: 3},
+        {no:9, x: 2, y: 0},
+        {no:10, x: 2, y: 1},
+        {no:11, x: 2, y: 2},
+        {no:12, x: 2, y: 3},
+        {no:13, x: 3, y: 0},
+        {no:14, x: 3, y: 1},
+        {no:15, x: 3, y: 2},
       ],
       // 空白タイル
       empty: {x: 3, y: 3},
       width: 0,
       ready: false,
     }
+  },
+  mounted () {
+    // 初期配置
+    this.tiles.forEach((element,index) => {
+      const tile = this.$el.getElementsByClassName(`_${element.no-1}`)[0]
+      tile.style.top = `${this.tiles[index].x*120}px`
+      tile.style.left = `${this.tiles[index].y*120}px`
+    })
   },
   updated () {
     // 正解判定
@@ -89,8 +114,8 @@ export default {
         return
       }
     }
-    // イベントを発火
-    this.$emit('puzzle-completed')
+    this.isComplete = true
+    this.$emit('puzzleComplete')
   },
   created() {
     if (process.browser) {
@@ -98,15 +123,28 @@ export default {
     }
   },
   methods: {
-    image (tile) {
-      return `/images/${this.mapImages}/${tile.no}.png`
+    // タイル移動
+    tileMove (e, done) {
+      const tile = this.$el.getElementsByClassName(`_${e}`)[0]
+      this.move(e)
+      tile.style.transition = "0.5s"
+    },
+    tileMoved (e) {
+      const tile = this.$el.getElementsByClassName(`_${e}`)[0]
+      tile.style.top = `${this.tiles[e].x*120}px`
+      tile.style.left = `${this.tiles[e].y*120}px`
+      this.tiles[e].move = false
+    },
+    pushComplete () {
+      // パズルが完成したことを親に伝える
+      this.$emit('pushComplete')
+    },
+    image (id) {
+      return `/images/${this.mapImages}/${id}.png`
     },
     // TODO: フリックでの移動に対応
     move (e) {
-      // クリックしたブロックを特定
-      let cName = e.currentTarget.classList
-      let target = cName[1].slice(1)
-
+      const target = e
       // 移動してもいいか確認する, OKなら移動する
       // x + 1に移動
       if ((this.tiles[target].x + 1 === this.empty.x) &&
@@ -181,5 +219,30 @@ export default {
     height: 120px;
     border: outset 6px;
   }
+}
+
+.completed-image {
+  width: 480px;
+  height: 480px;
+}
+
+.fade-in-enter-active,
+.fade-in-leave-active {
+  transition: opacity 3s;
+}
+
+.fade-in-enter,
+.fade-in-leave-to {
+  opacity: 0;
+}
+
+.fade-out-enter-active,
+.fade-out-leave-active {
+  transition: opacity 3s;
+}
+
+.fade-out-enter,
+.fade-out-leave-to {
+  opacity: 0;
 }
 </style>
