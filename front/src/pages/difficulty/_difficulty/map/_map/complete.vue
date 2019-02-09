@@ -2,14 +2,15 @@
 <template lang="pug">
   div.container
     div.margin-top-result-area
-    div.result-area
-      result(
-        :mapName="mapName",
-        :completedImage="completedImage",
-        :min="min",
-        :sec="sec",
-        :bestMin="bestRecord.min",
-        :bestSec="bestRecord.sec")
+    transition(name="fade-in" appear)
+      div.result-area
+        result(
+          :mapName="mapName",
+          :completedImage="completedImage",
+          :min="min",
+          :sec="sec",
+          :bestMin="bestRecord.min",
+          :bestSec="bestRecord.sec")
     div.share-area
       div.share-area--text 結果をSNSでシェア!
       div.share-area--buttons
@@ -21,19 +22,22 @@
           :hashtags="hashtags"
           :text="text")
     div.button-area
-      purple-button(@onClick="pushTop") はじめの画面に戻る
+      click-button(
+        @onClick="pushTop"
+        :src="require('~/assets/images/button/btn_bktostart.png')"
+        :srcActive="require('~/assets/images/button/btn_prs_bktostart.png')")
 </template>
 
 <script>
 import Result from '~/components/Result'
-import PurpleButton from '~/components/buttons/PurpleButton'
+import ClickButton from '~/components/buttons/ClickButton'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   components:{
     Result,
-    PurpleButton,
+    ClickButton,
     TwitterShareButton,
     FacebookShareButton,
   },
@@ -130,6 +134,16 @@ export default {
 <style lang="scss" scoped>
 .margin-top-result-area {
   height: 40px;
+}
+
+.fade-in-enter-active,
+ .fade-in-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-in-enter,
+ .fade-in-leave-to {
+  opacity: 0;
 }
 
 .result-area {

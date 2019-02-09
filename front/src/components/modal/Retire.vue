@@ -2,7 +2,7 @@
   .modal
     .modal-contents
       .image-area
-        img.alos-2(src="~assets/images/alos-2/loading.png")
+        img.alos-2(src="~assets/images/alos-2/img_modal.png")
       .button-area
         .button
           click-button(
@@ -52,8 +52,8 @@ export default {
 }
 
 .alos-2 {
-  margin-top: 152px;
-  margin-left: -56px;
+  margin-top: 74px;
+  margin-left: 0;
 }
 
 .buton-area {
