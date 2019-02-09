@@ -52,10 +52,6 @@ export default {
     completedImage: {
       type: String,
       default: ""
-    },
-    isNewRecord: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
@@ -70,6 +66,9 @@ export default {
     },
     formatBestSec: {
       get () { return ('00' + this.bestSec).slice(-2) }
+    },
+    isNewRecord: {
+      get () { return this.min < this.bestMin || this.min === this.bestMin && this.sec < this.bestSec }
     }
   }
 }
