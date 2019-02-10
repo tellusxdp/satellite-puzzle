@@ -55,20 +55,20 @@ export default {
     }
   },
   computed: {
-    formatMin: {
-      get () { return ('00' + this.min).slice(-2) }
+    formatMin () { 
+      return ('00' + this.min).slice(-2) 
     },
-    formatSec: {
-      get () { return ('00' + this.sec).slice(-2) }
+    formatSec () {
+      return ('00' + this.sec).slice(-2)
     },
-    formatBestMin: {
-      get () { return ('00' + this.bestMin).slice(-2) }
+    formatBestMin () {
+      return ('00' + this.bestMin).slice(-2)
     },
-    formatBestSec: {
-      get () { return ('00' + this.bestSec).slice(-2) }
+    formatBestSec () {
+      return ('00' + this.bestSec).slice(-2)
     },
-    isNewRecord: {
-      get () { return this.min < this.bestMin || this.min === this.bestMin && this.sec < this.bestSec }
+    isNewRecord () {
+      return this.min < this.bestMin || this.min === this.bestMin && this.sec < this.bestSec
     }
   }
 }
