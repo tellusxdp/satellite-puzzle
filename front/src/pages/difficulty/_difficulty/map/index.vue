@@ -32,6 +32,19 @@ export default {
       this.$router.push('/difficulty')
     },
   },
+  mounted () {
+    var mapList = this.$el.getElementsByClassName('map-list')
+
+    // マップリストのスクロール処理
+    mapList[0].addEventListener('scroll', function(event) {
+     if (mapList[0].scrollTop === 0) {
+        mapList[0].scrollTop = 1;
+      }
+      else if (mapList[0].scrollTop + mapList[0].clientHeight === mapList[0].scrollHeight) {
+        mapList[0].scrollTop = mapList[0].scrollTop - 1;
+      }
+    },{ passive: false })
+  },
   data() {
     return {
       difficultyMap: {
@@ -100,6 +113,7 @@ export default {
 .map-list {
   overflow: auto;
   height: 1000px;
+  width: 640px;
 }
 
 .map {
