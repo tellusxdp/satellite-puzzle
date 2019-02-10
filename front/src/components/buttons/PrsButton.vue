@@ -5,12 +5,12 @@
     <div v-show="isPrs">
       <img
         class="prs-button--image"
-        :src="prsButtonImage()">
+        :src="srcPrs">
     </div>
     <div v-show="!isPrs">
       <img
         class="prs-button--image"
-        :src="buttonImage()">
+        :src="src">
     </div>
   </button>
 </template>
@@ -25,11 +25,15 @@ export default {
       }
       return this.$emit('isNotPrs')
     },
-    buttonImage () {
-        return require('~/assets/images/button/btn_showimg.png')
+  },
+  props: {
+    src: {
+      type: String,
+      default: "",
     },
-    prsButtonImage () {
-      return require('~/assets/images/button/btn_prs_showimg.png')
+    srcPrs: {
+      type: String,
+      default: "",
     }
   },
   data () {

@@ -1,18 +1,26 @@
 <template lang="pug">
-  div.normal-puzzle
-    div.not-ready(v-show="!ready") 準備中です
-    div.puzzle-area(v-show="ready")
-      div.shadow
-        div.tile(
-          v-for="(tile, index) in tiles",
-          :class="`_${index}`"
-          @click="move"
-          :key="index"
-          :style="{'top': tile.x*96 + 'px', 'left': (tile.y)*96 + 'px'}")
-          div(v-show="showSar")
-            img.tile--image(:src="image(tile)")
-          div(v-show="!showSar")
-            img.tile--image(:src="image(tile)")
+  .normal-puzzle
+    .not-ready(v-show="!ready") 準備中です
+    .puzzle-area(v-show="ready")
+      .shadow
+        transition(
+          name="fade-in"
+          @after-enter="pushComplete")
+          .completed-image(
+            v-show="isComplete")
+            img.completed-image(:src="completedImage")
+        transition(name="fade-out")
+          div(v-show="!isComplete")
+            .tile(
+              v-for="(tile, index) in tiles",
+              :class="`_${index}`"
+              @click="move"
+              :key="index"
+              :style="{'top': tile.x*96 + 'px', 'left': (tile.y)*96 + 'px'}")
+              div(v-show="showSar")
+                img.tile--image(:src="image(tile)")
+              div(v-show="!showSar")
+                img.tile--image(:src="image(tile)")
 </template>
 
 <script>
@@ -34,10 +42,16 @@ export default {
     mapImages: {
       type: String,
       default: "",
+    },
+    completedImage: {
+      type: String,
+      default: "",
     }
   },
   data: () => {
     return {
+      // 完成判定
+      isComplete: false,
       // 開始タイル
       // TODO: ランダム配置
       tiles: [
@@ -107,8 +121,8 @@ export default {
         return
       }
     }
-    // イベントを発火
-    this.$emit('puzzle-completed')
+    this.isComplete = true
+    this.$emit('puzzleComplete')
   },
   created() {
     if (process.browser) {
@@ -116,6 +130,10 @@ export default {
     }
   },
   methods: {
+    pushComplete () {
+      // パズルが完成したことを親に伝える
+      this.$emit('pushComplete')
+    },
     image (tile) {
       return `/images/${this.mapImages}/${tile.no}.png`
     },
@@ -198,5 +216,30 @@ export default {
     height: 96px;
     border: outset 6px;
   }
+}
+
+.completed-image {
+  width: 480px;
+  height: 480px;
+}
+
+.fade-in-enter-active,
+.fade-in-leave-active {
+  transition: opacity 3s;
+}
+
+.fade-in-enter,
+.fade-in-leave-to {
+  opacity: 0;
+}
+
+.fade-out-enter-active,
+.fade-out-leave-active {
+  transition: opacity 3s;
+}
+
+.fade-out-enter,
+.fade-out-leave-to {
+  opacity: 0;
 }
 </style>

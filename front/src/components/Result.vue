@@ -1,6 +1,7 @@
 <template lang="pug">
   .result-area
     .best
+    .confi
     .map-name
       ribbon {{ mapName }}
     .map-image
@@ -13,6 +14,9 @@
         span.time {{ formatSec }}
         span.time-unit 秒
     .personal-best
+      img.new-record(
+        v-show="isNewRecord"
+        src="~assets/images/result/img_koshin.png")
       p
         span.text あなたの自己ベスト
         span.best-record {{ formatBestMin }}分{{ formatBestSec }}秒
@@ -51,17 +55,20 @@ export default {
     }
   },
   computed: {
-    formatMin: {
-      get () { return ('00' + this.min).slice(-2) }
+    formatMin () { 
+      return ('00' + this.min).slice(-2) 
     },
-    formatSec: {
-      get () { return ('00' + this.sec).slice(-2) }
+    formatSec () {
+      return ('00' + this.sec).slice(-2)
     },
-    formatBestMin: {
-      get () { return ('00' + this.bestMin).slice(-2) }
+    formatBestMin () {
+      return ('00' + this.bestMin).slice(-2)
     },
-    formatBestSec: {
-      get () { return ('00' + this.bestSec).slice(-2) }
+    formatBestSec () {
+      return ('00' + this.bestSec).slice(-2)
+    },
+    isNewRecord () {
+      return this.min < this.bestMin || this.min === this.bestMin && this.sec < this.bestSec
     }
   }
 }
@@ -73,12 +80,15 @@ export default {
   height: 864px;
   border-radius: 4px;
   background-color: #fff;
-  background-position: -1px 360px;
-  background-image: url('~assets/images/background/best/best.png');
+  background-image:
+    url('~assets/images/result/confi.png'),
+    url('~assets/images/background/best/best.png');
+  background-size: initial, initial;
+  background-position: 12px 28px, -1px 360px;
 }
 
 .ribbon {
-  margin-top: 70px;
+  margin-top: 72px;
   margin-left: 60px;
 }
 
@@ -154,6 +164,13 @@ export default {
   margin-left: 79px;
   border-radius: 28px;
   background-color: #4a34c2;
+  position: relative;
+
+  .new-record {
+    position: absolute;
+    top: -88px;
+    left: -44px;
+  }
 
   p {
     padding-top: 12px;
