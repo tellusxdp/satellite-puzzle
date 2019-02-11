@@ -16,10 +16,10 @@ export default {
         event.preventDefault()
         return
       }
-
       // 対象の要素がある場合
-      let list = mapList[0]
-      if (event.target === list) {
+      let list = mapList.item(0)
+
+      if (list.contains(event.target)) {
         event.stopPropagation();
       } else {
         event.preventDefault(); // スクロール可能な領域が狭いため、調整が必要
