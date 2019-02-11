@@ -63,9 +63,11 @@ module.exports = {
   workbox: {
     dev: false, // yarn dev でもworkboxを有効にしたい場合はtrue
   },
-  manifest: { // TODO: 仮置き
-    name: "satellite-puzzle",
-    lang: 'ja'
+  manifest: {
+    name: '衛星パズル',
+    lang: 'ja',
+    'og:title': '衛星パズル',
+    'og:description': '衛星で取得したSARデータを使ったパズルに挑戦。',
   },
   plugins: [
     '~/plugins/axios.js',
