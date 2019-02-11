@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask, request, jsonify
 from flask_api import status
 from PIL import Image
@@ -55,13 +57,13 @@ def index():
     img.save(save_img_path, quality = img_quality)
 
     # 切り取り間隔を取得
-    ver_s, hori_s, ver_interval, hori_interval = calc_interval(img, split_n)
+    ver_s, hori_s, ver_interval, hori_interval = calc_interval(img.size, split_n)
 
     # 画像を切り取り、保存する処理
     for ver_i in range(split_n):
         for hori_i in range(split_n):
             # 切り取る領域を計算
-            left, upper, right, lower = calc_img_pozition(hori_i, ver_i, hori_interval, ver_interval)
+            left, upper, right, lower = calc_img_position(hori_i, ver_i, hori_interval, ver_interval)
             box = (left, upper, right, lower)
 
             # 画像を保存するパス
@@ -83,7 +85,7 @@ def make_img_path(save_img_directory):
 
 
 # 切り取り画像のいちを計算
-def calc_img_pozition(hori_i, ver_i, hori_interval, ver_interval):
+def calc_img_position(hori_i, ver_i, hori_interval, ver_interval):
     return hori_interval * hori_i, ver_interval * ver_i, hori_interval * (hori_i + 1), ver_interval * (ver_i+ 1)
 
 # query stringからパラメータを取得
@@ -100,9 +102,8 @@ def get_request():
         raise MyException('internal server error', 500, req_args)
 
 # 切り取り間隔を計算
-def calc_interval(img, split_n):
+def calc_interval(ver_s, hori_s, split_n):
     try:
-        ver_s, hori_s = img.size
         ver_interval = ver_s / split_n
         hori_interval = hori_s / split_n
         return ver_s, hori_s, ver_interval, hori_interval
