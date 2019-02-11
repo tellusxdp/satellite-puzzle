@@ -54,12 +54,10 @@ export default {
   },
   computed: {
     formatMin () { 
-      return "02"
-      // return ('00' + this.min).slice(-2) 
+      return ('00' + this.min).slice(-2) 
     },
     formatSec () {
-      return "58"
-      // return ('00' + this.sec).slice(-2)
+      return ('00' + this.sec).slice(-2)
     },
     formatBestMin () {
       return ('00' + this.bestMin).slice(-2)
