@@ -24,7 +24,6 @@
 
     p {
       margin-top: 22px;
-      width: 415px;
       height: 26px;
       font-family: NotoSansCJKjp;
       font-size: 28px;

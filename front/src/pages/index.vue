@@ -1,9 +1,10 @@
 // TOP
 <template lang="pug">
   div
-    title-logo
-    alos2(@onClick="pushStart")
-    .share-area
+    .push-start(@click="pushStart")
+      title-logo
+      alos2
+    div.share-area
       p ゲームをSNSでシェア
       .share-area--buttons
         facebook-share-button.facebook-share-button(:url="url")
@@ -44,6 +45,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.push-start {
+  height: 380px;
+  width: 370px;
+  margin: 0 auto;
+}
+
 .title-logo {
   padding-top: 239px;
 }
@@ -54,7 +61,7 @@ export default {
 }
 
 .share-area {
-  margin-top: 164px;
+  margin-top: 494px;
   width: 528px;
   height: 248px;
   margin-left: auto;

@@ -1,9 +1,9 @@
 // パズル終了
 <template lang="pug">
-  div.container
-    div.margin-top-result-area
+  .container
+    .margin-top-result-area
     transition(name="fade-in" appear)
-      div.result-area
+      .result-area
         result(
           :mapName="mapName",
           :completedImage="completedImage",
@@ -11,21 +11,21 @@
           :sec="sec",
           :bestMin="bestRecord.min",
           :bestSec="bestRecord.sec")
-    div.share-area
-      div.share-area--text 結果をSNSでシェア!
-      div.share-area--buttons
-        facebook-share-button.facebook-share-button(:url="url")
-        twitter-share-button.twitter-share-button(
-          :url="url"
-          :via="via"
-          :related="related"
-          :hashtags="hashtags"
-          :text="text")
-    div.button-area
+    .button-area
       click-button(
         @onClick="pushTop"
         :src="require('~/assets/images/button/btn_bktostart.png')"
         :srcActive="require('~/assets/images/button/btn_prs_bktostart.png')")
+    .share-area
+      .share-area--text
+        p 結果をSNSでシェア!
+      facebook-share-button.facebook-share-button(:url="url")
+      twitter-share-button.twitter-share-button(
+        :url="url"
+        :via="via"
+        :related="related"
+        :hashtags="hashtags"
+        :text="text")
 </template>
 
 <script>
@@ -137,47 +137,51 @@ export default {
 }
 
 .fade-in-enter-active,
- .fade-in-leave-active {
+.fade-in-leave-active {
   transition: opacity 1s;
 }
 
 .fade-in-enter,
- .fade-in-leave-to {
+.fade-in-leave-to {
   opacity: 0;
 }
 
 .result-area {
-  margin: 50px auto;
+  margin: 0 auto;
 }
 
 .share-area {
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 38px;
+  margin-left: -20px;
+  text-align: center;
+  height: 64px;
+  line-height: 64px;
 }
 
 .share-area--text {
-  padding-top: 22px;
+  margin-left: 40px;
   font-size: 24px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
-  line-height: 1.5;
-  text-align: center;
   color: #fff;
-}
-
-.share-area--buttons {
-  padding-top: 26px;
-  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .facebook-share-button {
+  margin-top: 10px;
+  margin-left: 2px;
+  vertical-align: middle;
   display: inline-block;
+  transform: scale(0.8);
 }
 
 .twitter-share-button {
+  margin-top: 10px;
+  vertical-align: middle;
   display: inline-block;
-  margin-left: 20px;
+  transform: scale(0.8);
 }
 
 .button-area {
