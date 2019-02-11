@@ -1,55 +1,59 @@
 // パズル
 <template lang="pug">
-  .container
-    .modal-background(v-if="modal")
-    .timer-area
-      div(v-if="puzzle")
-        count-up-timer(:do-run="run")
-    .puzzle-area
-      .hint-area(v-show="hint")
-          .shadow
-            img.completed-image(:src="completedImage")
-      div(v-show="!hint")
-        .normal-puzzle(
-          v-if="puzzle"
-          @click.once="puzzleStart")
-          puzzle(
-            :difficulty="difficulty"
-            :show-sar="showSar"
-            :map-images="mapImages"
-            :completed-image="completedImage"
-            @puzzleComplete="stopTimer"
-            @pushComplete="pushComplete")
-        div(v-else) {{ resetPuzzle }}
-    br
-    div.sar
-      p ボタンを押したら、
-        br
-        | 完成画像が見れるよ
-    br
-    .hint-button
-      prs-button(
-        @isPrs="dispHint"
-        @isNotPrs="noDispHint"
-        :src="require('~/assets/images/button/btn_btn_showimg.png')"
-        :srcPrs="require('~/assets/images/button/btn_btn_prs_showimg.png')")
-    br
-    .giveup-button
-      click-button(
-      @onClick="openModal"
-      :src="require('~/assets/images/button/btn_giveup.png')"
-      :srcActive="require('~/assets/images/button/btn_prs_giveup.png')")
-    modal.modal-area(
-      @close="closeModal"
-      @retry="pushRetry"
-      @top="pushTop"
-      v-if="modal")
+  div(:class="container")
+    loading.loading(v-if="!ready.page || !ready.puzzle")
+    .ready(v-show="ready.page && ready.puzzle")
+      .modal-background(v-if="modal")
+      .timer-area
+        div(v-if="puzzle")
+          count-up-timer(:do-run="run")
+      .puzzle-area
+        .hint-area(v-show="hint")
+            .shadow
+              img.completed-image(:src="completedImage")
+        div(v-show="!hint")
+          .normal-puzzle(
+            v-if="puzzle"
+            @click.once="puzzleStart")
+            puzzle(
+              :difficulty="difficulty"
+              :show-sar="showSar"
+              :map-images="mapImages"
+              :completed-image="completedImage"
+              @ready="puzzleReady"
+              @puzzleComplete="stopTimer"
+              @pushComplete="pushComplete")
+          div(v-else) {{ resetPuzzle }}
+      br
+      div.sar
+        p ボタンを押したら、
+          br
+          | 完成画像が見れるよ
+      br
+      .hint-button
+        prs-button(
+          @isPrs="dispHint"
+          @isNotPrs="noDispHint"
+          :src="require('~/assets/images/button/btn_btn_showimg.png')"
+          :srcPrs="require('~/assets/images/button/btn_btn_prs_showimg.png')")
+      br
+      .giveup-button
+        click-button(
+        @onClick="openModal"
+        :src="require('~/assets/images/button/btn_giveup.png')"
+        :srcActive="require('~/assets/images/button/btn_prs_giveup.png')")
+      modal.modal-area(
+        @close="closeModal"
+        @retry="pushRetry"
+        @top="pushTop"
+        v-if="modal")
 </template>
 
 
 <script>
 import _ from 'lodash'
-import CountUpTimer from '~/components/CountUpTimer.vue'
+import Loading from '~/components/Loading'
+import CountUpTimer from '~/components/CountUpTimer'
 import Modal from '~/components/modal/Retire'
 import PrsButton from '~/components/buttons/PrsButton'
 import ClickButton from '~/components/buttons/ClickButton'
@@ -69,6 +73,7 @@ export default {
     return selectedMap !== null
   },
   components: {
+    Loading,
     CountUpTimer,
     Modal,
     PrsButton,
@@ -77,6 +82,10 @@ export default {
   },
   data() {
     return {
+      ready: {
+        page: false, // このページが準備できたか
+        puzzle: false // マップの準備ができたか
+      },
       run: false, // パズルを開始しているか
       modal: false, // モーダル表示制御用
       puzzle: true,
@@ -96,12 +105,22 @@ export default {
     },
     500)
   },
+  mounted () {
+    // ページの準備は２秒待つ
+    setTimeout(() => {
+      this.ready.page = true
+    }, 2000)
+  },
   methods: {
     ...mapActions({
       updateBestRecords: 'updateBestRecords',
       setBestRecord: 'setBestRecord'
     }),
-    puzzleStart () { // パズル開始処理
+    puzzleReady () {
+      // パズルの準備ができたことを検知
+      this.ready.puzzle = true
+    },
+    puzzleStart () {
       this.run = true
     },
     stopTimer () { // タイマー停止処理
@@ -161,7 +180,14 @@ export default {
       sec: 'sec',
       bestRecords: 'bestRecords',
     }),
-    showSar () { // 可視光画像を表示する期間を設定
+    container () {
+      if (this.ready.page && this.ready.puzzle) {
+        return 'container'
+      }
+      return ''
+    },
+    // 可視光画像を表示する時間を指定
+    showSar () {
       const sec = this.$store.state.sec
       // TODO: 値の変更（現在 25~29秒, 55~59秒）
       return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
@@ -332,6 +358,17 @@ export default {
 
 .modal-area {
   position: absolute;
+}
+
+.loading {
+  background-image:
+    url('~assets/images/background/loadingearth.png'),
+    url('~assets/images/background/background.png');
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain, contain;
+  background-position: center 648px, center center;
+  width: 640px;
+  height: 1148px;
 }
 
 .container {

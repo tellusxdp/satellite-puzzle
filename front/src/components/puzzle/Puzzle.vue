@@ -4,8 +4,7 @@
 // パズルが終了（完成アニメーションも終了）した場合、pushCompleteをemitする
 <template lang="pug">
   .puzzle
-    .not-ready(v-show="!ready") 準備中です
-    .puzzle-area(v-show="ready")
+    .puzzle-area
       .shadow
         transition(
           name="fade-in"
@@ -218,7 +217,7 @@ export default {
   created() {
     // パズルの準備ができたことを検知する
     if (process.browser) {
-      this.ready = true
+      this.$emit('ready')
     }
   },
   methods: {
@@ -285,13 +284,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.not-ready {
-  text-align: center;
-}
-
-.normal-puzzle {
-  position: relative;
-}
 
 .puzzle-area {
   border: inset 20px #5d41f3;
