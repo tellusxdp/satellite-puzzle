@@ -4,8 +4,7 @@
 // パズルが終了（完成アニメーションも終了）した場合、pushCompleteをemitする
 <template lang="pug">
   .puzzle
-    .not-ready(v-show="!ready") 準備中です
-    .puzzle-area(v-show="ready")
+    .puzzle-area
       .shadow
         transition(
           name="fade-in"
@@ -202,6 +201,7 @@ export default {
       tile.style.top = `${this.tiles[this.difficulty][index].x*this.px}px`
       tile.style.left = `${this.tiles[this.difficulty][index].y*this.px}px`
     })
+    this.$emit('ready')
   },
   updated () {
     // 正解判定を行う
@@ -214,12 +214,6 @@ export default {
     // 正解していた場合、puzzleCompleteをemitする
     this.isComplete = true
     this.$emit('puzzleComplete')
-  },
-  created() {
-    // パズルの準備ができたことを検知する
-    if (process.browser) {
-      this.ready = true
-    }
   },
   methods: {
     // @leaveでタイルをスライドさせる処理
@@ -285,13 +279,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.not-ready {
-  text-align: center;
-}
-
-.normal-puzzle {
-  position: relative;
-}
 
 .puzzle-area {
   border: inset 20px #5d41f3;
