@@ -6,12 +6,18 @@
     .map-image
       img.completed-image(:src="completedImage")
     .record
-        span.time {{ min }}
-        span.time-unit 分
-        span.time {{ sec }}
-        span.time-unit 秒
+      span.label TIME
+      span.time {{ formatMin }}
+      span.time-unit 分
+      span.time {{ formatSec }}
+      span.time-unit 秒
     .personal-best
-      p あなたの自己ベスト {{ min }}分{{ sec }}秒
+      img.new-record(
+        v-show="isNewRecord"
+        src="~assets/images/result/img_koshin.png")
+      p
+        span.text あなたの自己ベスト
+        span.best-record {{ formatBestMin }}分{{ formatBestSec }}秒
 </template>
 
 <script>
@@ -45,6 +51,23 @@ export default {
       type: String,
       default: ""
     }
+  },
+  computed: {
+    formatMin () { 
+      return ('00' + this.min).slice(-2) 
+    },
+    formatSec () {
+      return ('00' + this.sec).slice(-2)
+    },
+    formatBestMin () {
+      return ('00' + this.bestMin).slice(-2)
+    },
+    formatBestSec () {
+      return ('00' + this.bestSec).slice(-2)
+    },
+    isNewRecord () {
+      return this.min < this.bestMin || this.min === this.bestMin && this.sec < this.bestSec
+    }
   }
 }
 </script>
@@ -52,20 +75,23 @@ export default {
 <style lang="scss" scoped>
 .result-area {
   width: 578px;
-  height: 766px;
+  height: 790px;
   border-radius: 4px;
   background-color: #fff;
-  background-position: -1px 279px;
-  background-image: url('~assets/images/background/best/best.png');
+  background-image:
+    url('~assets/images/result/confi.png'),
+    url('~assets/images/background/best/best.png');
+  background-size: initial, initial;
+  background-position: 22px 12px, -1px 310px;
 }
 
 .ribbon {
-  margin-top: 33px;
-  margin-left: 81px;
+  margin-top: 40px;
+  margin-left: 60px;
 }
 
 .map-image {
-  margin-top: 103px;
+  margin-top: 120px;
   margin-left: 81px;
   z-index: 1;
 }
@@ -76,34 +102,53 @@ export default {
 }
 
 .record {
-  margin-top: 22px;
+  margin-top: 8px;
+  margin-left: -22px;
   text-align: center;
 }
 
-.time {
-  width: 68px;
-  height: 45px;
-
-  /* font-family: LTUnivers-Cond; */
-  font-size: 61.3px;
-  font-weight: 900;
+.label {
+  margin-right: 12px;
+  height: 20px;
+  font-family: OpenSans;
+  font-size: 28px;
+  font-weight: 600;
   font-style: italic;
   font-stretch: normal;
-  line-height: 1.64;
+  line-height: 1.29;
   letter-spacing: normal;
   text-align: center;
   color: #fff;
 }
 
+.time {
+  margin-left: 2px;
+  width: 64px;
+  height: 45px;
+  opacity: 0.98;
+  font-family: OpenSans-BoldItalic;
+  font-size: 61.5px;
+  font-weight: bold;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.98);
+}
+
 .time-unit {
+  margin-left: 10px;
   width: 24px;
   height: 23px;
+  font-family: NotoSansCJKjp;
   font-size: 24px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.5;
   letter-spacing: normal;
+  text-align: center;
   color: #fff;
 }
 
@@ -113,15 +158,43 @@ export default {
   margin-left: 79px;
   border-radius: 28px;
   background-color: #4a34c2;
+  position: relative;
+
+  .new-record {
+    position: absolute;
+    top: -88px;
+    left: -44px;
+  }
 
   p {
-    padding-top: 13px;
-    // font-family: NotoSansCJKjp;
+    padding-top: 12px;
+  }
+
+  .text {
+    margin-left: 46px;
+    width: 175px;
+    height: 19px;
+    font-family: NotoSansCJKjp;
     font-size: 20px;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.8;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+  }
+
+  .best-record {
+    margin-left: 22px;
+    width: 118px;
+    height: 27px;
+    font-family: NotoSansCJKjp;
+    font-size: 28px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.29;
     letter-spacing: normal;
     text-align: center;
     color: #fff;

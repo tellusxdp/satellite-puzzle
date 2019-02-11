@@ -1,39 +1,43 @@
 // パズル終了
 <template lang="pug">
-  div.container
-    div.margin-top-result-area
-    div.result-area
-      result(
-        :mapName="mapName",
-        :completedImage="completedImage",
-        :min="min",
-        :sec="sec",
-        :bestMin="bestRecord.min",
-        :bestSec="bestRecord.sec")
-    div.share-area
-      div.share-area--text 結果をSNSでシェア!
-      div.share-area--buttons
-        facebook-share-button.facebook-share-button(:url="url")
-        twitter-share-button.twitter-share-button(
-          :url="url"
-          :via="via"
-          :related="related"
-          :hashtags="hashtags"
-          :text="text")
-    div.button-area
-      purple-button(@onClick="pushTop") はじめの画面に戻る
+  .container
+    .margin-top-result-area
+    transition(name="fade-in" appear)
+      .result-area
+        result(
+          :mapName="mapName",
+          :completedImage="completedImage",
+          :min="min",
+          :sec="sec",
+          :bestMin="bestRecord.min",
+          :bestSec="bestRecord.sec")
+    .button-area
+      click-button(
+        @onClick="pushTop"
+        :src="require('~/assets/images/button/btn_bktostart.png')"
+        :srcActive="require('~/assets/images/button/btn_prs_bktostart.png')")
+    .share-area
+      .share-area--text
+        p 結果をSNSでシェア!
+      facebook-share-button.facebook-share-button(:url="url")
+      twitter-share-button.twitter-share-button(
+        :url="url"
+        :via="via"
+        :related="related"
+        :hashtags="hashtags"
+        :text="text")
 </template>
 
 <script>
 import Result from '~/components/Result'
-import PurpleButton from '~/components/buttons/PurpleButton'
+import ClickButton from '~/components/buttons/ClickButton'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   components:{
     Result,
-    PurpleButton,
+    ClickButton,
     TwitterShareButton,
     FacebookShareButton,
   },
@@ -132,39 +136,52 @@ export default {
   height: 40px;
 }
 
+.fade-in-enter-active,
+.fade-in-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-in-enter,
+.fade-in-leave-to {
+  opacity: 0;
+}
+
 .result-area {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .share-area {
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 38px;
+  margin-left: -20px;
+  text-align: center;
+  height: 64px;
+  line-height: 64px;
 }
 
 .share-area--text {
-  padding-top: 10px;
+  margin-left: 40px;
   font-size: 24px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
-  line-height: 1.5;
-  text-align: center;
   color: #fff;
-}
-
-.share-area--buttons {
-  padding-top: 31px;
-  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .facebook-share-button {
+  margin-top: 10px;
+  margin-left: 2px;
+  vertical-align: middle;
   display: inline-block;
+  transform: scale(0.8);
 }
 
 .twitter-share-button {
+  margin-top: 10px;
+  vertical-align: middle;
   display: inline-block;
-  margin-left: 20px;
+  transform: scale(0.8);
 }
 
 .button-area {

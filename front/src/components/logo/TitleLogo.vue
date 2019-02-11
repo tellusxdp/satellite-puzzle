@@ -1,26 +1,24 @@
 <template lang="pug">
   div.title-logo
-    p 衛星
-      br
-      | パズル
+    img.title-logo--image(src="~/assets/images/logo/img_logo.png")
     p.title-logo--text だいち２号のSAR画像でパズル編
 </template>
 
 <style lang="scss" scoped>
 .title-logo {
-  font-size: 88px;
-  font-weight: 900;
-  font-style: italic;
-  font-stretch: normal;
-  line-height: 1;
-  letter-spacing: normal;
   text-align: center;
-  color: #fff;
+
+  &--image {
+    width: 357px;
+    height: 234px;
+  }
 
   &--text {
-    padding-top: 50px;
+    margin: 40px 0 auto;
+    // width: 356px;
+    height: 24px;
+    font-family: NotoSansCJKjp-Bold;
     font-size: 24px;
-    // font-family: "NotoSansCJKjp";
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;

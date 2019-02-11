@@ -1,50 +1,40 @@
 // パズル
 <template lang="pug">
-  div.container
-    div.modal-background(v-if="modal")
-    div.timer-area
+  .container
+    .modal-background(v-if="modal")
+    .timer-area
       div(v-if="puzzle")
         count-up-timer(:do-run="run")
-    div.puzzle-area
-      div.hint-area(v-show="hint")
-        div.shadow
-          img.completed-image(:src="completedImage")
+    .puzzle-area
+      .hint-area(v-show="hint")
+          .shadow
+            img.completed-image(:src="completedImage")
       div(v-show="!hint")
-        div(v-if="difficulty === 'easy'")
-          div.easy-puzzle(v-if="puzzle", @click.once="puzzleStart")
-            easy-puzzle(
-              :show-sar="showSar"
-              :map-images="mapImages"
-              @puzzle-completed="completed")
-        div(v-else-if="difficulty === 'normal'")
-          div.normal-puzzle(
-            v-if="puzzle"
-            @click.once="puzzleStart")
-            normal-puzzle(
-              :show-sar="showSar"
-              :map-images="mapImages"
-              @puzzle-completed="completed")
-          div(v-else) {{ resetPuzzle }}
-        div(v-else)
-          div.hard-puzzle(
-            v-if="puzzle"
-            @click.once="puzzleStart")
-            hard-puzzle(
-              :show-sar="showSar"
-              :map-images="mapImages"
-              @puzzle-completed="completed")
+        .normal-puzzle(
+          v-if="puzzle"
+          @click.once="puzzleStart")
+          puzzle(
+            :difficulty="difficulty"
+            :show-sar="showSar"
+            :map-images="mapImages"
+            :completed-image="completedImage"
+            @puzzleComplete="stopTimer"
+            @pushComplete="pushComplete")
+        div(v-else) {{ resetPuzzle }}
     br
     div.sar
-      p ボタンを押すと、
+      p ボタンを押したら、
         br
-        | 完成版のSAR画像が見れるよ
+        | 完成画像が見れるよ
     br
-    div.center
+    .hint-button
       prs-button(
         @isPrs="dispHint"
-        @isNotPrs="noDispHint")
+        @isNotPrs="noDispHint"
+        :src="require('~/assets/images/button/btn_btn_showimg.png')"
+        :srcPrs="require('~/assets/images/button/btn_btn_prs_showimg.png')")
     br
-    div.center
+    .giveup-button
       click-button(
       @onClick="openModal"
       :src="require('~/assets/images/button/btn_giveup.png')"
@@ -63,9 +53,7 @@ import CountUpTimer from '~/components/CountUpTimer.vue'
 import Modal from '~/components/modal/Retire'
 import PrsButton from '~/components/buttons/PrsButton'
 import ClickButton from '~/components/buttons/ClickButton'
-import EasyPuzzle from '~/components/puzzles/Easy'
-import NormalPuzzle from '~/components/puzzles/Normal'
-import HardPuzzle from '~/components/puzzles/Hard'
+import Puzzle from '~/components/puzzle/Puzzle'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   validate ({ params }) {
@@ -85,9 +73,7 @@ export default {
     Modal,
     PrsButton,
     ClickButton,
-    EasyPuzzle,
-    NormalPuzzle,
-    HardPuzzle,
+    Puzzle,
   },
   data() {
     return {
@@ -95,6 +81,7 @@ export default {
       modal: false,
       puzzle: true,
       hint: false,
+      isComplete: false,
       difficultyMap: {
         easy: 3,
         normal: 4,
@@ -117,8 +104,10 @@ export default {
     puzzleStart () {
       this.run = true
     },
-    completed () {
-      alert('パズルが完成しました！') // TODO: アニメーションにする
+    stopTimer () {
+      // タイマーを止める
+      this.run = false
+      // ベストレコードを記録する
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
 
@@ -134,6 +123,10 @@ export default {
         })
         this.setBestRecord({ min: this.min, sec: this.sec })
       }
+    },
+    pushComplete () {
+      const difficulty = this.$route.params.difficulty
+      const map = this.$route.params.map
       this.$router.push('/difficulty/'+difficulty+'/map/'+map+'/complete')
     },
     openModal() {
@@ -218,14 +211,13 @@ export default {
 
 <style lang="scss" scoped>
 .timer-area {
-  text-align: left;
-  padding-top: 58px;
+  padding-top: 50px;
   width: 256px;
 }
 
 .puzzle-area {
-  padding-left: 50px;
-  padding-top: 20px;
+  padding-left: 48px;
+  padding-top: 30px;
   width: 540px;
   height: 540px;
 }
@@ -249,18 +241,24 @@ export default {
   height: 540px;
 }
 
-.center {
+.hint-button {
+  margin-top: 80px;
   text-align: center;
 }
 
+.giveup-button {
+  text-align: center;
+  margin-top: 10px;
+}
+
 .sar {
+  padding-top: 70px;
   position: relative;
+  margin-left: 20px;
 
-  /* width: 360px; */
-
-  /* height: 59px; */
-
-  /* font-family: RodinProN-DB; */
+  // width: 305px;
+  height: 60px;
+  font-family: NotoSansCJKjp;
   font-size: 24px;
   font-weight: normal;
   font-style: normal;
@@ -269,17 +267,16 @@ export default {
   letter-spacing: normal;
   text-align: center;
   color: #192342;
-  margin-top: 30px;
 }
 
 .sar::before {
   content: "";
   border-left: solid #192342;
   border-left-width: 2px;
-  transform: rotate(-20deg);
+  transform: rotate(-22deg);
   position: absolute;
-  top: 0;
-  left: 110px;
+  top: 66px;
+  left: 138px;
   width: 31px;
   height: 74px;
 }
@@ -288,10 +285,10 @@ export default {
   content: "";
   border-left: solid #192342;
   border-left-width: 2px;
-  transform: rotate(20deg);
+  transform: rotate(22deg);
   position: absolute;
-  top: 0;
-  left: 520px;
+  top: 78px;
+  left: 462px;
   width: 31px;
   height: 74px;
 }
@@ -341,7 +338,7 @@ export default {
     url('~assets/images/background/background.png');
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-size: initial, 1902px, contain;
-  background-position: 0 0, center 636px, center center;
+  background-position: 0 0, center 648px, center center;
   width: 640px;
   height: 1148px;
 }

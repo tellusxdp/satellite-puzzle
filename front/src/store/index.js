@@ -1,6 +1,4 @@
-import Vuex from 'vuex'
-
-export const state = () => ({
+const state = () => ({
   puzzles: {},
   min: 0,
   sec: 0,
@@ -9,7 +7,7 @@ export const state = () => ({
   bestRecord: {},
 })
 
-export const getters = {
+const getters = {
   puzzles: state => state.puzzles,
   min: state => state.min,
   sec: state => state.sec,
@@ -18,7 +16,7 @@ export const getters = {
   bestRecord: state => state.bestRecord,
 }
 
-export const mutations = {
+const mutations = {
   SET_PUZZLE_SETTING(state, json) {
     state.puzzles = json
   },
@@ -34,7 +32,7 @@ export const mutations = {
   }
 }
 
-export const actions = {
+const actions = {
   async nuxtServerInit({ commit, state }, { app }) {
     const path = require('path')
     const sprintf = require('sprintf-js').vsprintf
@@ -92,4 +90,11 @@ export const actions = {
   setBestRecord({ commit }, record) {
     commit('SET_BEST_RECORD', record)
   }
+}
+
+export default {
+  state,
+  getters,
+  mutations,
+  actions,
 }

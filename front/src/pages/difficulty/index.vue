@@ -3,31 +3,33 @@
   div.difficulty
     div.mode MODE
     div.easy
-      moon-button(@onClick="pushEasy") やさしい
+      easy-button(@onClick="pushEasy") やさしい
     div.normal
-      moon-button(@onClick="pushNormal") ふつう
+      normal-button(@onClick="pushNormal") ふつう
     div.hard
-      moon-button(@onClick="pushHard") むずかしい
+      hard-button(@onClick="pushHard") むずかしい
     div.what-is
-      p.what-is--text SAR画像とは
-      div.description SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
+      p.what-is--text SAR画像とは？
+      p.what-is--description SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
       div.detail
-        click-button(
-          :src="require('~/assets/images/button/btn_detail.png')"
-          :srcActive="require('~/assets/images/button/btn_prs_detail.png')")
+        div.detail--button
+          click-button(
+            :src="require('~/assets/images/button/btn_detail.png')"
+            :srcActive="require('~/assets/images/button/btn_prs_detail.png')")
         p.detail--text 別ウィンドウが開きます
 </template>
 
 <script>
 import ClickButton from '~/components/buttons/ClickButton'
-import PurpleButton from '~/components/buttons/PurpleButton'
-import MoonButton from '~/components/buttons/MoonButton'
-import GrayButton from '~/components/buttons/GrayButton'
+import EasyButton from '~/components/buttons/level/EasyButton'
+import NormalButton from '~/components/buttons/level/NormalButton'
+import HardButton from '~/components/buttons/level/HardButton'
 export default {
   components: {
     ClickButton,
-    MoonButton,
-    GrayButton,
+    EasyButton,
+    NormalButton,
+    HardButton,
   },
   methods: {
     pushEasy () {
@@ -45,10 +47,11 @@ export default {
 
 <style lang="scss" scoped>
 .mode {
+  padding-top: 72px;
+  margin: 0 auto;
   width: 78px;
   height: 22px;
-
-  /* font-family: LTUnivers-Cond; */
+  font-family: OpenSans;
   font-size: 28px;
   font-weight: 900;
   font-style: italic;
@@ -56,8 +59,6 @@ export default {
   line-height: 1.29;
   letter-spacing: normal;
   text-align: center;
-  padding-top: 79px;
-  padding-left: 280px;
   color: #fff;
 }
 
@@ -67,27 +68,31 @@ export default {
 }
 
 .easy {
-  padding-top: 30px;
-  padding-left: 133px;
+  margin-top: 120px;
+  margin-left: 126px;
 }
 
 .normal {
-  padding-left: 408px;
+  margin-top: -48px;
+  margin-left: 362px;
 }
 
 .hard {
-  padding-left: 133px;
+  margin-top: -54px;
+  margin-left: 112px;
 }
 
 .what-is {
-  margin-top: 74px;
-  margin-left: 32px;
-  width: 577px;
+  margin: 74px auto;
+  width: 578px;
   height: 374px;
-  background-color: #cfd7ef;
+  background-color: #e4e8f2;
 
   &--text {
-    // font-family: NotoSansCJKjp;
+    padding-top: 36px;
+    margin-left: -34px;
+    height: 30px;
+    font-family: NotoSansCJKjp;
     font-size: 32px;
     font-weight: normal;
     font-style: normal;
@@ -96,11 +101,14 @@ export default {
     letter-spacing: normal;
     text-align: center;
     color: #10172b;
-    padding-top: 38px;
   }
 
-  .description {
-    // font-family: NotoSansCJKjp;
+  &--description {
+    padding-top: 58px;
+    margin-left: 30px;
+    width: 498px;
+    height: 96px;
+    font-family: NotoSansCJKjp;
     font-size: 24px;
     font-weight: normal;
     font-style: normal;
@@ -109,25 +117,29 @@ export default {
     letter-spacing: normal;
     text-align: left;
     color: #10172b;
-    padding-left: 29px;
-    padding-right: 52px;
-    padding-top: 32px;
   }
 
   .detail {
-    padding-top: 30px;
     text-align: center;
 
+    &--button {
+      margin-top: 94px;
+      margin-left: -4px;
+    }
+
     &--text {
-      padding-top: 19px;
-      // font-family: NotoSansCJKjp;
+      margin: 12px auto;
+      width: 220px;
+      height: 19px;
+      font-family: NotoSansCJKjp;
       font-size: 20px;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
+      line-height: 1.8;
       letter-spacing: normal;
       text-align: center;
-      color: #10172b;
+      color: #b0b3bd;
     }
   }
 }

@@ -1,11 +1,12 @@
 // TOP
 <template lang="pug">
   div
-    title-logo
-    alos2(@onClick="pushStart")
+    .push-start(@click="pushStart")
+      title-logo
+      alos2
     div.share-area
       p ゲームをSNSでシェア
-      div.share-area--buttons
+      .share-area--buttons
         facebook-share-button.facebook-share-button(:url="url")
         twitter-share-button.twitter-share-button(:url="url", :via="via", :related="related", :hashtags="hashtags", :text="text")
         hatena-share-button.hatena-share-button(:url="url", :title="title")
@@ -26,7 +27,7 @@ export default {
     HatenaShareButton,
   },
   data () {
-    return {
+    return { // TODO: データ設定
       url: 'sample_url',
       via: 'sample_via',
       related: 'sample_related',
@@ -44,36 +45,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.push-start {
+  height: 380px;
+  width: 370px;
+  margin: 0 auto;
+}
+
 .title-logo {
   padding-top: 239px;
 }
 
 .alos2 {
-  padding-top: 88px;
+  margin-top: 94px;
   text-align: center;
 }
 
 .share-area {
-  padding-top: 172px;
+  margin-top: 494px;
   width: 528px;
-  height: 288px;
+  height: 248px;
   margin-left: auto;
   margin-right: auto;
 
   p {
-    padding-top: 78px;
-    // font-family: "NotoSansCJKjp";
+    height: 23px;
+    font-family: NotoSansCJKjp;
     font-size: 24px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.5;
+    letter-spacing: normal;
     text-align: center;
     color: #fff;
   }
 
   &--buttons {
-    padding-top: 35px;
+    margin-top: 42px;
     text-align: center;
   }
 

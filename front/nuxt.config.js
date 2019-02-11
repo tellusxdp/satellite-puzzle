@@ -16,11 +16,11 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' },
       // OGP共通設定
       { prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/websaite#'},
-      { property: 'og:url', content: '' }, // ページのURLを設定
-      { property: 'og:type', content: '' }, // ページの種類
-      { property: 'og:title', content: '' }, // ページタイトル
-      { property: 'og:description', content: '' }, // ページの説明文
-      { property: 'og:site_name', content: '' }, // サイト名
+      { property: 'og:url', content: env.API_URL }, // ページのURLを設定
+      { property: 'og:type', content: 'website' }, // ページの種類
+      { property: 'og:title', content: '衛星パズル' }, // ページタイトル
+      { property: 'og:description', content: '衛星で取得したSARデータを使ったパズルに挑戦。' }, // ページの説明文
+      { property: 'og:site_name', content: '衛星パズル' }, // サイト名
       { property: 'og:image', content: '/OGP_Start.jpg' }, // サムネイルのURL
       // Twitter
       { name: 'twitter:card', content: 'Summary Card' }, // カード種類
@@ -72,7 +72,8 @@ module.exports = {
   ],
   css: [
     '~/../node_modules/ress/dist/ress.min.css',
-    '~/assets/css/main.css'
+    '~/assets/css/main.css',
+    { src: '~assets/css/style.scss' }
   ],
   axios: {}
 }

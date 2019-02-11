@@ -1,18 +1,9 @@
-<template>
-  <button 
-    @click="click" 
-    class="prs-button">
-    <div v-show="isPrs">
-      <img
-        class="prs-button--image"
-        :src="prsButtonImage()">
-    </div>
-    <div v-show="!isPrs">
-      <img
-        class="prs-button--image"
-        :src="buttonImage()">
-    </div>
-  </button>
+<template lang="pug">
+  button.prs-button(@click="click")
+    div(v-show="isPrs")
+      img.prs-button--image(:src="srcPrs")
+    div(v-show="!isPrs")
+      img.prs-button--image(:src="src")
 </template>
 
 <script>
@@ -25,11 +16,15 @@ export default {
       }
       return this.$emit('isNotPrs')
     },
-    buttonImage () {
-        return require('~/assets/images/button/btn_showimg.png')
+  },
+  props: {
+    src: {
+      type: String,
+      default: "",
     },
-    prsButtonImage () {
-      return require('~/assets/images/button/btn_prs_showimg.png')
+    srcPrs: {
+      type: String,
+      default: "",
     }
   },
   data () {

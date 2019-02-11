@@ -2,7 +2,11 @@
 import unittest
 import app
 
+<<<<<<< HEAD
 class TestCase(unittest.TestCase):
+=======
+class TestStringMethods(unittest.TestCase):
+>>>>>>> bb25cbad14fba39c9a99bbbcf6f17559d83c8133
 
     def test_calc_img_position_of_normal(self):
         lef, upp, rig, low = app.calc_img_position(2, 2, 10, 10)
