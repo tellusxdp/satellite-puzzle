@@ -1,3 +1,4 @@
+// 結果モーダル
 <template lang="pug">
   .result-area
     .best
@@ -27,45 +28,50 @@ export default {
     Ribbon
   },
   props: {
-    mapName: {
+    mapName: { // 表示するマップ名
       type: String,
       default: "",
     },
-    min: {
+    min: { // 今回の記録（分）
       type: Number,
       default: 0
     },
-    sec: {
+    sec: { // 今回の記録（秒）
       type: Number,
       default: 0
     },
-    bestMin: {
+    bestMin: { // 自己記録（分）
       type: Number,
       default: 0
     },
-    bestSec: {
+    bestSec: { // 自己記録（秒）
       type: Number,
       default: 0
     },
-    completedImage: {
+    completedImage: { // 完成画像
       type: String,
       default: ""
     }
   },
+  methods: {
+    format (v) {
+      return ('00' + v).slice(-2)
+    }
+  },
   computed: {
-    formatMin () { 
-      return ('00' + this.min).slice(-2) 
+    formatMin () {  // 表示用:今回の記録（分）
+      return this.format(this.min) 
     },
-    formatSec () {
-      return ('00' + this.sec).slice(-2)
+    formatSec () { // 表示用:今回の記録（秒）
+      return this.format(this.sec)
     },
-    formatBestMin () {
-      return ('00' + this.bestMin).slice(-2)
+    formatBestMin () { // 表示用：自己記録（分）
+      return this.format(this.bestMin) 
     },
-    formatBestSec () {
-      return ('00' + this.bestSec).slice(-2)
+    formatBestSec () { // 表示用:自己記録（秒）
+      return this.format(this.bestSec) 
     },
-    isNewRecord () {
+    isNewRecord () { // 新記録かどうか
       return this.min < this.bestMin || this.min === this.bestMin && this.sec < this.bestSec
     }
   }

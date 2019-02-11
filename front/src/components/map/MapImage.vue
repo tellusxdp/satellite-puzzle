@@ -1,3 +1,5 @@
+// マップ
+// clickするとonClickをemitする
 <template lang="pug">
   .puzzle-map(@click="click")
     .puzzle-map--background
@@ -13,11 +15,11 @@ export default {
     MapRibbon
   },
   props: {
-    mapName: {
+    mapName: { // 表示するマップ名
       type: String,
       default: "",
     },
-    mapImage: {
+    mapImage: { // 表示するマップの画像
       type: String,
       default: ""
     }

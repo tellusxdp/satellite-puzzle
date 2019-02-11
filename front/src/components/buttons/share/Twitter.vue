@@ -1,3 +1,4 @@
+// Twitterシェアボタン 
 <template lang="pug">
   .twitter-share-button
     base-button(:href="href", :src="src")
@@ -10,23 +11,23 @@ export default {
     BaseButton
   },
   props: {
-    url: {
+    url: { // URL
       type: String,
       default: "",
     },
-    via: {
+    via: { // アカウント名
       type: String,
       default: "",
     },
-    related: {
+    related: { // 投稿後にフォローさせたいユーザーID
       type: String,
       default: "",
     },
-    hashtags: {
+    hashtags: { // ハッシュタグ（複数の場合はカンマ区切り）
       type: String,
       default: "",
     },
-    text: {
+    text: {  // ツイートするテキスト
       type: String,
       default: "",
     },

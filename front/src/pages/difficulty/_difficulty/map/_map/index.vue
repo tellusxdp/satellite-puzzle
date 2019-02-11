@@ -57,14 +57,14 @@ import Puzzle from '~/components/puzzle/Puzzle'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   validate ({ params }) {
-    // 難易度チェック
+    // 難易度チェック(easy, normal, hard以外は404)
     const d = params.difficulty
     const difficulty = (d === 'easy' || d === 'normal' || d === 'hard')
     if (!difficulty) {
       return false
     }
 
-    // マップチェック
+    // マップチェック（難易度に対応していないマップの場合は404）
     const selectedMap = this.selectedMap
     return selectedMap !== null
   },
@@ -77,12 +77,12 @@ export default {
   },
   data() {
     return {
-      run: false,
-      modal: false,
+      run: false, // パズルを開始しているか
+      modal: false, // モーダル表示制御用
       puzzle: true,
-      hint: false,
-      isComplete: false,
-      difficultyMap: {
+      hint: false, // ヒント表示制御用
+      isComplete: false, // パズルが完成したか
+      difficultyMap: { // 難易度と画像分割数との対応
         easy: 3,
         normal: 4,
         hard: 5,
@@ -101,54 +101,58 @@ export default {
       updateBestRecords: 'updateBestRecords',
       setBestRecord: 'setBestRecord'
     }),
-    puzzleStart () {
+    puzzleStart () { // パズル開始処理
       this.run = true
     },
-    stopTimer () {
-      // タイマーを止める
-      this.run = false
-      // ベストレコードを記録する
+    stopTimer () { // タイマー停止処理
+      this.run = false // タイマーを停止する
+
+      // 難易度・マップに対応する自己記録を取得する
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
-
       const best = this.bestRecords.filter(v => {
         return v.difficulty === difficulty && v.map === map
       })
-      if (best.length === 0 || this.min < best[0].min || this.min === best[0].min && this.sec < best[0].sec) {
-        this.updateBestRecords({
+
+       // 新記録かどうか判定する
+       if (best.length === 0 || this.min < best[0].min || this.min === best[0].min && this.sec < best[0].sec) {
+         // 新記録を登録する
+         this.updateBestRecords({
           difficulty: difficulty,
           map: map,
           min: this.min,
           sec: this.sec
         })
+        // 新記録を保存する
         this.setBestRecord({ min: this.min, sec: this.sec })
       }
     },
-    pushComplete () {
+    pushComplete () { // 完成画面に遷移する
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
       this.$router.push('/difficulty/'+difficulty+'/map/'+map+'/complete')
     },
-    openModal() {
-      this.modal = true
-      this.run = false
+    openModal() { // モーダルを表示する
+      this.modal = true // モーダルを表示する
+      this.run = false // タイマーを停止する
     },
-    closeModal() {
-      this.modal = false
-      this.run = true
+    closeModal() { // モーダルを非表示にする
+      this.modal = false // モーダルを非表示にする
+      this.run = true // タイマーを起動する
     },
-    pushRetry() {
+    pushRetry() { // TODO:
       this.modal = false
       this.puzzle = false
     },
-    pushTop() {
+    pushTop() { // TOPに遷移する
       this.$router.push('/')
     },
-    dispHint () {
-      this.hint = true
+    dispHint () { // ヒントを表示する
+      this.hint = true // ヒントを表示する
+      // TODO: ヒントを表示したらペナルティでカウントアップする処理
     },
-    noDispHint () {
-      this.hint = false
+    noDispHint () { // ヒントを非表示にする
+      this.hint = false // ヒントを非表示にする処理
     }
   },
   computed: {
@@ -157,9 +161,9 @@ export default {
       sec: 'sec',
       bestRecords: 'bestRecords',
     }),
-    // 可視光画像を表示する時間を指定
-    showSar () {
+    showSar () { // 可視光画像を表示する期間を設定
       const sec = this.$store.state.sec
+      // TODO: 値の変更（現在 25~29秒, 55~59秒）
       return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
     },
     difficulty () { return this.$route.params.difficulty },
@@ -178,17 +182,16 @@ export default {
       }
       return selected[0]
     },
-    mapImages () {
+    mapImages () { // 使用する画像の情報を取得する
       const parameters = this.selectedMap.parameters
       const parameter =  parameters.filter(v => {
         return (v.split_n === this.difficultyMap[this.$route.params.difficulty])
       })
 
-      // TODO: エラー処理
-      if (!parameter) {
+      if (!parameter) { // validateで確認済み
         return null
       }
-      if (parameter.length !== 1) {
+      if (parameter.length !== 1) { // validateで確認済み
         return null
       }
 
@@ -201,7 +204,7 @@ export default {
 
       return `${kind}/${z}-${x}-${y}-${n}`
     },
-    completedImage () {
+    completedImage () { // 完成画像のパスを取得する
       return `/images/${this.mapImages}/completed.png`
     }
   }

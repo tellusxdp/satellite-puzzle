@@ -1,3 +1,4 @@
+// Facebookシェアボタン
 <template lang="pug">
   .facebook-share-button
     base-button(:href="href", :src="src")
@@ -16,7 +17,7 @@ export default {
     }
   },
   computed: {
-    href () {
+    href () { // URL
       return `http://www.facebook.com/share.php?u=${this.url}`
     },
   },

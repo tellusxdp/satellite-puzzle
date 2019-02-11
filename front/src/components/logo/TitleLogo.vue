@@ -1,5 +1,6 @@
+// タイトルロゴ
 <template lang="pug">
-  div.title-logo
+  .title-logo
     img.title-logo--image(src="~/assets/images/logo/img_logo.png")
     p.title-logo--text だいち２号のSAR画像でパズル編
 </template>

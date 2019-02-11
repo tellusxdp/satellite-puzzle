@@ -1,3 +1,5 @@
+// エラーページ
+// 403, 404, その他の場合でエラー画面を切り分け
 <template lang="pug">
   .error-page
     div(v-if="error.statusCode === 403")

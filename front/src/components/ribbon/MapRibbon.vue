@@ -1,3 +1,4 @@
+// マップに表示するリボン
 <template lang="pug">
   .ribbon
     .left

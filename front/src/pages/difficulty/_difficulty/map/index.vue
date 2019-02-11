@@ -1,4 +1,5 @@
 // マップ選択
+// params.difficulty(easy, normal, hard)に対応するマップの一覧を表示する
 <template lang="pug">
   div.map
     div.return
@@ -20,21 +21,21 @@ export default {
     PuzzleMap,
   },
   validate({ params }) {
+    // 難易度チェック(easy, normal, hard以外は404)
     const d = params.difficulty
-    // 難易度チェック
     return (d === 'easy' || d === 'normal' || d === 'hard')
   },
   methods: {
-    pushPuzzle (id) {
+    pushPuzzle (id) { // 選択した難易度・マップに対応するパズル画面に遷移する
       this.$router.push(`/difficulty/${this.$route.params.difficulty}/map/${id}`)
     },
-    pushDifficulty () {
+    pushDifficulty () { // 難易度選択画面に遷移する
       this.$router.push('/difficulty')
     },
   },
   data() {
     return {
-      difficultyMap: {
+      difficultyMap: { // 難易度と画像分割数との対応
         easy: 3,
         normal: 4,
         hard: 5,
@@ -42,9 +43,9 @@ export default {
     }
   },
   computed: {
-    mapList() {
-      const d = this.$route.params.difficulty
-      const puzzles = this.puzzles
+    mapList() { // 表示するマップのリストを作成する
+      const d = this.$route.params.difficulty // 難易度選択画面で選択した難易度
+      const puzzles = this.puzzles // storeからパズルの設定を取得
       // 指定された難易度の画像をもつObjectを取得
       const list =  puzzles.filter(puzzle => {
         return puzzle.parameters.find(parameter => {
@@ -80,7 +81,6 @@ export default {
 .return {
   padding-top: 42px;
   margin-left: 34px;
-  // width: 213px;
   height: 24px;
   font-family: NotoSansCJKjp;
   font-size: 24px;
