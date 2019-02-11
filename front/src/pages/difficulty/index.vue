@@ -3,11 +3,11 @@
   div.difficulty
     div.mode MODE
     div.easy
-      moon-button(@onClick="pushEasy") やさしい
+      easy-button(@onClick="pushEasy") やさしい
     div.normal
-      moon-button(@onClick="pushNormal") ふつう
+      normal-button(@onClick="pushNormal") ふつう
     div.hard
-      moon-button(@onClick="pushHard") むずかしい
+      hard-button(@onClick="pushHard") むずかしい
     div.what-is
       p.what-is--text SAR画像とは？
       p.what-is--description SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
@@ -21,11 +21,15 @@
 
 <script>
 import ClickButton from '~/components/buttons/ClickButton'
-import MoonButton from '~/components/buttons/MoonButton'
+import EasyButton from '~/components/buttons/level/EasyButton'
+import NormalButton from '~/components/buttons/level/NormalButton'
+import HardButton from '~/components/buttons/level/HardButton'
 export default {
   components: {
     ClickButton,
-    MoonButton,
+    EasyButton,
+    NormalButton,
+    HardButton,
   },
   methods: {
     pushEasy () {
@@ -64,30 +68,29 @@ export default {
 }
 
 .easy {
-  margin-top: 14px;
-  margin-left: 208px;
+  margin-top: 120px;
+  margin-left: 126px;
 }
 
 .normal {
-  margin-top: 14px;
-  margin-left: 402px;
+  margin-top: -48px;
+  margin-left: 362px;
 }
 
 .hard {
-  margin-top: -28px;
-  margin-left: 124px;
+  margin-top: -54px;
+  margin-left: 112px;
 }
 
 .what-is {
-  margin: 102px auto;
-  width: 577px;
+  margin: 74px auto;
+  width: 578px;
   height: 374px;
   background-color: #e4e8f2;
 
   &--text {
     padding-top: 36px;
     margin-left: -34px;
-    // width: 209px;
     height: 30px;
     font-family: NotoSansCJKjp;
     font-size: 32px;
