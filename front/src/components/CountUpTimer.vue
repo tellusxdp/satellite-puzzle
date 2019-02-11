@@ -22,13 +22,13 @@ export default {
     }
   },
   computed: {
-    formatMin: {
-      get () { return ('00' + this.min).slice(-2) },
+    formatMin () {
+      return ('00' + this.min).slice(-2)
     },
-    formatSec: {
-      get () { return ('00' + this.sec).slice(-2) }
+    formatSec () {
+      return ('00' + this.sec).slice(-2)
     },
-  ...mapGetters(["min", "sec", "msec"]),
+    ...mapGetters(["min", "sec", "msec"]),
   },
   props: {
     doRun: { // カウントアップの指示があるか

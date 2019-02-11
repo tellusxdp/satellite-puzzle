@@ -3,9 +3,9 @@
   div
     title-logo
     alos2(@onClick="pushStart")
-    div.share-area
+    .share-area
       p ゲームをSNSでシェア
-      div.share-area--buttons
+      .share-area--buttons
         facebook-share-button.facebook-share-button(:url="url")
         twitter-share-button.twitter-share-button(:url="url", :via="via", :related="related", :hashtags="hashtags", :text="text")
         hatena-share-button.hatena-share-button(:url="url", :title="title")
@@ -26,7 +26,7 @@ export default {
     HatenaShareButton,
   },
   data () {
-    return {
+    return { // TODO: データ設定
       url: 'sample_url',
       via: 'sample_via',
       related: 'sample_related',
@@ -61,7 +61,6 @@ export default {
   margin-right: auto;
 
   p {
-    // width: 238px;
     height: 23px;
     font-family: NotoSansCJKjp;
     font-size: 24px;
