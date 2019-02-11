@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  .error-page
     div(v-if="error.statusCode === 403")
       .error-text
         img(src="~/assets/images/error/text_403.png")

@@ -1,6 +1,6 @@
 <template lang="pug">
-  twitter-share-button
-    base-button(:href="href", :src="require('~/assets/images/icon/icon_tw.png')")
+  .twitter-share-button
+    base-button(:href="href", :src="src")
 </template>
 
 <script>
@@ -34,6 +34,11 @@ export default {
   computed: {
     href () {
       return `https://twitter.com/share?url=${this.url}&via=${this.via}&related=${this.related}&hashtags=${this.hashtags}&text=${this.text}`
+    }
+  },
+  data: () => {
+    return {
+      src: require('~/assets/images/icon/icon_tw.png')
     }
   }
 }

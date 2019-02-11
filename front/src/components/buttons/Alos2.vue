@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.alos2
+  .alos2
     button(@click="click")
 </template>
 

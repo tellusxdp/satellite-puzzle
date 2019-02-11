@@ -1,6 +1,5 @@
 <template lang="pug">
   button(@click="click", :style="styles")
-    //- img(:src="src")
 </template>
 
 <script>

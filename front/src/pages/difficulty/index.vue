@@ -21,14 +21,11 @@
 
 <script>
 import ClickButton from '~/components/buttons/ClickButton'
-import PurpleButton from '~/components/buttons/PurpleButton'
 import MoonButton from '~/components/buttons/MoonButton'
-import GrayButton from '~/components/buttons/GrayButton'
 export default {
   components: {
     ClickButton,
     MoonButton,
-    GrayButton,
   },
   methods: {
     pushEasy () {

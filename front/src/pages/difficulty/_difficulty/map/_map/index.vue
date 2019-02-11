@@ -10,37 +10,17 @@
           .shadow
             img.completed-image(:src="completedImage")
       div(v-show="!hint")
-        div(v-if="difficulty === 'easy'")
-          .easy-puzzle(
-            v-if="puzzle",
-            @click.once="puzzleStart")
-            easy-puzzle(
-              :show-sar="showSar"
-              :map-images="mapImages"
-              :completed-image="completedImage"
-              @puzzleComplete="stopTimer"
-              @pushComplete="pushComplete")
-        div(v-else-if="difficulty === 'normal'")
-          .normal-puzzle(
-            v-if="puzzle"
-            @click.once="puzzleStart")
-            normal-puzzle(
-              :show-sar="showSar"
-              :map-images="mapImages"
-              :completed-image="completedImage"
-              @puzzleComplete="stopTimer"
-              @pushComplete="pushComplete")
-          div(v-else) {{ resetPuzzle }}
-        div(v-else)
-          .hard-puzzle(
-            v-if="puzzle"
-            @click.once="puzzleStart")
-            hard-puzzle(
-              :show-sar="showSar"
-              :map-images="mapImages"
-              :completed-image="completedImage"
-              @puzzleComplete="stopTimer"
-              @pushComplete="pushComplete")
+        .normal-puzzle(
+          v-if="puzzle"
+          @click.once="puzzleStart")
+          puzzle(
+            :difficulty="difficulty"
+            :show-sar="showSar"
+            :map-images="mapImages"
+            :completed-image="completedImage"
+            @puzzleComplete="stopTimer"
+            @pushComplete="pushComplete")
+        div(v-else) {{ resetPuzzle }}
     br
     div.sar
       p ボタンを押したら、
@@ -73,9 +53,7 @@ import CountUpTimer from '~/components/CountUpTimer.vue'
 import Modal from '~/components/modal/Retire'
 import PrsButton from '~/components/buttons/PrsButton'
 import ClickButton from '~/components/buttons/ClickButton'
-import EasyPuzzle from '~/components/puzzles/Easy'
-import NormalPuzzle from '~/components/puzzles/Normal'
-import HardPuzzle from '~/components/puzzles/Hard'
+import Puzzle from '~/components/puzzle/Puzzle'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   validate ({ params }) {
@@ -95,9 +73,7 @@ export default {
     Modal,
     PrsButton,
     ClickButton,
-    EasyPuzzle,
-    NormalPuzzle,
-    HardPuzzle,
+    Puzzle,
   },
   data() {
     return {

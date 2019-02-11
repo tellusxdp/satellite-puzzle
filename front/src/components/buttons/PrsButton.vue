@@ -1,18 +1,9 @@
-<template>
-  <button 
-    @click="click" 
-    class="prs-button">
-    <div v-show="isPrs">
-      <img
-        class="prs-button--image"
-        :src="srcPrs">
-    </div>
-    <div v-show="!isPrs">
-      <img
-        class="prs-button--image"
-        :src="src">
-    </div>
-  </button>
+<template lang="pug">
+  button.prs-button(@click="click")
+    div(v-show="isPrs")
+      img.prs-button--image(:src="srcPrs")
+    div(v-show="!isPrs")
+      img.prs-button--image(:src="src")
 </template>
 
 <script>

@@ -3,8 +3,8 @@
     .left
     .right
     .center
-      p １５文字全角１５全角文字全角１
-        //- slot
+      p
+        slot
 </template>
 
 <style lang="scss" scoped>
@@ -24,7 +24,6 @@
 
     p {
       margin: 20px auto;
-      // width: 321px;
       height: 21px;
       font-family: NotoSansCJKjp;
       font-size: 22px;

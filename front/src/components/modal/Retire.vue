@@ -4,21 +4,18 @@
       .image-area
         img.alos-2(src="~assets/images/alos-2/img_modal.png")
       .button-area
-        .button
-          click-button(
-            @onClick="$emit('close')",
-            :src="require('~/assets/images/button/btn_bktogame.png')",
-            :srcActive="require('~/assets/images/button/btn_prs_bktogame.png')")
-        .button
-          click-button(
-            @onClick="$emit('retry')",
-            :src="require('~/assets/images/button/btn_renew.png')",
-            :srcActive="require('~/assets/images/button/btn_prs_renew.png')")
-        .button
-          click-button(
-            @onClick="$emit('top')",
-            :src="require('~/assets/images/button/btn_finish.png')",
-            :srcActive="require('~/assets/images/button/btn_prs_finish.png')")
+        click-button.button(
+          @onClick="$emit('close')",
+          :src="require('~/assets/images/button/btn_bktogame.png')",
+          :srcActive="require('~/assets/images/button/btn_prs_bktogame.png')")
+        click-button.button(
+          @onClick="$emit('retry')",
+          :src="require('~/assets/images/button/btn_renew.png')",
+          :srcActive="require('~/assets/images/button/btn_prs_renew.png')")
+        click-button.button(
+          @onClick="$emit('top')",
+          :src="require('~/assets/images/button/btn_finish.png')",
+          :srcActive="require('~/assets/images/button/btn_prs_finish.png')")
 </template>
 
 <script>
