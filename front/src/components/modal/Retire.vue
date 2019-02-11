@@ -1,3 +1,6 @@
+// 「諦める」モーダル
+// それぞれのボタンをclickでclose, retry, topをemitする
+// (click-buttonをclickするとonClickがemitされる)
 <template lang="pug">
   .modal
     .modal-contents

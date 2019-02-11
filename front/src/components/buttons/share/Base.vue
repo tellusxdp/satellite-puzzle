@@ -1,3 +1,4 @@
+// シェアボタンの基本設定
 <template lang="pug">
   .base-share-button
     a(:href="href", target="_blank", rel="nofollow")

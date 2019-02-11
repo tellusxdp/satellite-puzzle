@@ -1,3 +1,5 @@
+// クリックボタン
+// clickでonClickをemitする
 <template lang="pug">
   button(@click="click", :style="styles")
 </template>
@@ -10,11 +12,11 @@ export default {
     }
   },
   props: {
-    src: {
+    src: { // 通常時のボタン画像
       type: String,
       default: ""
     },
-    srcActive: {
+    srcActive: { // 押下時のボタン画像
       type: String,
       default: ""
     }

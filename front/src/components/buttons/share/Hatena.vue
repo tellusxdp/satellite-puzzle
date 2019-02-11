@@ -1,3 +1,4 @@
+// はてなブックマークシェアボタン
 <template lang="pug">
   .hatena-share-button
     base-button(:href="href", :src="src")
@@ -10,11 +11,11 @@ export default {
     BaseButton
   },
   props: {
-    url: {
+    url: { // URL
       type: String,
       default: "",
     },
-    title: {
+    title: { // ページのタイトル
       type: String,
       default: "",
     }

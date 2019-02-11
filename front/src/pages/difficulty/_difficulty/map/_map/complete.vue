@@ -1,4 +1,5 @@
-// パズル終了
+// 完成
+// 
 <template lang="pug">
   .container
     .margin-top-result-area
@@ -42,20 +43,25 @@ export default {
     FacebookShareButton,
   },
   validate ({ params }) {
+    // 難易度チェック(easy, normal, hard以外は404)
     const d = params.difficulty
-    // 難易度チェック
-    return (d === 'easy' || d === 'normal' || d === 'hard')
+    const difficulty = (d === 'easy' || d === 'normal' || d === 'hard')
+    if (!difficulty) {
+      return false
+    }
     // マップチェック
-    // TODO: マップチェック
+    // マップチェック（難易度に対応していないマップの場合は404）
+    const selectedMap = this.selectedMap
+    return selectedMap !== null
   },
   data() {
-    return {
+    return { // TODO:値を変更
       url: 'sample_url',
       via: 'sample_via',
       related: 'sample_related',
       hashtags: 'sample_hashtag',
       text: 'sample_text',
-      difficultyMap: {
+      difficultyMap: { // 難易度と画像分割数との対応
         easy: 3,
         normal: 4,
         hard: 5,
@@ -84,20 +90,19 @@ export default {
       }
       return selected[0]
     },
-    mapName () {
+    mapName () { // マップの名前を取得
       return this.selectedMap.name
     },
-    mapImages () {
+    mapImages () { // マップの画像のパスを取得
       const parameters = this.selectedMap.parameters
       const parameter =  parameters.filter(v => {
         return (v.split_n === this.difficultyMap[this.$route.params.difficulty])
       })
 
-      // TODO: エラー処理
-      if (!parameter) {
+      if (!parameter) { // validateで確認済み
         return null
       }
-      if (parameter.length !== 1) {
+      if (parameter.length !== 1) { // validateで確認済み
         return null
       }
 
@@ -110,21 +115,12 @@ export default {
 
       return `${kind}/${z}-${x}-${y}-${n}`
     },
-    completedImage () {
+    completedImage () { // 完成画像のパス
       return `/images/${this.mapImages}/completed.png`
     }
   },
   methods: {
-    pushRetry () {
-      const difficulty = this.$route.params.difficulty
-      const map = this.$route.params.map
-      this.$router.push('/difficulty/'+difficulty+'/map/'+map)
-    },
-    pushOtherMap () {
-      const difficulty = this.$route.params.map
-      this.$router.push('/difficulty/'+difficulty+'/map')
-    },
-    pushTop () {
+    pushTop () { // TOPへ遷移する
       this.$router.push('/')
     },
   }

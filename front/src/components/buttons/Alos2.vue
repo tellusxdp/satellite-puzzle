@@ -1,3 +1,4 @@
+// だいち２号のボタン
 <template lang="pug">
   .alos2
     button(@click="click")

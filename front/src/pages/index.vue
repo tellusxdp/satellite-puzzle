@@ -1,4 +1,4 @@
-// TOP
+// トップ画面
 <template lang="pug">
   div
     .push-start(@click="pushStart")
@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    pushStart () {
+    pushStart () { // 難易度選択画面に遷移する
       this.$router.push('/difficulty')
     }
   }

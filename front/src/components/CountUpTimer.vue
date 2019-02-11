@@ -1,6 +1,6 @@
-// 親での使用方法
-// doRun = true に変更すると開始
-// doRun = false に変更すると停止
+// カウントアップタイマー
+// propsのdoRunをtrueにするとカウントアップ開始
+// propsのdoRunをfalseにするとカウントアップ停止
 <template lang="pug">
   .count-up-timer
     p.count-up-timer--text TIME
@@ -22,10 +22,10 @@ export default {
     }
   },
   computed: {
-    formatMin () {
+    formatMin () { // 分の表示用にフォーマットする
       return ('00' + this.min).slice(-2)
     },
-    formatSec () {
+    formatSec () { // 秒の表示用にフォーマットする
       return ('00' + this.sec).slice(-2)
     },
     ...mapGetters(["min", "sec", "msec"]),
@@ -37,12 +37,12 @@ export default {
     }
   },
   methods: {
-    // storeの値を更新する
+    // カウントアップ処理
     countUp () {
       if (this.msec === 99) {
-        this.resetMsec()
+        this.resetMsec() // 99 -> 0 
         if (this.sec === 59) {
-          this.resetSec()
+          this.resetSec() // 59 -> 0
           this.inclementMin()
         } else {
           this.inclementSec()
@@ -60,25 +60,22 @@ export default {
        "inclementMsec"]
       ),
   },
-  // マウントされる前の処理
   beforeMount () {
     // タイマーの値をリセット
     this.resetMin()
     this.resetSec()
     this.resetMsec()
   },
-  // データが変更され、DOMに適用される前の処理
   beforeUpdate () {
-    // タイマーを動かすかどうかを判定する
-    if (!this.isRun && this.doRun) {
-      this.isRun = true
-      this.timerObj = setInterval(this.countUp, 10)
-    } else if (this.isRun && !this.doRun) {
-      this.isRun = false
-      clearInterval(this.timerObj)
+    // タイマーの起動・停止を切り替えるか判定する
+    if (!this.isRun && this.doRun) { // 停止中に起動処理がでた場合
+      this.isRun = true // タイマー起動
+      this.timerObj = setInterval(this.countUp, 10) // カウントアップ開始
+    } else if (this.isRun && !this.doRun) { // 起動中に停止指示がでた場合
+      this.isRun = false // タイマー停止
+      clearInterval(this.timerObj) // カウントアップ終了
     }
   },
-  // Vueインスタンスが破棄される前の処理
   beforeDestroy () {
     // タイマーを停止する
     this.isRun = false

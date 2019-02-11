@@ -1,10 +1,10 @@
 const state = () => ({
-  puzzles: {},
-  min: 0,
-  sec: 0,
-  msec: 0,
-  bestRecords: [],
-  bestRecord: {},
+  puzzles: {}, // puzzle.jsonから取得した情報
+  min: 0, // パズルにかかった時間（分）
+  sec: 0, // パズルにかかった時間（秒）
+  msec: 0, // パズルにかかった時間（ミリ秒）
+  bestRecords: [], // 自己記録
+  bestRecord: {}, // 今回プレイしたマップ・難易度の自己記録
 })
 
 const getters = {
@@ -21,7 +21,7 @@ const mutations = {
     state.puzzles = json
   },
   RESET_MIN(state) { state.min = 0 },
-  RESET_SEC(state) { state.sec = 0 },
+  RESET_SEC(state) { state.sec = 0 }, 
   RESET_MSEC(state) { state.msec = 0 },
   INCLEMENT_MIN(state) { state.min++ },
   INCLEMENT_SEC(state) { state.sec++ },
@@ -68,24 +68,26 @@ const actions = {
   inclementMin({ commit }) { commit('INCLEMENT_MIN') },
   inclementSec({ commit }) { commit('INCLEMENT_SEC') },
   inclementMsec({ commit }) { commit('INCLEMENT_MSEC') },
-  updateBestRecords({ commit }, record) {
-
+  updateBestRecords({ commit }, record) { // bestRecordsを更新する
+    // bestRecordsを全て取得
     let bestRecords = this.state.bestRecords
+
+    // recordの難易度・マップに対応するindexをbestRecordsから取得
     const i = bestRecords.findIndex(v => {
       return v.difficulty === record.difficulty && v.map === record.map
     })
 
-    if (i > -1) {
-      bestRecords[i] = record
-    } else {
-      bestRecords.push({
+    if (i > -1) { // 対応するindexが見つかった場合
+      bestRecords[i] = record // 記録を更新する
+    } else { // 対応するindexが見つからなかった場合
+      bestRecords.push({ // 記録を追加する
         difficulty: record.difficulty,
         map: record.map,
         min: record.min,
         sec: record.sec
       })
     }
-    commit('SET_BEST_RECORDS', bestRecords)
+    commit('SET_BEST_RECORDS', bestRecords) // 修正した値を新たなbestRecordsとして保存する
   },
   setBestRecord({ commit }, record) {
     commit('SET_BEST_RECORD', record)

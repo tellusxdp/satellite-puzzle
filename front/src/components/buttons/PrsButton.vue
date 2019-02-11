@@ -1,3 +1,7 @@
+// オンオフボタン
+// clickで自分のisPrs状況を確認して反転し、
+// isPrsがtrueであれば、isNotPrsをemitし、
+// isPrsがfalseになれば、isNotPrsをemitする
 <template lang="pug">
   button.prs-button(@click="click")
     div(v-show="isPrs")
@@ -18,11 +22,11 @@ export default {
     },
   },
   props: {
-    src: {
+    src: { // isPrs=false時の画像
       type: String,
       default: "",
     },
-    srcPrs: {
+    srcPrs: { // isPrs=true時の画像
       type: String,
       default: "",
     }

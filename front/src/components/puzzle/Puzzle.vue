@@ -1,3 +1,7 @@
+// パズル
+// propsのdifficultyで難易度を判定する（easy, normal, hard）
+// パズルが完成した場合、puzzleCompleteをemitする
+// パズルが終了（完成アニメーションも終了）した場合、pushCompleteをemitする
 <template lang="pug">
   .puzzle
     .not-ready(v-show="!ready") 準備中です
@@ -34,102 +38,96 @@
 <script>
 export default {
   props: {
-    top: {
+    top: { // パズルの位置を調整する
       type: Number,
       default: 0,
     },
-    left: {
+    left: { // パズルの位置を調整する
       type: Number,
       default: 0,
     },
-    // SAR画像と可視光画像を切り替えるパラメーター
-    showSar: {
+    showSar: { // SAR画像と可視光画像を切り替える
       type: Boolean,
       default: true,
     },
-    mapImages: {
+    mapImages: { // 分割された画像のパス
       type: String,
       default: "",
     },
-    completedImage: {
+    completedImage: { // 完成画像のパス
       type: String,
       default: "",
     },
-    difficulty: {
+    difficulty: { // 難易度（easy, normal, hard）
       type: String,
       default: "normal"
     }
   },
   data: () => {
     return {
-      // 完成判定
-      isComplete: false,
-      ready: false,
-      // 開始タイル
-      // TODO: ランダム配置
-      tiles: {
+      isComplete: false, // パズルが完成しているか
+      ready: false, // パズルの準備ができているか
+      tiles: { // 開始タイル TODO: ランダム配置
         easy: [
-          {no:1, x: 0, y: 0, move: false},
-          {no:2, x: 0, y: 1, move: false},
-          {no:3, x: 0, y: 2, move: false},
-          {no:4, x: 1, y: 0, move: false},
-          {no:5, x: 1, y: 1, move: false},
-          {no:6, x: 1, y: 2, move: false},
-          {no:7, x: 2, y: 0, move: false},
-          {no:8, x: 2, y: 1, move: false},
+          { no:1, x: 0, y: 0, move: false },
+          { no:2, x: 0, y: 1, move: false },
+          { no:3, x: 0, y: 2, move: false },
+          { no:4, x: 1, y: 0, move: false },
+          { no:5, x: 1, y: 1, move: false },
+          { no:6, x: 1, y: 2, move: false },
+          { no:7, x: 2, y: 0, move: false },
+          { no:8, x: 2, y: 1, move: false },
         ],
         normal: [
-          {no:1,  x: 0, y: 0, move: false},
-          {no:2,  x: 0, y: 1, move: false},
-          {no:3,  x: 0, y: 2, move: false},
-          {no:4,  x: 0, y: 3, move: false},
-          {no:5,  x: 1, y: 0, move: false},
-          {no:6,  x: 1, y: 1, move: false},
-          {no:7,  x: 1, y: 2, move: false},
-          {no:8,  x: 1, y: 3, move: false},
-          {no:9,  x: 2, y: 0, move: false},
-          {no:10, x: 2, y: 1, move: false},
-          {no:11, x: 2, y: 2, move: false},
-          {no:12, x: 2, y: 3, move: false},
-          {no:13, x: 3, y: 1, move: false},
-          {no:14, x: 3, y: 2, move: false},
-          {no:15, x: 3, y: 3, move: false},
+          { no:1,  x: 0, y: 0, move: false },
+          { no:2,  x: 0, y: 1, move: false },
+          { no:3,  x: 0, y: 2, move: false },
+          { no:4,  x: 0, y: 3, move: false },
+          { no:5,  x: 1, y: 0, move: false },
+          { no:6,  x: 1, y: 1, move: false },
+          { no:7,  x: 1, y: 2, move: false },
+          { no:8,  x: 1, y: 3, move: false },
+          { no:9,  x: 2, y: 0, move: false },
+          { no:10, x: 2, y: 1, move: false },
+          { no:11, x: 2, y: 2, move: false },
+          { no:12, x: 2, y: 3, move: false },
+          { no:13, x: 3, y: 1, move: false },
+          { no:14, x: 3, y: 2, move: false },
+          { no:15, x: 3, y: 3, move: false },
         ],
         hard: [
-          {no:'1', x: 0, y: 0},
-          {no:'2', x: 0, y: 1},
-          {no:'3', x: 0, y: 2},
-          {no:'4', x: 0, y: 3},
-          {no:'5', x: 0, y: 4},
-          {no:'6', x: 1, y: 0},
-          {no:'7', x: 1, y: 1},
-          {no:'8', x: 1, y: 2},
-          {no:'9', x: 1, y: 3},
-          {no:'10', x: 1, y: 4},
-          {no:'11', x: 2, y: 0},
-          {no:'12', x: 2, y: 1},
-          {no:'13', x: 2, y: 2},
-          {no:'14', x: 2, y: 3},
-          {no:'15', x: 2, y: 4},
-          {no:'16', x: 3, y: 0},
-          {no:'17', x: 3, y: 1},
-          {no:'18', x: 3, y: 2},
-          {no:'19', x: 3, y: 3},
-          {no:'20', x: 3, y: 4},
-          {no:'21', x: 4, y: 0},
-          {no:'22', x: 4, y: 1},
-          {no:'23', x: 4, y: 2},
-          {no:'24', x: 4, y: 3},
+          { no:'1',  x: 0, y: 0, move: false },
+          { no:'2',  x: 0, y: 1, move: false },
+          { no:'3',  x: 0, y: 2, move: false },
+          { no:'4',  x: 0, y: 3, move: false },
+          { no:'5',  x: 0, y: 4, move: false },
+          { no:'6',  x: 1, y: 0, move: false },
+          { no:'7',  x: 1, y: 1, move: false },
+          { no:'8',  x: 1, y: 2, move: false },
+          { no:'9',  x: 1, y: 3, move: false },
+          { no:'10', x: 1, y: 4, move: false },
+          { no:'11', x: 2, y: 0, move: false },
+          { no:'12', x: 2, y: 1, move: false },
+          { no:'13', x: 2, y: 2, move: false },
+          { no:'14', x: 2, y: 3, move: false },
+          { no:'15', x: 2, y: 4, move: false },
+          { no:'16', x: 3, y: 0, move: false },
+          { no:'17', x: 3, y: 1, move: false },
+          { no:'18', x: 3, y: 2, move: false },
+          { no:'19', x: 3, y: 3, move: false },
+          { no:'20', x: 3, y: 4, move: false },
+          { no:'21', x: 4, y: 0, move: false },
+          { no:'22', x: 4, y: 1, move: false },
+          { no:'23', x: 4, y: 2, move: false },
+          { no:'24', x: 4, y: 3, move: false },
         ],
       },
-      // 空白タイル
-      empty: {
+      empty: { // 空白タイル
         easy: {x: 2, y: 2},
         normal: {x: 3, y: 0},
         hard: {x:4, y: 4},
       },
-      // 正解タイル
-      ans: {
+      ans: { // 正解タイル
         easy: [
           {no:1, x: 0, y: 0},
           {no:2, x: 0, y: 1},
@@ -187,18 +185,18 @@ export default {
     }
   },
   computed: {
-    px () {
+    px () { // 難易度に応じてタイルの大きさを調整する
       const map = {easy: 160, normal: 120, hard: 96}
       return map[this.difficulty]
     },
-    styles () {
+    styles () { // 難易度に応じてcssにpxを適用する
       return {
         '--px': this.px + 'px'
       }
     },
   },
   mounted () {
-    // 初期配置
+    // タイルの初期位置を決定する
     this.tiles[this.difficulty].forEach((element,index) => {
       const tile = this.$el.getElementsByClassName(`_${element.no-1}`)[0]
       tile.style.top = `${this.tiles[this.difficulty][index].x*this.px}px`
@@ -206,41 +204,46 @@ export default {
     })
   },
   updated () {
-    // 正解判定
+    // 正解判定を行う
     for (let i = 0; i < this.tiles[this.difficulty].length; i++) {
       if ((this.tiles[this.difficulty][i].x !== this.ans[this.difficulty][i].x) ||
         (this.tiles[this.difficulty][i].y !== this.ans[this.difficulty][i].y)) {
         return
       }
     }
+    // 正解していた場合、puzzleCompleteをemitする
     this.isComplete = true
     this.$emit('puzzleComplete')
   },
   created() {
+    // パズルの準備ができたことを検知する
     if (process.browser) {
       this.ready = true
     }
   },
   methods: {
-    // タイル移動
+    // @leaveでタイルをスライドさせる処理
     tileMove (e, done) {
       const tile = this.$el.getElementsByClassName(`_${e}`)[0]
       this.move(e)
       tile.style.transition = "0.25s"
     },
+    // @after-leaveでタイルをスライドさせる処理
     tileMoved (e) {
       const tile = this.$el.getElementsByClassName(`_${e}`)[0]
       tile.style.top = `${this.tiles[this.difficulty][e].x*this.px}px`
       tile.style.left = `${this.tiles[this.difficulty][e].y*this.px}px`
       this.tiles[this.difficulty][e].move = false
     },
+    // パズルが完成した場合の処理
     pushComplete () {
-      // パズルが完成したことを親に伝える
       this.$emit('pushComplete')
     },
+    // 各タイルに設定する画像を指定
     image (id) {
       return `/images/${this.mapImages}/${id}.png`
     },
+    // タイルが移動できるか判定する
     move (e) {
       const target = e
       // 移動してもいいか確認する, OKなら移動する

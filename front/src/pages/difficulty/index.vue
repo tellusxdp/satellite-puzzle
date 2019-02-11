@@ -1,18 +1,18 @@
 // 難易度選択
 <template lang="pug">
-  div.difficulty
-    div.mode MODE
-    div.easy
+  .difficulty
+    .mode MODE
+    .easy
       easy-button(@onClick="pushEasy") やさしい
-    div.normal
+    .normal
       normal-button(@onClick="pushNormal") ふつう
-    div.hard
+    .hard
       hard-button(@onClick="pushHard") むずかしい
-    div.what-is
+    .what-is
       p.what-is--text SAR画像とは？
       p.what-is--description SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
-      div.detail
-        div.detail--button
+      .detail
+        .detail--button
           click-button(
             :src="require('~/assets/images/button/btn_detail.png')"
             :srcActive="require('~/assets/images/button/btn_prs_detail.png')")
@@ -32,13 +32,13 @@ export default {
     HardButton,
   },
   methods: {
-    pushEasy () {
+    pushEasy () { // マップ選択画面（かんたん）に遷移する
       this.$router.push('/difficulty/easy/map')
     },
-    pushNormal () {
+    pushNormal () { // マップ選択画面（ふつう）に遷移する
       this.$router.push('/difficulty/normal/map')
     },
-    pushHard () {
+    pushHard () { // マップ選択画面（むずかしい）に遷移する
       this.$router.push('/difficulty/hard/map')
     },
   },
