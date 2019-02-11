@@ -40,13 +40,9 @@ export default {
       type: Number,
       default: 0
     },
-    bestMin: { // 自己記録（分）
-      type: Number,
-      default: 0
-    },
-    bestSec: { // 自己記録（秒）
-      type: Number,
-      default: 0
+    bestRecord: { // 自己記録（初回はnull）
+      type: Object,
+      default: null,
     },
     completedImage: { // 完成画像
       type: String,
@@ -59,6 +55,18 @@ export default {
     }
   },
   computed: {
+    bestMin () {
+      if (!this.bestRecord) {
+        return this.min
+      }
+      return this.bestRecord.min
+    },
+    bestSec () {
+      if (!this.bestRecord) {
+        return this.sec
+      }
+      return this.bestRecord.sec
+    },
     formatMin () {  // 表示用:今回の記録（分）
       return this.format(this.min) 
     },
@@ -72,7 +80,11 @@ export default {
       return this.format(this.bestSec) 
     },
     isNewRecord () { // 新記録かどうか
-      return this.min < this.bestMin || this.min === this.bestMin && this.sec < this.bestSec
+      if (!this.bestRecord) {
+        return true
+      }
+      return this.min < this.bestMin ||
+        this.min === this.bestMin && this.sec < this.bestSec
     }
   }
 }

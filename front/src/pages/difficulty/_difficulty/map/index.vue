@@ -20,6 +20,17 @@ export default {
   components: {
     PuzzleMap,
   },
+  data () {
+    return {
+      difficulty: ''
+    }
+  },
+  asyncData(context) {
+    return {
+      // asyncDataでreturnすると、dataにマージされる
+      difficulty: context.params.difficulty
+    }
+  },
   validate({ params }) {
     // 難易度チェック(easy, normal, hard以外は404)
     const d = params.difficulty
@@ -27,7 +38,7 @@ export default {
   },
   methods: {
     pushPuzzle (id) { // 選択した難易度・マップに対応するパズル画面に遷移する
-      this.$router.push(`/difficulty/${this.$route.params.difficulty}/map/${id}`)
+      this.$router.push(`/difficulty/${this.difficulty}/map/${id}`)
     },
     pushDifficulty () { // 難易度選択画面に遷移する
       this.$router.push('/difficulty')
@@ -46,30 +57,26 @@ export default {
       }
     },{ passive: false })
   },
-  data() {
-    return {
-      difficultyMap: { // 難易度と画像分割数との対応
+  computed: {
+    mapList() { // 表示するマップのリストを作成する
+    const difficultyMap =  { // 難易度と画像分割数との対応
         easy: 3,
         normal: 4,
         hard: 5,
       }
-    }
-  },
-  computed: {
-    mapList() { // 表示するマップのリストを作成する
-      const d = this.$route.params.difficulty // 難易度選択画面で選択した難易度
+      const d = this.difficulty // 難易度選択画面で選択した難易度
       const puzzles = this.puzzles // storeからパズルの設定を取得
       // 指定された難易度の画像をもつObjectを取得
       const list =  puzzles.filter(puzzle => {
         return puzzle.parameters.find(parameter => {
-          return parameter.split_n === this.difficultyMap[d]
+          return parameter.split_n === difficultyMap[d]
         })
       })
       let target = []
       // Objectから必要な値を取得
       list.forEach(e => {
         const p = e.parameters.filter(v => {
-          return v.split_n === this.difficultyMap[d]
+          return v.split_n === difficultyMap[d]
         })
         target.push({
           id: e.id,
