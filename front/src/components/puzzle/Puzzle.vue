@@ -201,6 +201,7 @@ export default {
       tile.style.top = `${this.tiles[this.difficulty][index].x*this.px}px`
       tile.style.left = `${this.tiles[this.difficulty][index].y*this.px}px`
     })
+    this.$emit('ready')
   },
   updated () {
     // 正解判定を行う
@@ -213,12 +214,6 @@ export default {
     // 正解していた場合、puzzleCompleteをemitする
     this.isComplete = true
     this.$emit('puzzleComplete')
-  },
-  created() {
-    // パズルの準備ができたことを検知する
-    if (process.browser) {
-      this.$emit('ready')
-    }
   },
   methods: {
     // @leaveでタイルをスライドさせる処理

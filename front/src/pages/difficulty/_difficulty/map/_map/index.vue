@@ -1,8 +1,8 @@
 // パズル
 <template lang="pug">
-  div(:class="container")
-    loading.loading(v-if="!ready.page || !ready.puzzle")
-    .ready(v-show="ready.page && ready.puzzle")
+  .container
+    loading.loading(v-if="ready.delay && !ready.puzzle")
+    .ready(v-show="ready.puzzle")
       .modal-background(v-if="modal")
       .timer-area
         div(v-if="puzzle")
@@ -83,7 +83,7 @@ export default {
   data() {
     return {
       ready: {
-        page: false, // このページが準備できたか
+        delay: false, // マップの準備が遅延しているか
         puzzle: false // マップの準備ができたか
       },
       run: false, // パズルを開始しているか
@@ -106,7 +106,7 @@ export default {
     500)
   },
   mounted () {
-    // ページの準備は２秒待つ
+    // 2秒以上遅延する場合はloadingを表示する
     setTimeout(() => {
       this.ready.page = true
     }, 2000)
@@ -180,12 +180,6 @@ export default {
       sec: 'sec',
       bestRecords: 'bestRecords',
     }),
-    container () {
-      if (this.ready.page && this.ready.puzzle) {
-        return 'container'
-      }
-      return ''
-    },
     // 可視光画像を表示する時間を指定
     showSar () {
       const sec = this.$store.state.sec
