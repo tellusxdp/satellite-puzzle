@@ -17,3 +17,5 @@ python_version = "3.6"
 [scripts]
 devstart = "env FLASK_ENV=development flask run"
 prdstart = "env FLASK_ENV=production flask run --host 0.0.0.0 --port 5000"
+teststart = "env FLASK_ENV=development python test.py"
+
