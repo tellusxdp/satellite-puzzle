@@ -1,18 +1,16 @@
 <template lang="pug">
   .result-area
     .best
-    .confi
     .map-name
       ribbon {{ mapName }}
     .map-image
       img.completed-image(:src="completedImage")
     .record
-      p.label TIME
-      .record-area
-        span.time {{ formatMin }}
-        span.time-unit 分
-        span.time {{ formatSec }}
-        span.time-unit 秒
+      span.label TIME
+      span.time {{ formatMin }}
+      span.time-unit 分
+      span.time {{ formatSec }}
+      span.time-unit 秒
     .personal-best
       img.new-record(
         v-show="isNewRecord"
@@ -56,10 +54,12 @@ export default {
   },
   computed: {
     formatMin () { 
-      return ('00' + this.min).slice(-2) 
+      return "02"
+      // return ('00' + this.min).slice(-2) 
     },
     formatSec () {
-      return ('00' + this.sec).slice(-2)
+      return "58"
+      // return ('00' + this.sec).slice(-2)
     },
     formatBestMin () {
       return ('00' + this.bestMin).slice(-2)
@@ -77,23 +77,23 @@ export default {
 <style lang="scss" scoped>
 .result-area {
   width: 578px;
-  height: 864px;
+  height: 790px;
   border-radius: 4px;
   background-color: #fff;
   background-image:
     url('~assets/images/result/confi.png'),
     url('~assets/images/background/best/best.png');
   background-size: initial, initial;
-  background-position: 12px 28px, -1px 360px;
+  background-position: 22px 12px, -1px 310px;
 }
 
 .ribbon {
-  margin-top: 72px;
+  margin-top: 40px;
   margin-left: 60px;
 }
 
 .map-image {
-  margin-top: 130px;
+  margin-top: 120px;
   margin-left: 81px;
   z-index: 1;
 }
@@ -104,12 +104,13 @@ export default {
 }
 
 .record {
-  margin-top: 24px;
+  margin-top: 8px;
+  margin-left: -22px;
   text-align: center;
 }
 
 .label {
-  // width: 60px;
+  margin-right: 12px;
   height: 20px;
   font-family: OpenSans;
   font-size: 28px;
@@ -122,13 +123,8 @@ export default {
   color: #fff;
 }
 
-.record-area {
-  margin-top: 2px;
-  margin-left: -10px;
-}
-
 .time {
-  margin-left: 12px;
+  margin-left: 2px;
   width: 64px;
   height: 45px;
   opacity: 0.98;
@@ -144,7 +140,7 @@ export default {
 }
 
 .time-unit {
-  margin-left: 4px;
+  margin-left: 10px;
   width: 24px;
   height: 23px;
   font-family: NotoSansCJKjp;
@@ -192,7 +188,7 @@ export default {
   }
 
   .best-record {
-    margin-left: 20px;
+    margin-left: 22px;
     width: 118px;
     height: 27px;
     font-family: NotoSansCJKjp;
