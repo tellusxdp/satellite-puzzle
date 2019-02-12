@@ -9,7 +9,6 @@ export default {
   mounted () {
     const deviceType = this.$ua.deviceType()
     // PCの場合はスクロール調整を行わない
-    console.log(deviceType)
     if (deviceType === 'pc') {
       return
     }
@@ -19,7 +18,7 @@ export default {
     window.addEventListener('touchmove', function(event) {
       // 対象の要素がない場合
       if (mapList.length === 0) {
-        // ずべてのスクロールを無効にする
+        // すべてのスクロールを無効にする
         event.preventDefault()
         return
       }
