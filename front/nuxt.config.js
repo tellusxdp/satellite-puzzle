@@ -13,7 +13,6 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'height=1148' },
-      // { name: 'viewport', content: 'width=640' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' },
       // OGP共通設定
       { prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/websaite#'},
@@ -56,8 +55,9 @@ module.exports = {
     }
   },
   modules: [
-    "@nuxtjs/axios",
-    "@nuxtjs/pwa",
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    'nuxt-user-agent',
     ['@nuxtjs/style-resources', '~/assets/css/*.scss'],
   ],
   workbox: {
