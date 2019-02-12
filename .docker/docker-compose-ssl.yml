@@ -8,8 +8,8 @@ services:
       - ./conf/ssl/50x.html:/usr/share/nginx/html/50x.html
       - ./conf/ssl/nginx.conf:/etc/nginx/nginx.conf
       - ./conf/ssl/default.conf:/etc/nginx/conf.d/default.conf
-      - ./wildcard.app.tellusxdp.com.crt:/var/wildcard.app.tellusxdp.com.crt
-      - ./wildcard.app.tellusxdp.com.key:/var/wildcard.app.tellusxdp.com.key
+      - ./wildcard.app.tellusxdp.com.crt:/etc/nginx/wildcard.app.tellusxdp.com.crt
+      - ./wildcard.app.tellusxdp.com.key:/etc/nginx/wildcard.app.tellusxdp.com.key
     ports:
       - "80:80"
       - "443:443"
