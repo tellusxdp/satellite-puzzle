@@ -65,7 +65,16 @@ export default {
         easy: 3,
         normal: 4,
         hard: 5,
-      }
+      },
+      difficulty: 'normal',
+      map: 'mt-fuji'
+    }
+  },
+  asyncData(context) {
+    return {
+      // asyncDataでreturnすると、dataにマージされる
+      difficulty: context.params.difficulty,
+      map: context.params.map
     }
   },
   computed: {
@@ -80,7 +89,7 @@ export default {
     selectedMap () {
       const m = this.puzzles
       const selected = m.filter(v => {
-        return v.id === this.$route.params.map
+        return v.id === this.map
       })
       if (!selected) {
         return null
@@ -96,7 +105,7 @@ export default {
     mapImages () { // マップの画像のパスを取得
       const parameters = this.selectedMap.parameters
       const parameter =  parameters.filter(v => {
-        return (v.split_n === this.difficultyMap[this.$route.params.difficulty])
+        return (v.split_n === this.difficultyMap[this.difficulty])
       })
 
       if (!parameter) { // validateで確認済み

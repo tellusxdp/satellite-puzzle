@@ -2,7 +2,6 @@ const state = () => ({
   puzzles: {}, // puzzle.jsonから取得した情報
   min: 0, // パズルにかかった時間（分）
   sec: 0, // パズルにかかった時間（秒）
-  msec: 0, // パズルにかかった時間（ミリ秒）
   bestRecords: [], // 自己記録
   bestRecord: {}, // 今回プレイしたマップ・難易度の自己記録
 })
@@ -11,7 +10,6 @@ const getters = {
   puzzles: state => state.puzzles,
   min: state => state.min,
   sec: state => state.sec,
-  msec: state => state.msec,
   bestRecords: state => state.bestRecords,
   bestRecord: state => state.bestRecord,
 }
@@ -22,10 +20,8 @@ const mutations = {
   },
   RESET_MIN(state) { state.min = 0 },
   RESET_SEC(state) { state.sec = 0 }, 
-  RESET_MSEC(state) { state.msec = 0 },
   INCLEMENT_MIN(state) { state.min++ },
   INCLEMENT_SEC(state) { state.sec++ },
-  INCLEMENT_MSEC(state) { state.msec++ },
   SET_BEST_RECORDS(state, record) { state.bestRecords = record },
   SET_BEST_RECORD(state, record) {
     state.bestRecord = record
@@ -64,10 +60,8 @@ const actions = {
   },
   resetMin({ commit }) { commit('RESET_MIN') },
   resetSec({ commit }) { commit('RESET_SEC') },
-  resetMsec({ commit }) { commit('RESET_MSEC') },
   inclementMin({ commit }) { commit('INCLEMENT_MIN') },
   inclementSec({ commit }) { commit('INCLEMENT_SEC') },
-  inclementMsec({ commit }) { commit('INCLEMENT_MSEC') },
   updateBestRecords({ commit }, record) { // bestRecordsを更新する
     // bestRecordsを全て取得
     let bestRecords = this.state.bestRecords

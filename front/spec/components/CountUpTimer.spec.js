@@ -48,47 +48,27 @@ describe('CountUpTimer.vue', () => {
     }),
     test('countUp:1', () => {
       wrapper.vm.countUp()
-      expect(wrapper.vm.msec).toBe(1)
-      expect(wrapper.vm.sec).toBe(0)
-      expect(wrapper.vm.min).toBe(0)
-    }),
-    test('countUp:99', () => {
-      for (let index = 0; index < 99; index++) {
-        wrapper.vm.countUp()
-      }
-      expect(wrapper.vm.msec).toBe(99)
-      expect(wrapper.vm.sec).toBe(0)
-      expect(wrapper.vm.min).toBe(0)
-    }),
-    test('countUp:100', () => {
-      for (let index = 0; index < 100; index++) {
-          wrapper.vm.countUp()
-      }
-      expect(wrapper.vm.msec).toBe(0)
       expect(wrapper.vm.sec).toBe(1)
       expect(wrapper.vm.min).toBe(0)
     }),
-    test('countUp:100*60-1', () => {
-      for (let index = 0; index < 100*60-1; index++) {
-          wrapper.vm.countUp()
+    test('countUp:59', () => {
+      for (let index = 0; index < 59; index++) {
+        wrapper.vm.countUp()
       }
-      expect(wrapper.vm.msec).toBe(99)
       expect(wrapper.vm.sec).toBe(59)
       expect(wrapper.vm.min).toBe(0)
     }),
-    test('countUp:100*60', () => {
-      for (let index = 0; index < 100*60; index++) {
+    test('countUp:60', () => {
+      for (let index = 0; index < 60; index++) {
           wrapper.vm.countUp()
       }
-      expect(wrapper.vm.msec).toBe(0)
       expect(wrapper.vm.sec).toBe(0)
       expect(wrapper.vm.min).toBe(1)
     }),
     test('countUp', () => {
-      for (let index = 0; index < 12345; index++) {
+      for (let index = 0; index < 123; index++) {
         wrapper.vm.countUp()
       }
-      expect(wrapper.vm.msec).toBe(45)
       expect(wrapper.vm.sec).toBe(3)
       expect(wrapper.vm.min).toBe(2)
     })

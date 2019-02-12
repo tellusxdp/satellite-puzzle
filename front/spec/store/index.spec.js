@@ -30,11 +30,6 @@ describe('store/index.js', () => {
             store.commit('RESET_SEC')
             expect(store.getters['sec']).toBe(0)
         }),
-        test('RESET_MSEC/msec', () => {
-            expect(store.getters['msec']).toBe(0)
-            store.commit('RESET_MSEC')
-            expect(store.getters['msec']).toBe(0)
-        }),
         test('INCLEMENT_MIN/min', () => {
             expect(store.getters['min']).toBe(0)
             store.commit('INCLEMENT_MIN')
@@ -44,11 +39,6 @@ describe('store/index.js', () => {
             expect(store.getters['sec']).toBe(0)
             store.commit('INCLEMENT_SEC')
             expect(store.getters['sec']).toBe(1)
-        }),
-        test('INCLEMENT_MSEC/msec', () => {
-            expect(store.getters['msec']).toBe(0)
-            store.commit('INCLEMENT_MSEC')
-            expect(store.getters['msec']).toBe(1)
         }),
         test('SET_BEST_RECORDS/bestRecords', () => {
             expect(store.getters['bestRecords'].length).toBe(0)
@@ -86,18 +76,6 @@ describe('store/index.js', () => {
             expect(store.getters['sec']).toBe(1)
             store.dispatch('resetSec')
             expect(store.getters['sec']).toBe(0)
-        }),
-        test('inclementMsec', () => {
-            expect(store.getters['msec']).toBe(0)
-            store.dispatch('inclementMsec')
-            expect(store.getters['msec']).toBe(1)
-        }),
-        test('resetMsec', () => {
-            expect(store.getters['msec']).toBe(0)
-            store.dispatch('inclementMsec')
-            expect(store.getters['msec']).toBe(1)
-            store.dispatch('resetMsec')
-            expect(store.getters['msec']).toBe(0)
         }),
         // TODO：更新ロジックもこっちに入れる？
         describe('updateBestRecord', () => {

@@ -95,7 +95,15 @@ export default {
         easy: 3,
         normal: 4,
         hard: 5,
-      }
+      },
+      difficulty: 'normal',
+      map: 'mt-fuji'
+    }
+  },
+  asyncData(context) {
+    return {
+      difficulty: context.params.difficulty,
+      map: context.params.map
     }
   },
   watch: {
@@ -127,8 +135,8 @@ export default {
       this.run = false // タイマーを停止する
 
       // 難易度・マップに対応する自己記録を取得する
-      const difficulty = this.$route.params.difficulty
-      const map = this.$route.params.map
+      const difficulty = this.difficulty
+      const map = this.map
       const best = this.bestRecords.find(v => {
         return v.difficulty === difficulty && v.map === map
       })
@@ -155,8 +163,8 @@ export default {
       }
     },
     pushComplete () { // 完成画面に遷移する
-      const difficulty = this.$route.params.difficulty
-      const map = this.$route.params.map
+      const difficulty = this.difficulty
+      const map = this.map
       this.$router.push('/difficulty/'+difficulty+'/map/'+map+'/complete')
     },
     openModal() { // モーダルを表示する
@@ -180,6 +188,10 @@ export default {
     },
     noDispHint () { // ヒントを非表示にする
       this.hint = false // ヒントを非表示にする処理
+    },
+    targetSec (sec) { // SAR画像を表示する時間の判定
+      // TODO: 値の変更（現在 25~29秒, 55~59秒）
+      return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
     }
   },
   computed: {
@@ -188,19 +200,17 @@ export default {
       sec: 'sec',
       bestRecords: 'bestRecords',
     }),
-    // 可視光画像を表示する時間を指定
+    // SAR画像を表示する時間を指定
     showSar () {
-      const sec = this.$store.state.sec
-      // TODO: 値の変更（現在 25~29秒, 55~59秒）
-      return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
+      const sec = this.sec
+      return this.targetSec(sec)
     },
-    difficulty () { return this.$route.params.difficulty },
     ...mapGetters(["puzzles"]),
     // 選択したマップを返す（不正な値の場合はnull）
     selectedMap () {
       const m = this.puzzles
       const selected = m.filter(v => {
-        return v.id === this.$route.params.map
+        return v.id === this.map
       })
       if (!selected) {
         return null
@@ -213,7 +223,7 @@ export default {
     mapImages () { // 使用する画像の情報を取得する
       const parameters = this.selectedMap.parameters
       const parameter =  parameters.filter(v => {
-        return (v.split_n === this.difficultyMap[this.$route.params.difficulty])
+        return (v.split_n === this.difficultyMap[this.difficulty])
       })
 
       if (!parameter) { // validateで確認済み
