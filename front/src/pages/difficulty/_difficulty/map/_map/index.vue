@@ -129,21 +129,29 @@ export default {
       // 難易度・マップに対応する自己記録を取得する
       const difficulty = this.$route.params.difficulty
       const map = this.$route.params.map
-      const best = this.bestRecords.filter(v => {
+      const best = this.bestRecords.find(v => {
         return v.difficulty === difficulty && v.map === map
       })
 
-       // 新記録かどうか判定する
-       if (best.length === 0 || this.min < best[0].min || this.min === best[0].min && this.sec < best[0].sec) {
-         // 新記録を登録する
-         this.updateBestRecords({
+
+      // 初回の場合
+      if (best.length === 0) {
+        // 記録を自己記録として登録
+        // ベストレコードにはnullを設定する
+       this.setBestRecord(null)
+      }
+
+      // 自己記録を更新した場合
+      if (this.min < best.min || this.min === best.min && this.sec < best.sec) {
+        // 新記録を登録する
+        this.updateBestRecords({
           difficulty: difficulty,
           map: map,
           min: this.min,
           sec: this.sec
         })
-        // 新記録を保存する
-        this.setBestRecord({ min: this.min, sec: this.sec })
+      // 新記録を保存する
+      this.setBestRecord({ min: this.min, sec: this.sec })
       }
     },
     pushComplete () { // 完成画面に遷移する

@@ -28,7 +28,7 @@ const mutations = {
   INCLEMENT_MSEC(state) { state.msec++ },
   SET_BEST_RECORDS(state, record) { state.bestRecords = record },
   SET_BEST_RECORD(state, record) {
-    state.bestRecord = { min: record.min, sec: record.sec }
+    state.bestRecord = record
   }
 }
 
