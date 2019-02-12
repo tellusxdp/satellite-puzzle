@@ -28,7 +28,7 @@ export default {
     formatSec () { // 秒の表示用にフォーマットする
       return ('00' + this.sec).slice(-2)
     },
-    ...mapGetters(["min", "sec", "msec"]),
+    ...mapGetters(["min", "sec"]),
   },
   props: {
     doRun: { // カウントアップの指示があるか
@@ -39,38 +39,30 @@ export default {
   methods: {
     // カウントアップ処理
     countUp () {
-      if (this.msec === 99) {
-        this.resetMsec() // 99 -> 0 
-        if (this.sec === 59) {
-          this.resetSec() // 59 -> 0
-          this.inclementMin()
-        } else {
-          this.inclementSec()
-        }
+      if (this.sec === 59) {
+        this.resetSec() // 59 -> 0
+        this.inclementMin()
       } else {
-        this.inclementMsec()
+        this.inclementSec()
       }
     },
     ...mapActions(
       ["resetMin",
        "resetSec", 
-       "resetMsec",
        "inclementMin",
-       "inclementSec",
-       "inclementMsec"]
+       "inclementSec"]
       ),
   },
   beforeMount () {
     // タイマーの値をリセット
     this.resetMin()
     this.resetSec()
-    this.resetMsec()
   },
   beforeUpdate () {
     // タイマーの起動・停止を切り替えるか判定する
     if (!this.isRun && this.doRun) { // 停止中に起動処理がでた場合
       this.isRun = true // タイマー起動
-      this.timerObj = setInterval(this.countUp, 10) // カウントアップ開始
+      this.timerObj = setInterval(this.countUp, 1000) // カウントアップ開始
     } else if (this.isRun && !this.doRun) { // 起動中に停止指示がでた場合
       this.isRun = false // タイマー停止
       clearInterval(this.timerObj) // カウントアップ終了
