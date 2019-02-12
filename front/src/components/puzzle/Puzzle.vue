@@ -17,12 +17,12 @@
             .tiles(v-for="(tile, index) in tiles[difficulty]")
               .tile(
                 :style="styles"
-                :class="`_${index}`"
+                :class="`_${tile.no}`"
                 @click="tile.move = true"
                 :key="index")
                 transition(
-                  @leave="tileMove(index)"
-                  @after-leave="tileMoved(index)")
+                  @leave="tileMove(tile.no)"
+                  @after-leave="tileMoved(tile.no)")
                   div(v-show="!tile.move")
                     div(v-show="showSar")
                       img.tile--image(
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   props: {
     top: { // パズルの位置を調整する
@@ -193,41 +194,60 @@ export default {
         '--px': this.px + 'px'
       }
     },
+    cTiles () {
+      return this.tiles[this.difficulty]
+    },
+    cAns () {
+      return this.ans[this.difficulty]
+    },
+    cEmpty () {
+      return this.empty[this.difficulty]
+    }
   },
   mounted () {
-    // タイルの初期位置を決定する
-    this.tiles[this.difficulty].forEach((element,index) => {
-      const tile = this.$el.getElementsByClassName(`_${element.no-1}`)[0]
-      tile.style.top = `${this.tiles[this.difficulty][index].x*this.px}px`
-      tile.style.left = `${this.tiles[this.difficulty][index].y*this.px}px`
-    })
-    this.$emit('ready')
+    this.mountedMethod()
   },
   updated () {
-    // 正解判定を行う
-    for (let i = 0; i < this.tiles[this.difficulty].length; i++) {
-      if ((this.tiles[this.difficulty][i].x !== this.ans[this.difficulty][i].x) ||
-        (this.tiles[this.difficulty][i].y !== this.ans[this.difficulty][i].y)) {
-        return
-      }
-    }
-    // 正解していた場合、puzzleCompleteをemitする
-    this.isComplete = true
-    this.$emit('puzzleComplete')
+    this.updatedMethod()
   },
   methods: {
+    // タイルの位置を変更する
+    setTilePosition (no) {
+      const tile = this.$el.getElementsByClassName(`_${no}`)[0]
+      const cTile = this.cTiles.find(v => {
+        return v.no === no
+      })
+      tile.style.top = `${cTile.x*this.px}px`
+      tile.style.left = `${cTile.y*this.px}px`
+      cTile.move = false
+    },
+    mountedMethod () {
+      // タイルの初期位置を決定する
+      this.cTiles.forEach(e => {
+        this.setTilePosition(e.no)
+      })
+      this.$emit('ready')
+    },
+    updatedMethod () {
+      // 正解判定を行う
+      for (let i = 0; i < this.cTiles.length; i++) {
+        if ((this.cTiles[i].x !== this.cAns[i].x) ||
+          (this.cTiles[i].y !== this.cAns[i].y)) {
+          return
+        }
+      }
+      // 正解していた場合、puzzleCompleteをemitする
+      this.isComplete = true
+      this.$emit('puzzleComplete')
+    },
     // @leaveでタイルをスライドさせる処理
-    tileMove (e, done) {
-      const tile = this.$el.getElementsByClassName(`_${e}`)[0]
-      this.move(e)
-      tile.style.transition = "0.25s"
+    tileMove (no, done) {
+      const tile = this.$el.getElementsByClassName(`_${no}`)[0]
+      this.move(no) // 移動可能か判定し、可能ならx,yを変更する
     },
     // @after-leaveでタイルをスライドさせる処理
-    tileMoved (e) {
-      const tile = this.$el.getElementsByClassName(`_${e}`)[0]
-      tile.style.top = `${this.tiles[this.difficulty][e].x*this.px}px`
-      tile.style.left = `${this.tiles[this.difficulty][e].y*this.px}px`
-      this.tiles[this.difficulty][e].move = false
+    tileMoved (no) {
+      this.setTilePosition(no) // tileMoveで変更したx,yに従ってタイルを移動する
     },
     // パズルが完成した場合の処理
     pushComplete () {
@@ -238,41 +258,46 @@ export default {
       return `/images/${this.mapImages}/${id}.png`
     },
     // タイルが移動できるか判定する
-    move (e) {
-      const target = e
+    move (no) {
+      const tTiles = this.cTiles.find(v => {
+        return v.no === no
+      })
       // 移動してもいいか確認する, OKなら移動する
-      // x + 1に移動
-      if ((this.tiles[this.difficulty][target].x + 1 === this.empty[this.difficulty].x) &&
-        (this.tiles[this.difficulty][target].y === this.empty[this.difficulty].y)) {
-        // 空ブロックの位置を変更
-        this.empty[this.difficulty].x = this.tiles[this.difficulty][target].x
-        // 移動
-        this.tiles[this.difficulty][target].x = this.tiles[this.difficulty][target].x + 1
-
-      // x - 1に移動
-      } else if ((this.tiles[this.difficulty][target].x - 1 === this.empty[this.difficulty].x) &&
-        (this.tiles[this.difficulty][target].y === this.empty[this.difficulty].y)) {
-        // 空ブロックの位置を変更
-        this.empty[this.difficulty].x = this.tiles[this.difficulty][target].x
-        // 移動
-        this.tiles[this.difficulty][target].x = this.tiles[this.difficulty][target].x - 1
-
-      // y + 1に移動
-      } else if ((this.tiles[this.difficulty][target].x === this.empty[this.difficulty].x) &&
-        (this.tiles[this.difficulty][target].y + 1 === this.empty[this.difficulty].y)) {
-        // 空ブロックの位置を変更
-        this.empty[this.difficulty].y = this.tiles[this.difficulty][target].y
-        // 移動
-        this.tiles[this.difficulty][target].y = this.tiles[this.difficulty][target].y + 1
-
-      // y - 1に移動
-      } else if ((this.tiles[this.difficulty][target].x === this.empty[this.difficulty].x) &&
-        (this.tiles[this.difficulty][target].y - 1 === this.empty[this.difficulty].y)) {
-        // 空ブロックの位置を変更
-        this.empty[this.difficulty].y = this.tiles[this.difficulty][target].y
-        // 移動
-        this.tiles[this.difficulty][target].y = this.tiles[this.difficulty][target].y - 1
+      if (this.canMoveDown(tTiles, this.cEmpty)) {
+        this.cEmpty.x = tTiles.x  // 空ブロックの位置を変更
+        tTiles.x = tTiles.x + 1 // 移動
+        return
       }
+
+      if (this.canMoveUp(tTiles, this.cEmpty)) {
+        this.cEmpty.x = tTiles.x // 空ブロックの位置を変更
+        tTiles.x = tTiles.x - 1 // 移動
+        return
+      }
+
+      if (this.canMoveRight(tTiles, this.cEmpty)) {
+        this.cEmpty.y = tTiles.y // 空ブロックの位置を変更
+        tTiles.y = tTiles.y + 1 // 移動
+        return
+      }
+
+      if (this.canMoveLeft(tTiles, this.cEmpty)) {
+        this.cEmpty.y = tTiles.y // 空ブロックの位置を変更
+        tTiles.y = tTiles.y - 1 // 移動
+        return
+      }
+    },
+    canMoveDown (target, empty) {
+      return _.isEqual({x: target.x + 1, y: target.y}, empty)
+    },
+    canMoveUp (target, empty) {
+      return _.isEqual({x: target.x - 1, y: target.y}, empty)
+    },
+    canMoveRight (target, empty) {
+      return _.isEqual({x: target.x, y: target.y + 1}, empty)
+    },
+    canMoveLeft (target, empty) {
+      return _.isEqual({x: target.x, y: target.y - 1}, empty)
     }
   }
 }
@@ -299,6 +324,7 @@ export default {
     width: var(--px);
     height: var(--px);
     position: absolute;
+    transition: 0.25s;
   }
 
   .tile--image {
