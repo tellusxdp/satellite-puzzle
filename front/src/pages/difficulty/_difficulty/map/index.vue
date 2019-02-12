@@ -45,6 +45,12 @@ export default {
     },
   },
   mounted () {
+    const deviceType = this.$ua.deviceType()
+    // PCの場合はスクロール調整を行わない
+    if (deviceType === 'pc') {
+      return
+    }
+
     var mapList = this.$el.getElementsByClassName('map-list')
 
     // マップリストのスクロール処理
