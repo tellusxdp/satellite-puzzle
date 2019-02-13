@@ -14,7 +14,7 @@
             img.completed-image(:src="completedImage")
         transition(name="fade-out")
           div(v-show="!isComplete")
-            .tiles(v-for="(tile, index) in tiles[difficulty]")
+            .tiles(v-for="(tile, index) in tiles")
               .tile(
                 :style="styles"
                 :class="`_${tile.no}`"
@@ -36,6 +36,7 @@
 
 <script>
 import _ from 'lodash'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   props: {
     top: { // パズルの位置を調整する
@@ -67,124 +68,15 @@ export default {
     return {
       isComplete: false, // パズルが完成しているか
       ready: false, // パズルの準備ができているか
-      tiles: { // 開始タイル TODO: ランダム配置
-        easy: [
-          { no:1, x: 0, y: 0, move: false },
-          { no:2, x: 0, y: 1, move: false },
-          { no:3, x: 0, y: 2, move: false },
-          { no:4, x: 1, y: 0, move: false },
-          { no:5, x: 1, y: 1, move: false },
-          { no:6, x: 1, y: 2, move: false },
-          { no:7, x: 2, y: 0, move: false },
-          { no:8, x: 2, y: 1, move: false },
-        ],
-        normal: [
-          { no:1,  x: 0, y: 0, move: false },
-          { no:2,  x: 0, y: 1, move: false },
-          { no:3,  x: 0, y: 2, move: false },
-          { no:4,  x: 0, y: 3, move: false },
-          { no:5,  x: 1, y: 0, move: false },
-          { no:6,  x: 1, y: 1, move: false },
-          { no:7,  x: 1, y: 2, move: false },
-          { no:8,  x: 1, y: 3, move: false },
-          { no:9,  x: 2, y: 0, move: false },
-          { no:10, x: 2, y: 1, move: false },
-          { no:11, x: 2, y: 2, move: false },
-          { no:12, x: 2, y: 3, move: false },
-          { no:13, x: 3, y: 1, move: false },
-          { no:14, x: 3, y: 2, move: false },
-          { no:15, x: 3, y: 3, move: false },
-        ],
-        hard: [
-          { no:'1',  x: 0, y: 0, move: false },
-          { no:'2',  x: 0, y: 1, move: false },
-          { no:'3',  x: 0, y: 2, move: false },
-          { no:'4',  x: 0, y: 3, move: false },
-          { no:'5',  x: 0, y: 4, move: false },
-          { no:'6',  x: 1, y: 0, move: false },
-          { no:'7',  x: 1, y: 1, move: false },
-          { no:'8',  x: 1, y: 2, move: false },
-          { no:'9',  x: 1, y: 3, move: false },
-          { no:'10', x: 1, y: 4, move: false },
-          { no:'11', x: 2, y: 0, move: false },
-          { no:'12', x: 2, y: 1, move: false },
-          { no:'13', x: 2, y: 2, move: false },
-          { no:'14', x: 2, y: 3, move: false },
-          { no:'15', x: 2, y: 4, move: false },
-          { no:'16', x: 3, y: 0, move: false },
-          { no:'17', x: 3, y: 1, move: false },
-          { no:'18', x: 3, y: 2, move: false },
-          { no:'19', x: 3, y: 3, move: false },
-          { no:'20', x: 3, y: 4, move: false },
-          { no:'21', x: 4, y: 0, move: false },
-          { no:'22', x: 4, y: 1, move: false },
-          { no:'23', x: 4, y: 2, move: false },
-          { no:'24', x: 4, y: 3, move: false },
-        ],
-      },
-      empty: { // 空白タイル
-        easy: {x: 2, y: 2},
-        normal: {x: 3, y: 0},
-        hard: {x:4, y: 4},
-      },
-      ans: { // 正解タイル
-        easy: [
-          {no:1, x: 0, y: 0},
-          {no:2, x: 0, y: 1},
-          {no:3, x: 0, y: 2},
-          {no:4, x: 1, y: 0},
-          {no:5, x: 1, y: 1},
-          {no:6, x: 1, y: 2},
-          {no:7, x: 2, y: 0},
-          {no:8, x: 2, y: 1},
-        ],
-        normal: [
-          {no:1, x: 0, y: 0},
-          {no:2, x: 0, y: 1},
-          {no:3, x: 0, y: 2},
-          {no:4, x: 0, y: 3},
-          {no:5, x: 1, y: 0},
-          {no:6, x: 1, y: 1},
-          {no:7, x: 1, y: 2},
-          {no:8, x: 1, y: 3},
-          {no:9, x: 2, y: 0},
-          {no:10, x: 2, y: 1},
-          {no:11, x: 2, y: 2},
-          {no:12, x: 2, y: 3},
-          {no:13, x: 3, y: 0},
-          {no:14, x: 3, y: 1},
-          {no:15, x: 3, y: 2},
-        ],
-        hard: [
-          {no:'1', x: 0, y: 0},
-          {no:'2', x: 0, y: 1},
-          {no:'3', x: 0, y: 2},
-          {no:'4', x: 0, y: 3},
-          {no:'5', x: 0, y: 4},
-          {no:'6', x: 1, y: 0},
-          {no:'7', x: 1, y: 1},
-          {no:'8', x: 1, y: 2},
-          {no:'9', x: 1, y: 3},
-          {no:'10', x: 1, y: 4},
-          {no:'11', x: 2, y: 0},
-          {no:'12', x: 2, y: 1},
-          {no:'13', x: 2, y: 2},
-          {no:'14', x: 2, y: 3},
-          {no:'15', x: 2, y: 4},
-          {no:'16', x: 3, y: 0},
-          {no:'17', x: 3, y: 1},
-          {no:'18', x: 3, y: 2},
-          {no:'19', x: 3, y: 3},
-          {no:'20', x: 3, y: 4},
-          {no:'21', x: 4, y: 0},
-          {no:'22', x: 4, y: 1},
-          {no:'23', x: 4, y: 2},
-          {no:'24', x: 4, y: 3},
-        ],
-      },
+      tiles: [],
+      ans: [],
+      empty: [],
     }
   },
   computed: {
+    ...mapGetters({
+      version: 'version'
+    }),
     px () { // 難易度に応じてタイルの大きさを調整する
       const map = {easy: 160, normal: 120, hard: 96}
       return map[this.difficulty]
@@ -195,14 +87,65 @@ export default {
       }
     },
     cTiles () {
-      return this.tiles[this.difficulty]
+      return this.tiles
     },
     cAns () {
-      return this.ans[this.difficulty]
+      return this.ans
     },
     cEmpty () {
-      return this.empty[this.difficulty]
+      return this.empty
+    },
+    puzzleSetting () {
+      // jsonからタイル表示用の値を設定する
+      const json = require('~/static/tiles.json')
+      const tileList = json.tiles[this.difficulty]
+      const positions = json.positions[this.difficulty]
+
+      // 空白の位置を決定する
+      const empty = json.empty[this.difficulty]
+
+      // 正解の組み合わせを作成する
+      const ans = []
+      positions.forEach((e,i) => {
+        ans.push({
+          no: i+1,
+          x: e.x,
+          y: e.y
+        })
+      })
+
+     // 使用するタイルをランダムに決定する
+      const tiles = []
+
+      let v = this.version
+      // 使用するタイルの配列が指定されていない場合
+      if (v === -1 || v > tileList.length) {
+        v = Math.floor( Math.random() * tileList.length)
+        this.setVersion(v) // 0 ~ 配列の要素数 までの乱数
+      }
+      tileList[v].forEach((e, i) => {
+        const p = positions.find(v => {
+          return v.p === e
+        })
+        tiles.push({
+          no: i+1,
+          x: p.x,
+          y: p.y,
+          move: false
+        })
+      })
+      return {
+        tiles: tiles,
+        ans: ans,
+        empty: empty,
+      }
     }
+  },
+  created () {
+    const { tiles, ans, empty } = this.puzzleSetting
+    this.tiles = tiles.concat()
+    this.ans = ans
+    this.empty = {x: empty.x, y: empty.y}
   },
   mounted () {
     this.mountedMethod()
@@ -211,6 +154,15 @@ export default {
     this.updatedMethod()
   },
   methods: {
+    ...mapActions({
+      setVersion: 'setVersion',
+    }),
+    reset () {
+      const { tiles, empty } = this.puzzleSetting
+      this.tiles = null
+      this.tiles = tiles.concat()
+      this.empty = {x: empty.x, y: empty.y}
+    },
     // タイルの位置を変更する
     setTilePosition (no) {
       const tile = this.$el.getElementsByClassName(`_${no}`)[0]

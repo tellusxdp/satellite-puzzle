@@ -42,34 +42,13 @@ describe('Puzzle.vue', () => {
         expect(wrapper.vm.styles).toEqual({'--px': '160px'})
       })
     })
-    describe('cTiles', () => {
-      test('想定したpropsとdataの構造で値が取得できること', () => {
-        wrapper.setProps({difficulty: 'easy'})
-        wrapper.setData({tiles: {easy: true, normal: false}})
-        expect(wrapper.vm.cTiles).toBe(true)
-      })
-    })
-    describe('cAns', () => {
-      test('想定したpropsとdataの構造で値が取得できること', () => {
-        wrapper.setProps({difficulty: 'easy'})
-        wrapper.setData({ans: {easy: true, normal: false}})
-        expect(wrapper.vm.cAns).toBe(true)
-      })
-    })
-    describe('cEmpty', () => {
-      test('想定したpropsとdataの構造で値が取得できること', () => {
-        wrapper.setProps({difficulty: 'easy'})
-        wrapper.setData({empty: {easy: true, normal: false}})
-        expect(wrapper.vm.cEmpty).toBe(true)
-      })
-    })
   })
   // methods
   describe('methods', () => {
     describe('mountedMethod', () => {
       test('タイルの初期位置を設定すること', () => {  
         wrapper.setProps({difficulty: 'easy'})
-        wrapper.setData({tiles: {easy: [{no: 1, x:2, y: 3}, {no: 2, x: 5, y: 6}]}})
+        wrapper.setData({tiles: [{no: 1, x:2, y: 3}, {no: 2, x: 5, y: 6}]})
         // テスト実施
         wrapper.vm.mountedMethod()
         expect(wrapper.vm.$el.getElementsByClassName('_1')[0].style.top).toBe('320px')
@@ -88,8 +67,8 @@ describe('Puzzle.vue', () => {
         expect(wrapper.emitted('puzzleComplete')).toBeFalsy()
         wrapper.setProps({difficulty: 'easy'})
         wrapper.setData({
-          tiles: {easy: [{no: 1, x:2, y: 3}, {no: 2, x: 5, y: 6}]}, 
-          ans: {easy: [{no:1,x:2,y:3}, {no:2, x: 5, y: 6}]}
+          tiles: [{no: 1, x:2, y: 3}, {no: 2, x: 5, y: 6}], 
+          ans: [{no:1,x:2,y:3}, {no:2, x: 5, y: 6}]
         })
         // テスト実施
         wrapper.vm.updatedMethod
@@ -99,70 +78,64 @@ describe('Puzzle.vue', () => {
     })
     describe('tileMove', () => {
       test('y+1の移動', () => {
-        wrapper.setProps({difficulty: 'easy'})
         wrapper.setData({
-          tiles: {easy: [{no: 1, x:1, y: 0}]},
-          empty: {easy: {x:1, y:1} },
+          tiles: [{no: 1, x:1, y: 0}],
+          empty: {x:1, y:1},
         })
         wrapper.vm.tileMove(1)
-        expect(wrapper.vm.tiles.easy).toEqual([{no:1, x:1, y: 1}])
-        expect(wrapper.vm.empty.easy).toEqual({x:1, y: 0})
+        expect(wrapper.vm.tiles).toEqual([{no:1, x:1, y: 1}])
+        expect(wrapper.vm.empty).toEqual({x:1, y: 0})
       })
       test('y-1の移動', () => {
-        wrapper.setProps({difficulty: 'easy'})
         wrapper.setData({
-          tiles: {easy: [{no: 1, x:1, y: 1}]},
-          empty: {easy: {x:1, y:0} },
+          tiles: [{no: 1, x:1, y: 1}],
+          empty: {x:1, y:0},
         })
         wrapper.vm.tileMove(1)
-        expect(wrapper.vm.tiles.easy).toEqual([{no:1, x:1, y: 0}])
-        expect(wrapper.vm.empty.easy).toEqual({x:1, y: 1})
+        expect(wrapper.vm.tiles).toEqual([{no:1, x:1, y: 0}])
+        expect(wrapper.vm.empty).toEqual({x:1, y: 1})
       })
       test('x+1の移動', () => {
-        wrapper.setProps({difficulty: 'easy'})
         wrapper.setData({
-          tiles: {easy: [{no: 1, x:0, y: 1}]},
-          empty: {easy: {x:1, y:1} },
+          tiles: [{no: 1, x:0, y: 1}],
+          empty: {x:1, y:1},
         })
         wrapper.vm.tileMove(1)
-        expect(wrapper.vm.tiles.easy).toEqual([{no:1, x:1, y: 1}])
-        expect(wrapper.vm.empty.easy).toEqual({x:0, y: 1})
+        expect(wrapper.vm.tiles).toEqual([{no:1, x:1, y: 1}])
+        expect(wrapper.vm.empty).toEqual({x:0, y: 1})
       })
       test('x-1の移動', () => {
-        wrapper.setProps({difficulty: 'easy'})
         wrapper.setData({
-          tiles: {easy: [{no: 1, x:1, y: 1}]},
-          empty: {easy: {x:0, y:1} },
+          tiles: [{no: 1, x:1, y: 1}],
+          empty: {x:0, y:1},
         })
         wrapper.vm.tileMove(1)
-        expect(wrapper.vm.tiles.easy).toEqual([{no:1, x:0, y: 1}])
-        expect(wrapper.vm.empty.easy).toEqual({x:1, y: 1})
+        expect(wrapper.vm.tiles).toEqual([{no:1, x:0, y: 1}])
+        expect(wrapper.vm.empty).toEqual({x:1, y: 1})
       })
       test('移動しない', () => {
-        wrapper.setProps({difficulty: 'easy'})
         wrapper.setData({
-          tiles: {easy: [{no: 1, x:3, y: 1}]},
-          empty: {easy: {x:1, y:1} },
+          tiles: [{no: 1, x:3, y: 1}],
+          empty: {x:1, y:1},
         })
         wrapper.vm.tileMove(1)
-        expect(wrapper.vm.tiles.easy).toEqual([{no:1, x:3, y: 1}])
-        expect(wrapper.vm.empty.easy).toEqual({x:1, y: 1})
+        expect(wrapper.vm.tiles).toEqual([{no:1, x:3, y: 1}])
+        expect(wrapper.vm.empty).toEqual({x:1, y: 1})
       })
       test('移動しない', () => {
-        wrapper.setProps({difficulty: 'easy'})
         wrapper.setData({
-          tiles: {easy: [{no: 1, x:0, y: 0}]},
-          empty: {easy: {x:1, y:1} },
+          tiles: [{no: 1, x:0, y: 0}],
+          empty: {x:1, y:1},
         })
         wrapper.vm.tileMove(1)
-        expect(wrapper.vm.tiles.easy).toEqual([{no:1, x:0, y: 0}])
-        expect(wrapper.vm.empty.easy).toEqual({x:1, y: 1})
+        expect(wrapper.vm.tiles).toEqual([{no:1, x:0, y: 0}])
+        expect(wrapper.vm.empty).toEqual({x:1, y: 1})
       })
     })
     describe('tileMoved', () => {
       test('', () => {
         wrapper.setProps({difficulty: 'easy'})
-        wrapper.setData({tiles: {easy: [{no: 1, x:2, y: 3}, {no: 2, x: 5, y: 6}]}})
+        wrapper.setData({tiles: [{no: 1, x:2, y: 3}, {no: 2, x: 5, y: 6}]})
         // テスト実施
         wrapper.vm.tileMoved(1)
         expect(wrapper.vm.$el.getElementsByClassName('_1')[0].style.top).toBe('320px')
