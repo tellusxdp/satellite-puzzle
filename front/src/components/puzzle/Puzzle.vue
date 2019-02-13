@@ -236,6 +236,10 @@ export default {
           return
         }
       }
+      // すでに完成判定を行なっていた場合は処理を終了する
+      if (this.isComplete) {
+        return
+      }
       // 正解していた場合、puzzleCompleteをemitする
       this.isComplete = true
       this.$emit('puzzleComplete')

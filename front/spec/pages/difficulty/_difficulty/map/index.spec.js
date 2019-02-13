@@ -10,6 +10,9 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 localVue.use(VueRouter)
 
+const $ua = {
+  deviceType: () => 'pc'
+}
 
 const router = new VueRouter({
     params: { difficulty: 'normal' },
@@ -18,7 +21,7 @@ const router = new VueRouter({
     ],
 });
 
-describe('pages/difficulty/_difficulty/index.vue', () => {
+describe('pages/difficulty/_difficulty/map/index.vue', () => {
   let wrapper
   let store
   beforeEach(() => {
@@ -30,6 +33,9 @@ describe('pages/difficulty/_difficulty/index.vue', () => {
       store,
       localVue,
       router,
+      mocks: {
+        $ua
+      }    
     })
   })
 

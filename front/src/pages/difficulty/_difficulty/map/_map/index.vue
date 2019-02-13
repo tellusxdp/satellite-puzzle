@@ -9,21 +9,20 @@
           count-up-timer(:do-run="run")
       .puzzle-area
         .hint-area(v-show="hint")
-            .shadow
-              img.completed-image(:src="completedImage")
-        div(v-show="!hint")
-          .normal-puzzle(
-            v-if="puzzle"
-            @click.once="puzzleStart")
-            puzzle(
-              :difficulty="difficulty"
-              :show-sar="showSar"
-              :map-images="mapImages"
-              :completed-image="completedImage"
-              @ready="puzzleReady"
-              @puzzleComplete="stopTimer"
-              @pushComplete="pushComplete")
-          div(v-else) {{ resetPuzzle }}
+          .shadow
+            img.completed-image(:src="completedImage")
+        .normal-puzzle(
+          v-if="puzzle"
+          @click.once="puzzleStart")
+          puzzle(
+            :difficulty="difficulty"
+            :show-sar="showSar"
+            :map-images="mapImages"
+            :completed-image="completedImage"
+            @ready="puzzleReady"
+            @puzzleComplete="stopTimer"
+            @pushComplete="pushComplete")
+        div(v-else) {{ resetPuzzle }}
       br
       div.sar
         p ボタンを押したら、
@@ -42,11 +41,11 @@
         @onClick="openModal"
         :src="require('~/assets/images/button/btn_giveup.png')"
         :srcActive="require('~/assets/images/button/btn_prs_giveup.png')")
-      modal.modal-area(
+      retire-modal.modal-area(
         @close="closeModal"
         @retry="pushRetry"
         @top="pushTop"
-        v-if="modal")
+        v-show="modal")
 </template>
 
 
@@ -54,7 +53,7 @@
 import _ from 'lodash'
 import Loading from '~/components/Loading'
 import CountUpTimer from '~/components/CountUpTimer'
-import Modal from '~/components/modal/Retire'
+import RetireModal from '~/components/modal/Retire'
 import PrsButton from '~/components/buttons/PrsButton'
 import ClickButton from '~/components/buttons/ClickButton'
 import Puzzle from '~/components/puzzle/Puzzle'
@@ -75,7 +74,7 @@ export default {
   components: {
     Loading,
     CountUpTimer,
-    Modal,
+    RetireModal,
     PrsButton,
     ClickButton,
     Puzzle,
@@ -100,7 +99,7 @@ export default {
       map: 'mt-fuji'
     }
   },
-  asyncData(context) {
+    asyncData(context) {
     return {
       difficulty: context.params.difficulty,
       map: context.params.map
@@ -122,7 +121,8 @@ export default {
   methods: {
     ...mapActions({
       updateBestRecords: 'updateBestRecords',
-      setBestRecord: 'setBestRecord'
+      setBestRecord: 'setBestRecord',
+      setIsNewRecord: 'setIsNewRecord'
     }),
     puzzleReady () {
       // パズルの準備ができたことを検知
@@ -134,23 +134,31 @@ export default {
     stopTimer () { // タイマー停止処理
       this.run = false // タイマーを停止する
 
-      // 難易度・マップに対応する自己記録を取得する
+      // 難易度・マップに対応する新記録を取得する
       const difficulty = this.difficulty
       const map = this.map
       const best = this.bestRecords.find(v => {
         return v.difficulty === difficulty && v.map === map
       })
 
-
       // 初回の場合
-      if (best.length === 0) {
-        // 記録を自己記録として登録
+      if (!best) {
+        // 記録を新記録として登録
+        this.updateBestRecords({
+          difficulty: difficulty,
+          map: map,
+          min: this.min,
+          sec: this.sec
+        })
         // ベストレコードにはnullを設定する
-       this.setBestRecord(null)
+        this.setBestRecord(null)
+        this.setIsNewRecord(true)
+        return
       }
 
-      // 自己記録を更新した場合
-      if (this.min < best.min || this.min === best.min && this.sec < best.sec) {
+      // 新記録の場合
+      if (this.min < best.min || 
+        (this.min === best.min && this.sec < best.sec)) {
         // 新記録を登録する
         this.updateBestRecords({
           difficulty: difficulty,
@@ -158,8 +166,11 @@ export default {
           min: this.min,
           sec: this.sec
         })
-      // 新記録を保存する
-      this.setBestRecord({ min: this.min, sec: this.sec })
+        this.setIsNewRecord(true)
+        this.setBestRecord({ min: this.min, sec: this.sec })
+      } else {
+        this.setIsNewRecord(false)
+        this.setBestRecord({ min: best.min, sec: best.sec })
       }
     },
     pushComplete () { // 完成画面に遷移する
@@ -199,13 +210,14 @@ export default {
       min: 'min',
       sec: 'sec',
       bestRecords: 'bestRecords',
+      bestRecord: 'bestRecord',
+      puzzles: 'puzzles'
     }),
     // SAR画像を表示する時間を指定
     showSar () {
       const sec = this.sec
       return this.targetSec(sec)
     },
-    ...mapGetters(["puzzles"]),
     // 選択したマップを返す（不正な値の場合はnull）
     selectedMap () {
       const m = this.puzzles
@@ -340,6 +352,7 @@ export default {
   width: 540px;
   height: 540px;
   position: absolute;
+  z-index: 10;
 
   .shadow {
     border: solid 10px #192342;

@@ -4,6 +4,7 @@ const state = () => ({
   sec: 0, // パズルにかかった時間（秒）
   bestRecords: [], // 自己記録
   bestRecord: {}, // 今回プレイしたマップ・難易度の自己記録
+  isNewRecord: false, // 新記録かどうか
 })
 
 const getters = {
@@ -12,6 +13,7 @@ const getters = {
   sec: state => state.sec,
   bestRecords: state => state.bestRecords,
   bestRecord: state => state.bestRecord,
+  isNewRecord: state => state.isNewRecord,
 }
 
 const mutations = {
@@ -25,6 +27,9 @@ const mutations = {
   SET_BEST_RECORDS(state, record) { state.bestRecords = record },
   SET_BEST_RECORD(state, record) {
     state.bestRecord = record
+  },
+  SET_IS_NEW_RECORD(state, isNewRecord) {
+    state.isNewRecord = isNewRecord
   }
 }
 
@@ -64,7 +69,7 @@ const actions = {
   inclementSec({ commit }) { commit('INCLEMENT_SEC') },
   updateBestRecords({ commit }, record) { // bestRecordsを更新する
     // bestRecordsを全て取得
-    let bestRecords = this.state.bestRecords
+    let bestRecords = this.state.bestRecords.concat()
 
     // recordの難易度・マップに対応するindexをbestRecordsから取得
     const i = bestRecords.findIndex(v => {
@@ -85,6 +90,9 @@ const actions = {
   },
   setBestRecord({ commit }, record) {
     commit('SET_BEST_RECORD', record)
+  },
+  setIsNewRecord({ commit }, isNewRecord) {
+    commit('SET_IS_NEW_RECORD', isNewRecord)
   }
 }
 

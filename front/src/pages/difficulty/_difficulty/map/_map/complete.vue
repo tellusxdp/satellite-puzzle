@@ -10,8 +10,8 @@
           :completedImage="completedImage",
           :min="min",
           :sec="sec",
-          :bestMin="bestRecord.min",
-          :bestSec="bestRecord.sec")
+          :isNewRecord="isNewRecord",
+          :bestRecord="bestRecord")
     .button-area
       click-button(
         @onClick="pushTop"
@@ -81,8 +81,8 @@ export default {
     ...mapGetters({
       min: 'min',
       sec: 'sec',
-      bestRecords: 'bestRecords',
       bestRecord: 'bestRecord',
+      isNewRecord: 'isNewRecord',
       puzzles: 'puzzles'
     }),
     // 選択したマップを返す（不正な値の場合はnull）
@@ -126,7 +126,7 @@ export default {
     },
     completedImage () { // 完成画像のパス
       return `/images/${this.mapImages}/completed.png`
-    }
+    },
   },
   methods: {
     pushTop () { // TOPへ遷移する
