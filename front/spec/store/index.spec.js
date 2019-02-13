@@ -84,7 +84,6 @@ describe('store/index.js', () => {
             store.dispatch('resetSec')
             expect(store.getters['sec']).toBe(0)
         }),
-        // TODO：更新ロジックもこっちに入れる？
         describe('updateBestRecord', () => {
             test('初回', () => {
                 const record =  {
