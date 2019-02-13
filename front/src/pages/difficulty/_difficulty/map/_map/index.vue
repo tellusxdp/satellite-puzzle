@@ -9,21 +9,20 @@
           count-up-timer(:do-run="run")
       .puzzle-area
         .hint-area(v-show="hint")
-            .shadow
-              img.completed-image(:src="completedImage")
-        div(v-show="!hint")
-          .normal-puzzle(
-            v-if="puzzle"
-            @click.once="puzzleStart")
-            puzzle(
-              :difficulty="difficulty"
-              :show-sar="showSar"
-              :map-images="mapImages"
-              :completed-image="completedImage"
-              @ready="puzzleReady"
-              @puzzleComplete="stopTimer"
-              @pushComplete="pushComplete")
-          div(v-else) {{ resetPuzzle }}
+          .shadow
+            img.completed-image(:src="completedImage")
+        .normal-puzzle(
+          v-if="puzzle"
+          @click.once="puzzleStart")
+          puzzle(
+            :difficulty="difficulty"
+            :show-sar="showSar"
+            :map-images="mapImages"
+            :completed-image="completedImage"
+            @ready="puzzleReady"
+            @puzzleComplete="stopTimer"
+            @pushComplete="pushComplete")
+        div(v-else) {{ resetPuzzle }}
       br
       div.sar
         p ボタンを押したら、
@@ -42,11 +41,11 @@
         @onClick="openModal"
         :src="require('~/assets/images/button/btn_giveup.png')"
         :srcActive="require('~/assets/images/button/btn_prs_giveup.png')")
-      modal.modal-area(
+      retire-modal.modal-area(
         @close="closeModal"
         @retry="pushRetry"
         @top="pushTop"
-        v-if="modal")
+        v-show="modal")
 </template>
 
 
@@ -54,7 +53,7 @@
 import _ from 'lodash'
 import Loading from '~/components/Loading'
 import CountUpTimer from '~/components/CountUpTimer'
-import Modal from '~/components/modal/Retire'
+import RetireModal from '~/components/modal/Retire'
 import PrsButton from '~/components/buttons/PrsButton'
 import ClickButton from '~/components/buttons/ClickButton'
 import Puzzle from '~/components/puzzle/Puzzle'
@@ -75,7 +74,7 @@ export default {
   components: {
     Loading,
     CountUpTimer,
-    Modal,
+    RetireModal,
     PrsButton,
     ClickButton,
     Puzzle,
@@ -100,7 +99,7 @@ export default {
       map: 'mt-fuji'
     }
   },
-  asyncData(context) {
+    asyncData(context) {
     return {
       difficulty: context.params.difficulty,
       map: context.params.map
@@ -141,12 +140,12 @@ export default {
         return v.difficulty === difficulty && v.map === map
       })
 
-
       // 初回の場合
-      if (best.length === 0) {
+      if (!best) {
         // 記録を自己記録として登録
         // ベストレコードにはnullを設定する
        this.setBestRecord(null)
+       return
       }
 
       // 自己記録を更新した場合
@@ -340,6 +339,7 @@ export default {
   width: 540px;
   height: 540px;
   position: absolute;
+  z-index: 10;
 
   .shadow {
     border: solid 10px #192342;
