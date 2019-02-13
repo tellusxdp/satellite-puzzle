@@ -86,31 +86,5 @@ describe('Result.vue', () => {
         expect(wrapper.vm.formatBestSec).toBe('01')
         })
     })
-    describe('isNewRecord', () => {
-      test('bestRecordがnul', () => {
-        wrapper.setProps({ bestRecord:null }) 
-        expect(wrapper.vm.isNewRecord).toBeTruthy()
-      })
-      test('bestRecordの方がminが小さい', () => {
-        wrapper.setProps({ min: 2, bestRecord:{ min: 1 } }) 
-        expect(wrapper.vm.isNewRecord).toBeFalsy()
-      })
-      test('bestRecordの方がminが大きい', () => {
-        wrapper.setProps({ min: 1, bestRecord:{ min: 2 } }) 
-        expect(wrapper.vm.isNewRecord).toBeTruthy()
-      })
-      test('minは同じだがbestRecordの方がsecが小さい', () => {
-        wrapper.setProps({ min: 1, sec: 2, bestRecord:{ min: 1, sec: 1 } }) 
-        expect(wrapper.vm.isNewRecord).toBeFalsy()
-      })
-      test('minは同じだがbestRecordの方がsecが大きい', () => {
-        wrapper.setProps({ min: 1, sec: 1, bestRecord:{ min: 1, sec: 2 } }) 
-        expect(wrapper.vm.isNewRecord).toBeTruthy()
-      })
-      test('minもsecも同じ', () => {
-        wrapper.setProps({ min: 1, sec: 1, bestRecord:{ min: 1, sec: 1 } }) 
-        expect(wrapper.vm.isNewRecord).toBeFalsy()
-      })
-    })
   })
 })

@@ -121,7 +121,8 @@ export default {
   methods: {
     ...mapActions({
       updateBestRecords: 'updateBestRecords',
-      setBestRecord: 'setBestRecord'
+      setBestRecord: 'setBestRecord',
+      setIsNewRecord: 'setIsNewRecord'
     }),
     puzzleReady () {
       // パズルの準備ができたことを検知
@@ -133,7 +134,7 @@ export default {
     stopTimer () { // タイマー停止処理
       this.run = false // タイマーを停止する
 
-      // 難易度・マップに対応する自己記録を取得する
+      // 難易度・マップに対応する新記録を取得する
       const difficulty = this.difficulty
       const map = this.map
       const best = this.bestRecords.find(v => {
@@ -142,14 +143,22 @@ export default {
 
       // 初回の場合
       if (!best) {
-        // 記録を自己記録として登録
+        // 記録を新記録として登録
+        this.updateBestRecords({
+          difficulty: difficulty,
+          map: map,
+          min: this.min,
+          sec: this.sec
+        })
         // ベストレコードにはnullを設定する
-       this.setBestRecord(null)
-       return
+        this.setBestRecord(null)
+        this.setIsNewRecord(true)
+        return
       }
 
-      // 自己記録を更新した場合
-      if (this.min < best.min || this.min === best.min && this.sec < best.sec) {
+      // 新記録の場合
+      if (this.min < best.min || 
+        (this.min === best.min && this.sec < best.sec)) {
         // 新記録を登録する
         this.updateBestRecords({
           difficulty: difficulty,
@@ -157,8 +166,11 @@ export default {
           min: this.min,
           sec: this.sec
         })
-      // 新記録を保存する
-      this.setBestRecord({ min: this.min, sec: this.sec })
+        this.setIsNewRecord(true)
+        this.setBestRecord({ min: this.min, sec: this.sec })
+      } else {
+        this.setIsNewRecord(false)
+        this.setBestRecord({ min: best.min, sec: best.sec })
       }
     },
     pushComplete () { // 完成画面に遷移する
@@ -198,13 +210,14 @@ export default {
       min: 'min',
       sec: 'sec',
       bestRecords: 'bestRecords',
+      bestRecord: 'bestRecord',
+      puzzles: 'puzzles'
     }),
     // SAR画像を表示する時間を指定
     showSar () {
       const sec = this.sec
       return this.targetSec(sec)
     },
-    ...mapGetters(["puzzles"]),
     // 選択したマップを返す（不正な値の場合はnull）
     selectedMap () {
       const m = this.puzzles

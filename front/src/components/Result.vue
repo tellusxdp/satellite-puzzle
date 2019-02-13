@@ -14,7 +14,7 @@
       span.time-unit 秒
     .personal-best
       img.new-record(
-        v-show="isNewRecord"
+        v-if="isNewRecord"
         src="~assets/images/result/img_koshin.png")
       p
         span.text あなたの自己ベスト
@@ -43,6 +43,10 @@ export default {
     bestRecord: { // 自己記録（初回はnull）
       type: Object,
       default: null,
+    },
+    isNewRecord: { // 新記録か
+      type: Boolean,
+      default: false,
     },
     completedImage: { // 完成画像
       type: String,
@@ -78,13 +82,6 @@ export default {
     },
     formatBestSec () { // 表示用:自己記録（秒）
       return this.format(this.bestSec) 
-    },
-    isNewRecord () { // 新記録かどうか
-      if (!this.bestRecord) {
-        return true
-      }
-      return this.min < this.bestMin ||
-        this.min === this.bestMin && this.sec < this.bestSec
     }
   }
 }

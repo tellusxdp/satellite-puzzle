@@ -22,7 +22,7 @@ export default {
   },
   data () {
     return {
-      difficulty: ''
+      difficulty: 'normal'
     }
   },
   asyncData(context) {
@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     mapList() { // 表示するマップのリストを作成する
-    const difficultyMap =  { // 難易度と画像分割数との対応
+      const difficultyMap =  { // 難易度と画像分割数との対応
         easy: 3,
         normal: 4,
         hard: 5,
