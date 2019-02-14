@@ -6,15 +6,17 @@
       .modal-background(v-if="modal")
       .timer-area
         div(v-if="puzzle")
-          count-up-timer(:do-run="run")
+          count-up-timer(
+            ref="timer"
+            :do-run="run")
       .puzzle-area
         .hint-area(v-show="hint")
           .shadow
             img.completed-image(:src="completedImage")
-        .normal-puzzle(
-          v-if="puzzle"
-          @click.once="puzzleStart")
+        .puzzle(@click="puzzleStart")
           puzzle(
+            ref="puzzle"
+            v-if="puzzle"
             :difficulty="difficulty"
             :show-sar="showSar"
             :map-images="mapImages"
@@ -22,7 +24,6 @@
             @ready="puzzleReady"
             @puzzleComplete="stopTimer"
             @pushComplete="pushComplete")
-        div(v-else) {{ resetPuzzle }}
       br
       div.sar
         p ボタンを押したら、
@@ -105,12 +106,8 @@ export default {
       map: context.params.map
     }
   },
-  watch: {
-    // 暫定対応：一定時間パズルをv-ifで破棄し、その後再描画することで初期値に戻す
-    puzzle: _.debounce(function(newVal, oldVal) {
-      this.puzzle = true
-    },
-    500)
+  created () {
+    this.setVersion(-1)
   },
   mounted () {
     // 2秒以上遅延する場合はloadingを表示する
@@ -118,11 +115,17 @@ export default {
       this.ready.page = true
     }, 2000)
   },
+  updated () {
+    if (!this.puzzle) {
+      this.puzzle = true
+    }
+  },
   methods: {
     ...mapActions({
       updateBestRecords: 'updateBestRecords',
       setBestRecord: 'setBestRecord',
-      setIsNewRecord: 'setIsNewRecord'
+      setIsNewRecord: 'setIsNewRecord',
+      setVersion: 'setVersion',
     }),
     puzzleReady () {
       // パズルの準備ができたことを検知
@@ -188,6 +191,8 @@ export default {
     },
     pushRetry() { // TODO:
       this.modal = false
+      this.run = false
+      this.$refs.puzzle.reset()
       this.puzzle = false
     },
     pushTop() { // TOPに遷移する
@@ -195,7 +200,10 @@ export default {
     },
     dispHint () { // ヒントを表示する
       this.hint = true // ヒントを表示する
-      // TODO: ヒントを表示したらペナルティでカウントアップする処理
+      // ヒントを表示したらペナルティでカウントアップする処理
+      for (let i = 0; i < 3; i++) { // 3秒カウントアップする
+        this.$refs.timer.countUp()
+      }
     },
     noDispHint () { // ヒントを非表示にする
       this.hint = false // ヒントを非表示にする処理
@@ -275,14 +283,7 @@ export default {
   height: 540px;
 }
 
-.easy-puzzle {
-  top: 50px;
-  left: 50px;
-  width: 540px;
-  height: 540px;
-}
-
-.normal-puzzle {
+.puzzle {
   width: 540px;
   height: 540px;
 }
@@ -383,6 +384,7 @@ export default {
 
 .modal-area {
   position: absolute;
+  z-index: 20;
 }
 
 .loading {

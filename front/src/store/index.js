@@ -1,3 +1,5 @@
+import { cpus } from 'os';
+
 const state = () => ({
   puzzles: {}, // puzzle.jsonから取得した情報
   min: 0, // パズルにかかった時間（分）
@@ -5,6 +7,7 @@ const state = () => ({
   bestRecords: [], // 自己記録
   bestRecord: {}, // 今回プレイしたマップ・難易度の自己記録
   isNewRecord: false, // 新記録かどうか
+  version: -1, // 現在プレイ中のパズルの初期配置番号
 })
 
 const getters = {
@@ -14,6 +17,7 @@ const getters = {
   bestRecords: state => state.bestRecords,
   bestRecord: state => state.bestRecord,
   isNewRecord: state => state.isNewRecord,
+  version: state => state.version,
 }
 
 const mutations = {
@@ -30,6 +34,9 @@ const mutations = {
   },
   SET_IS_NEW_RECORD(state, isNewRecord) {
     state.isNewRecord = isNewRecord
+  },
+  SET_VERSION(state, version) {
+    state.version = version
   }
 }
 
@@ -93,6 +100,9 @@ const actions = {
   },
   setIsNewRecord({ commit }, isNewRecord) {
     commit('SET_IS_NEW_RECORD', isNewRecord)
+  },
+  setVersion({ commit }, version) {
+    commit('SET_VERSION', version)
   }
 }
 
