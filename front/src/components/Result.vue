@@ -141,7 +141,7 @@ export default {
   width: 64px;
   height: 45px;
   opacity: 0.98;
-  font-family: OpenSans-BoldItalic;
+  font-family: OpenSans;
   font-size: 61.5px;
   font-weight: bold;
   font-style: italic;
