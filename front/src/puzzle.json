@@ -1,58 +1,86 @@
 {
   "puzzles": [
     {
-      "id": "mt-fuji",
-      "name": "富士山",
-      "description": "この画像は富士山です",
+      "id": "lake-biwako",
+      "name": "琵琶湖",
+      "description": "日本最大の面積と貯水量を誇る湖",
       "parameters": [
         {
-          "kind": "landsat8",
-          "z": 13,
-          "x": 7248,
-          "y": 3226,
+          "kind": "true",
+          "z": 9,
+          "x": 449,
+          "y": 202,
           "split_n": 3
         },
         {
-          "kind": "landsat8",
-          "z": 13,
-          "x": 7248,
-          "y": 3226,
+          "kind": "true",
+          "z": 9,
+          "x": 449,
+          "y": 202,
           "split_n": 4
         },
         {
-          "kind": "landsat8",
-          "z": 13,
-          "x": 7248,
-          "y": 3226,
+          "kind": "true",
+          "z": 9,
+          "x": 449,
+          "y": 202,
           "split_n": 5
         }
       ]
     },
     {
-      "id": "mt-kilauea",
-      "name": "キラウエア火山",
-      "description": "この画像はキラウエア火山です",
+      "id": "city-tokyo",
+      "name": "東京",
+      "description": "世界最大級のメトロポリス",
       "parameters": [
         {
-          "kind": "landsat8",
-          "z": 13,
-          "x": 7249,
-          "y": 3226,
+          "kind": "true",
+          "z": 10,
+          "x": 909,
+          "y": 403,
+          "split_n": 3
+        },
+        {
+          "kind": "true",
+          "z": 10,
+          "x": 909,
+          "y": 403,
           "split_n": 4
+        },
+        {
+          "kind": "true",
+          "z": 10,
+          "x": 909,
+          "y": 403,
+          "split_n": 5
         }
       ]
     },
     {
-      "id": "mt-busan",
-      "name": "未釜山",
-      "description": "この画像は未釜山です",
+      "id": "island-noto",
+      "name": "能登半島",
+      "description": "ナマコの特産地",
       "parameters": [
         {
-          "kind": "landsat8",
-          "z": 13,
-          "x": 7249,
-          "y": 3226,
+          "kind": "true",
+          "z": 8,
+          "x": 255,
+          "y": 99,
+          "split_n": 3
+        },
+        {
+          "kind": "true",
+          "z": 8,
+          "x": 255,
+          "y": 99,
           "split_n": 4
+        },
+        {
+          "kind": "true",
+          "z": 8,
+          "x": 255,
+          "y": 99,
+          "split_n": 5
         }
       ]
     }
