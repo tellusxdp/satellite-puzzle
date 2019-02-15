@@ -1,39 +1,56 @@
-@font-face {
-  font-family: 'NotoSansCJKjp';
-    // src: url('./NotoSansCJKjp-Light.otf');
-    src: url('./NotoSansCJKjp-Regular.otf');
-    // src: url('./NotoSansCJKjp-Bold.otf');
-}
-
-@font-face {
-  font-family: 'NotoSansCJKjp-Bold';
-    src: url('./NotoSansCJKjp-Bold.otf');
-}
-
-
-@font-face {
+@font-face { //   OpenSans-SemiboldItalic
   font-family: 'OpenSans';
-    src: url('./OpenSans-SemiboldItalic.ttf');
+    src: url('./OpenSans/SemiboldItalic/OpenSans-SemiboldItalic.woff') format('woff'),
+         url('./OpenSans/SemiboldItalic/OpenSans-SemiboldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
 }
 
-/* @font-face kit by Fonts2u (https://fonts2u.com) */
-@font-face {
-  font-family:"OpenSans-ExtraboldItalic";
-    src: url('./OpenSans-ExtraBoldItalic/OpenSans-ExtraBoldItalic.eot?') format("eot"),
-         url('./OpenSans-ExtraBoldItalic/OpenSans-ExtraBoldItalic.woff') format("woff"),
-         url('./OpenSans-ExtraBoldItalic/OpenSans-ExtraBoldItalic.ttf') format("truetype"),
-         url('./OpenSans-ExtraBoldItalic/OpenSans-ExtraBoldItalic.svg#OpenSans-ExtraboldItalic') format("svg");
-    font-weight:normal;
-    font-style:normal;
+@font-face { //   OpenSans-BoldItalic
+  font-family: 'OpenSans';
+  font-weight: bold;
+  font-style: italic;
+  src: url('./OpenSans/BoldItalic/OpenSans-BoldItalic.woff') format('woff'),
+       url('./OpenSans/BoldItalic/OpenSans-BoldItalic.ttf') format('truetype');
 }
 
-/* @font-face kit by Fonts2u (https://fonts2u.com) */
-@font-face {
-  font-family:"OpenSans-BoldItalic";
-    src: url('./OpenSans-BoldItalic/OpenSans-BoldItalic.eot?') format("eot"),
-         url('./OpenSans-BoldItalic/OpenSans-BoldItalic.woff') format("woff"),
-         url('./OpenSans-BoldItalic/OpenSans-BoldItalic.ttf') format("truetype"),
-         url('./OpenSans-BoldItalic/OpenSans-BoldItalic.svg#OpenSans-BoldItalic') format("svg");
-    font-weight: normal;
-    font-style: normal;
+@font-face { // OpenSans-ExtraBoldItalic
+  font-family: 'OpenSans';
+  font-weight: 800;
+  font-style: italic;
+  src: url('./OpenSans/ExtraBoldItalic/OpenSans-ExtraBoldItalic.woff') format('woff'),
+       url('./OpenSans/ExtraBoldItalic/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+}
+
+@font-face { // NotoSansCJKjp-Regular
+  font-family: 'NotoSansCJKjp';
+  font-weight: normal;
+  font-style: normal;
+  src: url('./NotoSansCJKjp/Regular/NotoSansCJKjp-Regular.woff') format('woff'),
+       url('./NotoSansCJKjp/Regular/NotoSansCJKjp-Regular.ttf') format('truetype');
+}
+
+@font-face { // NotoSansCJKjp-Bold
+  font-family: 'NotoSansCJKjp';
+  font-weight: bold;
+  font-style: normal;
+  src: url('./NotoSansCJKjp/Bold/NotoSansCJKjp-Bold.woff') format('woff'),
+       url('./NotoSansCJKjp/Bold/NotoSansCJKjp-Bold.ttf') format('truetype');
+}
+
+@font-face { // NotoSansCJKjp-Medium
+  font-family: 'NotoSansCJKjp';
+  font-weight: 500;
+  font-style: normal;
+  src: url('./NotoSansCJKjp/Medium/NotoSansCJKjp-Medium.woff') format('woff'),
+       url('./NotoSansCJKjp/Medium/NotoSansCJKjp-Medium.ttf') format('truetype');
+
+}
+
+@font-face { // NotoSansCJKjp-Light
+  font-family: 'NotoSansCJKjp';
+  font-weight: 300;
+  font-style: normal;
+  src: url('./NotoSansCJKjp/Light/NotoSansCJKjp-Light.woff') format('woff'),
+       url('./NotoSansCJKjp/Light/NotoSansCJKjp-Light.ttf') format('truetype');
 }

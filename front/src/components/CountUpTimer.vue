@@ -108,7 +108,7 @@ export default {
   margin-left: 8px;
   width: 67px;
   height: 45px;
-  font-family: OpenSans-ExtraboldItalic;
+  font-family: OpenSans;
   font-size: 61.5px;
   font-weight: 800;
   font-style: italic;

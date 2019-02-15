@@ -18,7 +18,7 @@
     margin: 40px 0 auto;
     // width: 356px;
     height: 24px;
-    font-family: NotoSansCJKjp-Bold;
+    font-family: NotoSansCJKjp;
     font-size: 24px;
     font-weight: bold;
     font-style: normal;
