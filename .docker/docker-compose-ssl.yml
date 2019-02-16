@@ -35,6 +35,9 @@ services:
       - "5000"
     container_name: satellite-puzzle-image-processing
     volumes:
+      - /var/biwa.tif:/var/biwa.tif
+      - /var/tokyo.tif:/var/tokyo.tif
+      - /var/sado.tif:/var/sado.tif
       - satellite-puzzle-storage:/app/dst
 
 volumes:
