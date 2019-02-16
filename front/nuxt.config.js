@@ -19,14 +19,12 @@ module.exports = {
       { property: 'og:url', content: env.API_URL }, // ページのURLを設定
       { property: 'og:type', content: 'website' }, // ページの種類
       { property: 'og:title', content: '衛星パズル' }, // ページタイトル
-      { property: 'og:description', content: '衛星で取得したSARデータを使ったパズルに挑戦。' }, // ページの説明文
+      { property: 'og:description', content: '衛星で撮影した画像を使って行うパズルゲームです。ゲームを通じて、衛星画像を身近な存在に！' }, // ページの説明文
       { property: 'og:site_name', content: '衛星パズル' }, // サイト名
       { property: 'og:image', content: '/OGP_Start.jpg' }, // サムネイルのURL
       // Twitter
-      { name: 'twitter:card', content: 'Summary Card' }, // カード種類
-      { name: 'twitter:site', content: ''}, // @ユーザー名
-      // Facebook
-      { property: 'fb:app_id', content: ''},
+      { name: 'twitter:card', content: 'summary_large_image' }, // カード種類
+      { name: 'twitter:site', content: '@tellus_xdata'}, // @ユーザー名
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -67,7 +65,7 @@ module.exports = {
     name: '衛星パズル',
     lang: 'ja',
     'og:title': '衛星パズル',
-    'og:description': '衛星で取得したSARデータを使ったパズルに挑戦。',
+    'og:description': '衛星で撮影した画像を使って行うパズルゲームです。ゲームを通じて、衛星画像を身近な存在に！',
   },
   plugins: [
     '~/plugins/axios.js',
