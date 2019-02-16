@@ -90,7 +90,7 @@ export default {
 <style lang="scss" scoped>
 .result-area {
   width: 578px;
-  height: 790px;
+  height: 794px;
   border-radius: 4px;
   background-color: #fff;
   background-image:
@@ -123,7 +123,8 @@ export default {
 }
 
 .label {
-  margin-right: 12px;
+  margin-left: 14px;
+  margin-right: 18px;
   height: 20px;
   font-family: OpenSans;
   font-size: 28px;
@@ -137,7 +138,6 @@ export default {
 }
 
 .time {
-  margin-left: 2px;
   width: 64px;
   height: 45px;
   opacity: 0.98;
@@ -153,7 +153,8 @@ export default {
 }
 
 .time-unit {
-  margin-left: 10px;
+  margin-left: 4px;
+  margin-right: 12px;
   width: 24px;
   height: 23px;
   font-family: NotoSansCJKjp;
@@ -167,6 +168,12 @@ export default {
   color: #fff;
 }
 
+.new-record {
+  position: absolute;
+  top: -88px;
+  left: -64px;
+}
+
 .personal-best {
   width: 421px;
   height: 60px;
@@ -174,12 +181,6 @@ export default {
   border-radius: 28px;
   background-color: #4a34c2;
   position: relative;
-
-  .new-record {
-    position: absolute;
-    top: -88px;
-    left: -44px;
-  }
 
   p {
     padding-top: 12px;
