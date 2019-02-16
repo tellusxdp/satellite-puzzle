@@ -27,6 +27,7 @@
         :related="related"
         :hashtags="hashtags"
         :text="twitterText")
+    jaxa.jaxa
 </template>
 
 <script>
@@ -34,6 +35,7 @@ import Result from '~/components/Result'
 import ClickButton from '~/components/buttons/ClickButton'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
+import Jaxa from '~/components/Jaxa'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   components:{
@@ -41,6 +43,7 @@ export default {
     ClickButton,
     TwitterShareButton,
     FacebookShareButton,
+    Jaxa,
   },
   validate ({ params }) {
     // 難易度チェック(easy, normal, hard以外は404)
@@ -209,5 +212,12 @@ export default {
   background-position: 0 0, center center;
   width: 640px;
   height: 1148px;
+}
+
+.jaxa {
+  position: absolute;
+  top: 1110px;
+  left: 530px;
+  color: #fff;
 }
 </style>

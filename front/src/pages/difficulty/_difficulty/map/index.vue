@@ -11,14 +11,17 @@
             :map-name="map.name",
             :map-image="`${map.kind}/${map.z}-${map.x}-${map.y}-${map.n}/sar`",
             @onClick="pushPuzzle(map.id)")
+    jaxa.jaxa
 </template>
 
 <script>
 import PuzzleMap from '~/components/map/MapImage'
+import Jaxa from '~/components/Jaxa'
 import { mapGetters } from 'vuex';
 export default {
   components: {
     PuzzleMap,
+    Jaxa
   },
   data () {
     return {
@@ -139,4 +142,13 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
+
+.jaxa {
+  position: absolute;
+  top: 1110px;
+  left: 530px;
+  color: #5b6277;
+  z-index: 10;
+}
+
 </style>

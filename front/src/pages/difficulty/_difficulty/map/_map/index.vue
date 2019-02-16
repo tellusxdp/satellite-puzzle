@@ -47,6 +47,7 @@
         @retry="pushRetry"
         @top="pushTop"
         v-show="modal")
+    jaxa.jaxa
 </template>
 
 
@@ -58,6 +59,7 @@ import RetireModal from '~/components/modal/Retire'
 import PrsButton from '~/components/buttons/PrsButton'
 import ClickButton from '~/components/buttons/ClickButton'
 import Puzzle from '~/components/puzzle/Puzzle'
+import Jaxa from '~/components/Jaxa'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   validate ({ params }) {
@@ -79,6 +81,7 @@ export default {
     PrsButton,
     ClickButton,
     Puzzle,
+    Jaxa
   },
   data() {
     return {
@@ -417,4 +420,12 @@ export default {
   width: 640px;
   height: 1148px;
 }
+
+.jaxa {
+  position: absolute;
+  top: 1110px;
+  left: 530px;
+  color: #5b6277;
+}
+
 </style>
