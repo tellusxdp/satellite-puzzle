@@ -209,8 +209,16 @@ export default {
       this.hint = false // ヒントを非表示にする処理
     },
     targetSec (sec) { // SAR画像を表示する時間の判定
-      // TODO: 値の変更（現在 25~29秒, 55~59秒）
-      return !(25 <= sec && sec <= 29 || 55 <= sec && sec <= 59)
+      if (15 <= sec && sec <= 19) {
+        return false
+      }
+      if (35 <= sec && sec <= 39) {
+        return false
+      }
+      if (55 <= sec && sec <= 59) {
+        return false
+      }
+      return true
     }
   },
   computed: {

@@ -7,9 +7,20 @@
     div.share-area
       p ゲームをSNSでシェア
       .share-area--buttons
-        facebook-share-button.facebook-share-button(:url="url")
-        twitter-share-button.twitter-share-button(:url="url", :via="via", :related="related", :hashtags="hashtags", :text="text")
-        hatena-share-button.hatena-share-button(:url="url", :title="title")
+        facebook-share-button.facebook-share-button(
+          :url="url"
+        )
+        twitter-share-button.twitter-share-button(
+          :url="url",
+          :via="via",
+          :related="related",
+          :hashtags="hashtags",
+          :text="text"
+        )
+        hatena-share-button.hatena-share-button(
+          :url="url",
+          :title="title"
+        )
 </template>
 
 <script>
@@ -28,12 +39,12 @@ export default {
   },
   data () {
     return { // TODO: データ設定
-      url: 'sample_url',
-      via: 'sample_via',
-      related: 'sample_related',
-      hashtags: 'sample_hashtag1',
-      text: 'sample_text',
-      title: 'sample_title'
+      url: 'https://satellite-puzzle.app.tellusxdp.com',
+      via: 'tellus_xdata',
+      related: 'tellus_xdata',
+      hashtags: 'tellus, 衛星パズル',
+      text: 'ゲームを通じて、衛星画像を身近な存在に！',
+      title: '衛星パズル'
     }
   },
   methods: {

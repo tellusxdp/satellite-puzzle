@@ -26,7 +26,7 @@
                   div(v-show="!tile.move")
                     div(v-show="showSar")
                       img.tile--image(
-                        :src="image(tile.no)"
+                        :src="imageSar(tile.no)"
                         :style="styles")
                     div(v-show="!showSar")
                       img.tile--image(
@@ -210,6 +210,9 @@ export default {
       this.$emit('pushComplete')
     },
     // 各タイルに設定する画像を指定
+    imageSar (id) {
+      return `/images/${this.mapImages}/sar/${id}.png`
+    },
     image (id) {
       return `/images/${this.mapImages}/${id}.png`
     },
