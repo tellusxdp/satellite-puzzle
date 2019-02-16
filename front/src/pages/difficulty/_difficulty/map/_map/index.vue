@@ -364,7 +364,7 @@ export default {
   width: 540px;
   height: 540px;
   position: absolute;
-  z-index: 10;
+  z-index: 30;
 
   .shadow {
     border: solid 10px #192342;

@@ -24,20 +24,25 @@
                   @leave="tileMove(tile.no)"
                   @after-leave="tileMoved(tile.no)")
                   div(v-show="!tile.move")
-                    div(v-show="showSar")
-                      img.tile--image(
-                        :src="imageSar(tile.no)"
-                        :style="styles")
-                    div(v-show="!showSar")
-                      img.tile--image(
-                        :src="image(tile.no)"
-                        :style="styles")
+                    tile(
+                      v-show="showSar"
+                      :image="imageSar(tile.no)"
+                      :size="px"
+                    )
+                    tile(
+                      v-show="!showSar"
+                      :image="image(tile.no)"
+                      :size="px")
 </template>
 
 <script>
 import _ from 'lodash'
+import Tile from '~/components/puzzle/Tile'
 import { mapGetters, mapActions } from 'vuex'
 export default {
+  components: {
+    Tile,
+  },
   props: {
     top: { // パズルの位置を調整する
       type: Number,
@@ -270,6 +275,7 @@ export default {
   width: 540px;
   height: 540px;
   position: absolute;
+  background-color: #192342;
 
   .shadow {
     border: solid 10px #192342;
@@ -284,12 +290,6 @@ export default {
     height: var(--px);
     position: absolute;
     transition: 0.25s;
-  }
-
-  .tile--image {
-    width: var(--px);
-    height: var(--px);
-    border: outset 6px;
   }
 }
 
