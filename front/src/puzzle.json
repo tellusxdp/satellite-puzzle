@@ -4,6 +4,7 @@
       "id": "lake-biwako",
       "name": "琵琶湖",
       "description": "日本最大の面積と貯水量を誇る湖",
+      "sar": [1000, 7800, 23000, 33000],
       "parameters": [
         {
           "kind": "true",
@@ -57,29 +58,29 @@
       ]
     },
     {
-      "id": "island-noto",
-      "name": "能登半島",
-      "description": "ナマコの特産地",
+      "id": "island-sado",
+      "name": "佐渡ヶ島",
+      "description": "金・銀で栄えた島",
       "parameters": [
         {
           "kind": "true",
           "z": 8,
-          "x": 255,
-          "y": 99,
+          "x": 226,
+          "y": 98,
           "split_n": 3
         },
         {
           "kind": "true",
           "z": 8,
-          "x": 255,
-          "y": 99,
+          "x": 226,
+          "y": 98,
           "split_n": 4
         },
         {
           "kind": "true",
           "z": 8,
-          "x": 255,
-          "y": 99,
+          "x": 226,
+          "y": 98,
           "split_n": 5
         }
       ]

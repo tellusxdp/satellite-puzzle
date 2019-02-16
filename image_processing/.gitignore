@@ -1,3 +1,5 @@
 .env
 dst/*
 !.gitkeep
+!testdata/.gitkeep
+!testdata/test.png
