@@ -1,7 +1,7 @@
 // 完成
 // 
 <template lang="pug">
-  .container
+  .page
     .margin-top-result-area
     transition(name="fade-in" appear)
       .result-area
@@ -162,22 +162,28 @@ export default {
 }
 
 .share-area {
-  margin-top: 38px;
-  margin-left: -20px;
+  margin-top: 58px;
+  margin-left: -24px;
   text-align: center;
   height: 64px;
   line-height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .share-area--text {
   margin-left: 40px;
+  height: 23px;
+  font-family: NotoSansCJKjp;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 500;
   font-style: normal;
   font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
   color: #fff;
-  vertical-align: middle;
-  display: inline-block;
 }
 
 .facebook-share-button {
@@ -200,7 +206,7 @@ export default {
   text-align: center;
 }
 
-.container {
+.page {
   background-image:
     url('~assets/images/moon/img_pzlmoon.png'),
     url('~assets/images/background/background.png');
