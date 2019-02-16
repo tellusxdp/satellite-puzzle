@@ -131,7 +131,7 @@ export default {
       return `${kind}/${z}-${x}-${y}-${n}`
     },
     completedImage () { // 完成画像のパス
-      return `/images/${this.mapImages}/completed.png`
+      return `/images/${this.mapImages}/sar/completed.png`
     },
   },
   methods: {

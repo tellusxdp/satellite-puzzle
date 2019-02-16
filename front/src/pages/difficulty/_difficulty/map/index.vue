@@ -9,7 +9,7 @@
         div(v-for="(map, index) in mapList", :key="index")
           puzzle-map(
             :map-name="map.name",
-            :map-image="`${map.kind}/${map.z}-${map.x}-${map.y}-${map.n}`",
+            :map-image="`${map.kind}/${map.z}-${map.x}-${map.y}-${map.n}/sar`",
             @onClick="pushPuzzle(map.id)")
 </template>
 

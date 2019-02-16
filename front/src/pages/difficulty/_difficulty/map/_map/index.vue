@@ -271,7 +271,7 @@ export default {
       return `${kind}/${z}-${x}-${y}-${n}`
     },
     completedImage () { // 完成画像のパスを取得する
-      return `/images/${this.mapImages}/completed.png`
+      return `/images/${this.mapImages}/sar/completed.png`
     }
   }
 }
