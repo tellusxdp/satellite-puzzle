@@ -9,11 +9,12 @@
     .hard
       hard-button(@onClick="pushHard") むずかしい
     .what-is
-      p.what-is--text SAR画像とは？
-      p.what-is--description SAR画像説明説明説明SAR画像説明説明説SAR画像説明説明説明SAR画像説明説明説明SAR画像説明説明説明S
+      p.what-is--text SARとは？
+      p.what-is--description 合成開口レーダー（SAR）は、センサからマイクロ波を発射し地表面で跳ね返ってきたマイクロ波をとらえるセンサです。一般的なカメラ（光学センサ）とは違い、雲がかかっている時や雨でも撮影が可能です。パズルを通してSARと光学画像の違いを目で見てみましょう。
       .detail
         .detail--button
           click-button(
+            @onClick="pushSorabatake"
             :src="require('~/assets/images/button/btn_detail.png')"
             :srcActive="require('~/assets/images/button/btn_prs_detail.png')")
         p.detail--text 別ウィンドウが開きます
@@ -41,6 +42,9 @@ export default {
     pushHard () { // マップ選択画面（むずかしい）に遷移する
       this.$router.push('/difficulty/hard/map')
     },
+    pushSorabatake () {
+       window.open('https://sorabatake.jp/3364/', '_blank')
+    }
   },
 }
 </script>
@@ -109,7 +113,7 @@ export default {
     width: 498px;
     height: 96px;
     font-family: NotoSansCJKjp;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -123,12 +127,12 @@ export default {
     text-align: center;
 
     &--button {
-      margin-top: 94px;
+      margin-top: 108px;
       margin-left: -4px;
     }
 
     &--text {
-      margin: 12px auto;
+      margin: 8px auto;
       width: 220px;
       height: 19px;
       font-family: NotoSansCJKjp;

@@ -26,7 +26,7 @@
         :via="via"
         :related="related"
         :hashtags="hashtags"
-        :text="text")
+        :text="twitterText")
 </template>
 
 <script>
@@ -56,11 +56,10 @@ export default {
   },
   data() {
     return { // TODO:値を変更
-      url: 'sample_url',
-      via: 'sample_via',
-      related: 'sample_related',
-      hashtags: 'sample_hashtag',
-      text: 'sample_text',
+      url: 'https://satellite-puzzle.app.tellusxdp.com',
+      via: 'tellus_xdata',
+      related: 'tellus_xdata',
+      hashtags: 'tellus, 衛星パズル',
       difficultyMap: { // 難易度と画像分割数との対応
         easy: 3,
         normal: 4,
@@ -85,6 +84,13 @@ export default {
       isNewRecord: 'isNewRecord',
       puzzles: 'puzzles'
     }),
+    twitterText () {
+      const d = {easy: 'やさしい', normal: 'ふつう', hard: 'むずかしい'}
+      const m = this.puzzles.find(v => {
+        return v.id === this.map
+      })
+      return `衛星パズル難易度${d[this.difficulty]}の${m.name}マップを${this.min}分${this.sec}秒でクリア！`
+    },
     // 選択したマップを返す（不正な値の場合はnull）
     selectedMap () {
       const m = this.puzzles
