@@ -18,7 +18,7 @@
         :src="require('~/assets/images/button/btn_bktostart.png')"
         :srcActive="require('~/assets/images/button/btn_prs_bktostart.png')")
     .share-area
-      .share-area--text
+      .text
         p 結果をSNSでシェア!
       facebook-share-button.facebook-share-button(:url="url")
       twitter-share-button.twitter-share-button(
@@ -146,69 +146,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.margin-top-result-area {
-  height: 40px;
-}
-
-.fade-in-enter-active,
-.fade-in-leave-active {
-  transition: opacity 1s;
-}
-
-.fade-in-enter,
-.fade-in-leave-to {
-  opacity: 0;
-}
-
-.result-area {
-  margin: 0 auto;
-}
-
-.share-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 58px;
-  margin-left: -24px;
-  height: 64px;
-  text-align: center;
-  line-height: 64px;
-}
-
-.share-area--text {
-  margin-left: 40px;
-  height: 23px;
-  color: #fff;
-  text-align: center;
-  letter-spacing: normal;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  font-size: 24px;
-  font-family: NotoSansCJKjp;
-  line-height: 1.5;
-}
-
-.facebook-share-button {
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 2px;
-  vertical-align: middle;
-  transform: scale(0.8);
-}
-
-.twitter-share-button {
-  display: inline-block;
-  margin-top: 10px;
-  vertical-align: middle;
-  transform: scale(0.8);
-}
-
-.button-area {
-  margin-top: 49px;
-  text-align: center;
-}
-
 .page {
   width: 640px;
   height: 1148px;
@@ -218,12 +155,75 @@ export default {
   background-position: 0 0, center center;
   background-size: initial, contain;
   background-repeat: no-repeat, no-repeat;
-}
 
-.jaxa {
-  position: absolute;
-  top: 1110px;
-  left: 530px;
-  color: #fff;
+  .margin-top-result-area {
+    height: 40px;
+  }
+
+  .fade-in-enter-active,
+  .fade-in-leave-active {
+    transition: opacity 1s;
+  }
+
+  .fade-in-enter,
+  .fade-in-leave-to {
+    opacity: 0;
+  }
+
+  .result-area {
+    margin: 0 auto;
+  }
+
+  .button-area {
+    margin-top: 49px;
+    text-align: center;
+  }
+
+  .share-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 58px;
+    margin-left: -24px;
+    height: 64px;
+    text-align: center;
+    line-height: 64px;
+
+    .text {
+      margin-left: 40px;
+      height: 23px;
+      color: #fff;
+      text-align: center;
+      letter-spacing: normal;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      font-size: 24px;
+      font-family: NotoSansCJKjp;
+      line-height: 1.5;
+    }
+
+    .facebook-share-button {
+      display: inline-block;
+      margin-top: 10px;
+      margin-left: 2px;
+      vertical-align: middle;
+      transform: scale(0.8);
+    }
+
+    .twitter-share-button {
+      display: inline-block;
+      margin-top: 10px;
+      vertical-align: middle;
+      transform: scale(0.8);
+    }
+  }
+
+  .jaxa {
+    position: absolute;
+    top: 1110px;
+    left: 530px;
+    color: #fff;
+  }
 }
 </style>

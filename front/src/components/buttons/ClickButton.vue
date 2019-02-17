@@ -37,9 +37,9 @@ button {
   width: 380px;
   height: 80px;
   background-image: var(--url);
-}
 
-button:active {
-  background-image: var(--active);
+  &:active {
+    background-image: var(--active);
+  }
 }
 </style>

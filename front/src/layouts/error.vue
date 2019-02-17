@@ -28,27 +28,30 @@ export default {
 }
 </script>
 
-<style scoped>
-.error-text {
-  margin: 0 auto;
-  padding-top: 239px;
-  text-align: center;
+<style lang="scss" scoped>
+.error-page {
+  .error-text {
+    margin: 0 auto;
+    padding-top: 239px;
+    text-align: center;
+  }
+
+  .error-image-404 {
+    margin-top: 28px;
+    margin-left: 10px;
+    text-align: center;
+  }
+
+  .error-image-403 {
+    margin-top: 76px;
+    margin-left: -24px;
+    text-align: center;
+  }
+
+  .error-text-505 {
+    padding-top: 440px;
+    text-align: center;
+  }
 }
 
-.error-image-404 {
-  margin-top: 28px;
-  margin-left: 10px;
-  text-align: center;
-}
-
-.error-image-403 {
-  margin-top: 76px;
-  margin-left: -24px;
-  text-align: center;
-}
-
-.error-text-505 {
-  padding-top: 440px;
-  text-align: center;
-}
 </style>

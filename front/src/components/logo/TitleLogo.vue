@@ -1,22 +1,21 @@
 // タイトルロゴ
 <template lang="pug">
   .title-logo
-    img.title-logo--image(src="~/assets/images/logo/img_logo.png")
-    p.title-logo--text だいち２号のSAR画像でパズル編
+    img.image(src="~/assets/images/logo/img_logo.png")
+    p.text だいち２号のSAR画像でパズル編
 </template>
 
 <style lang="scss" scoped>
 .title-logo {
   text-align: center;
 
-  &--image {
+  .image {
     width: 357px;
     height: 234px;
   }
 
-  &--text {
+  .text {
     margin: 40px 0 auto;
-    // width: 356px;
     height: 24px;
     color: #fff;
     text-align: center;

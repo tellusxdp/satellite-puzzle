@@ -1,11 +1,11 @@
 // マップ選択
 // params.difficulty(easy, normal, hard)に対応するマップの一覧を表示する
 <template lang="pug">
-  div.map
-    div.return
+  .page
+    .return
       button(@click="pushDifficulty") ←レベル選択に戻る
-    div.map-area
-      div.map-list
+    .map-area
+      .map-list
         div(v-for="(map, index) in mapList", :key="index")
           puzzle-map(
             :map-name="map.name",
@@ -107,48 +107,47 @@ export default {
 
 
 <style lang="scss" scoped>
-.return {
-  margin-left: 34px;
-  padding-top: 42px;
-  height: 24px;
-  color: #fff;
-  text-align: left;
-  letter-spacing: normal;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  font-size: 24px;
-  font-family: NotoSansCJKjp;
-  line-height: 1.5;
-}
-
-.map-area {
-  margin-top: 90px;
-}
-
-.map-list {
-  overflow: auto;
-  width: 640px;
-  height: 1000px;
-}
-
-.map {
-  margin-right: auto;
+.page {
   margin-left: auto;
-}
-
-.puzzle-map {
   margin-right: auto;
-  margin-bottom: 82px;
-  margin-left: auto;
-}
 
-.jaxa {
-  position: absolute;
-  top: 1110px;
-  left: 530px;
-  z-index: 10;
-  color: #5b6277;
-}
+  .return {
+    margin-left: 34px;
+    padding-top: 42px;
+    height: 24px;
+    color: #fff;
+    text-align: left;
+    letter-spacing: normal;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 24px;
+    font-family: NotoSansCJKjp;
+    line-height: 1.5;
+  }
 
+  .map-area {
+    margin-top: 90px;
+
+    .map-list {
+      overflow: auto;
+      width: 640px;
+      height: 1000px;
+
+      .puzzle-map {
+        margin-right: auto;
+        margin-bottom: 82px;
+        margin-left: auto;
+      }
+    }
+  }
+
+  .jaxa {
+    position: absolute;
+    top: 1110px;
+    left: 530px;
+    z-index: 10;
+    color: #5b6277;
+  }
+}
 </style>
