@@ -41,10 +41,10 @@ export default {
 
 <style>
 .prs-button--image {
-  background-repeat: no-repeat;
-  background-size: contain;
   width: 380px;
   height: 80px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 </style>
 

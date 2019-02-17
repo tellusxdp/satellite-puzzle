@@ -50,19 +50,19 @@ export default {
 
 <style lang="scss" scoped>
 .mode {
-  padding-top: 72px;
   margin: 0 auto;
+  padding-top: 72px;
   width: 78px;
   height: 22px;
-  font-family: OpenSans;
-  font-size: 28px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: normal;
   font-weight: 900;
   font-style: italic;
   font-stretch: normal;
+  font-size: 28px;
+  font-family: OpenSans;
   line-height: 1.29;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
 }
 
 .moon-button {
@@ -92,34 +92,34 @@ export default {
   background-color: #e4e8f2;
 
   &--text {
-    padding-top: 36px;
     margin-left: -34px;
+    padding-top: 36px;
     height: 30px;
-    font-family: NotoSansCJKjp;
-    font-size: 32px;
+    color: #10172b;
+    text-align: center;
+    letter-spacing: normal;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
+    font-size: 32px;
+    font-family: NotoSansCJKjp;
     line-height: 1.13;
-    letter-spacing: normal;
-    text-align: center;
-    color: #10172b;
   }
 
   &--description {
-    padding-top: 58px;
     margin-left: 30px;
+    padding-top: 58px;
     width: 508px;
     height: 204px;
-    font-family: NotoSansCJKjp;
-    font-size: 22px;
+    color: #10172b;
+    text-align: left;
+    letter-spacing: normal;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
+    font-size: 22px;
+    font-family: NotoSansCJKjp;
     line-height: 1.64;
-    letter-spacing: normal;
-    text-align: left;
-    color: #10172b;
   }
 
   .detail {

@@ -87,50 +87,50 @@ export default {
   margin-left: 86px;
   // width: 60px;
   height: 20px;
-  font-family: OpenSans;
-  font-size: 28px;
+  color: #fff;
+  letter-spacing: normal;
   font-weight: 600;
   font-style: italic;
   font-stretch: normal;
+  font-size: 28px;
+  font-family: OpenSans;
   line-height: 1.29;
-  letter-spacing: normal;
-  color: #fff;
 }
 
 .count-up-timer--record {
-  width: 256px;
-  text-align: center;
   margin-top: 4px;
   margin-left: -6px;
+  width: 256px;
+  text-align: center;
 }
 
 .time {
   margin-left: 8px;
   width: 67px;
   height: 45px;
-  font-family: OpenSans;
-  font-size: 61.5px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: normal;
   font-weight: 800;
   font-style: italic;
   font-stretch: normal;
+  font-size: 61.5px;
+  font-family: OpenSans;
   line-height: 1.63;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
 }
 
 .time-unit {
   margin-left: 2px;
   width: 24px;
   height: 23px;
-  font-family: NotoSansCJKjp;
-  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: normal;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
+  font-size: 24px;
+  font-family: NotoSansCJKjp;
   line-height: 1.5;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
 }
 </style>

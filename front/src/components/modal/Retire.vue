@@ -32,11 +32,11 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-  margin-left: 28px;
-  align-items: center;
-  justify-content: center;
   position: absolute;
   top: 98px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 28px;
   width: 580px;
   height: 795px;
   border-radius: 4px;

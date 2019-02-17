@@ -33,22 +33,22 @@ $size: var(--size);
   position: relative;
 
   .filter {
-    width: $size;
-    height: $size;
-    background-color: transparent;
-    border-top: 4px solid rgba(255, 255, 255, 0.4);
-    border-left: 4px solid rgba(255, 255, 255, 0.4);
-    border-right: 4px solid rgba(0, 0, 0, 0.4);
-    border-bottom: 4px solid rgba(0, 0, 0, 0.4);
     position: absolute;
     z-index: 20;
+    width: $size;
+    height: $size;
+    border-top: 4px solid rgba(255, 255, 255, 0.4);
+    border-right: 4px solid rgba(0, 0, 0, 0.4);
+    border-bottom: 4px solid rgba(0, 0, 0, 0.4);
+    border-left: 4px solid rgba(255, 255, 255, 0.4);
+    background-color: transparent;
   }
 
   .top {
-    width: $size;
-    height: $size;
     position: absolute;
     z-index: 10;
+    width: $size;
+    height: $size;
   }
 }
 </style>

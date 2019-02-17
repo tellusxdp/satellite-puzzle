@@ -96,8 +96,8 @@ export default {
   background-image:
     url('~assets/images/result/confi.png'),
     url('~assets/images/background/best/best.png');
-  background-size: initial, initial;
   background-position: 22px 12px, -1px 310px;
+  background-size: initial, initial;
 }
 
 .ribbon {
@@ -106,9 +106,9 @@ export default {
 }
 
 .map-image {
+  z-index: 1;
   margin-top: 120px;
   margin-left: 81px;
-  z-index: 1;
 }
 
 .completed-image {
@@ -123,49 +123,49 @@ export default {
 }
 
 .label {
-  margin-left: 14px;
   margin-right: 18px;
+  margin-left: 14px;
   height: 20px;
-  font-family: OpenSans;
-  font-size: 28px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: normal;
   font-weight: 600;
   font-style: italic;
   font-stretch: normal;
+  font-size: 28px;
+  font-family: OpenSans;
   line-height: 1.29;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
 }
 
 .time {
   width: 64px;
   height: 45px;
-  opacity: 0.98;
-  font-family: OpenSans;
-  font-size: 61.5px;
+  color: rgba(255, 255, 255, 0.98);
+  text-align: center;
+  letter-spacing: normal;
   font-weight: bold;
   font-style: italic;
   font-stretch: normal;
+  font-size: 61.5px;
+  font-family: OpenSans;
   line-height: 1.63;
-  letter-spacing: normal;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.98);
+  opacity: 0.98;
 }
 
 .time-unit {
-  margin-left: 4px;
   margin-right: 12px;
+  margin-left: 4px;
   width: 24px;
   height: 23px;
-  font-family: NotoSansCJKjp;
-  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: normal;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
+  font-size: 24px;
+  font-family: NotoSansCJKjp;
   line-height: 1.5;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
 }
 
 .new-record {
@@ -175,12 +175,12 @@ export default {
 }
 
 .personal-best {
+  position: relative;
+  margin-left: 79px;
   width: 421px;
   height: 60px;
-  margin-left: 79px;
   border-radius: 28px;
   background-color: #4a34c2;
-  position: relative;
 
   p {
     padding-top: 12px;
@@ -190,30 +190,30 @@ export default {
     margin-left: 46px;
     width: 175px;
     height: 19px;
-    font-family: NotoSansCJKjp;
-    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: normal;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
+    font-size: 20px;
+    font-family: NotoSansCJKjp;
     line-height: 1.8;
-    letter-spacing: normal;
-    text-align: center;
-    color: #fff;
   }
 
   .best-record {
     margin-left: 22px;
     width: 118px;
     height: 27px;
-    font-family: NotoSansCJKjp;
-    font-size: 28px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: normal;
     font-weight: 500;
     font-style: normal;
     font-stretch: normal;
+    font-size: 28px;
+    font-family: NotoSansCJKjp;
     line-height: 1.29;
-    letter-spacing: normal;
-    text-align: center;
-    color: #fff;
   }
 }
 </style>

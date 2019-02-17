@@ -216,10 +216,10 @@ export default {
     },
     // 各タイルに設定する画像を指定
     imageSar (id) {
-      return `/images/${this.mapImages}/sar/${id}.png`
+      return `/images/${this.mapImages}/sar/${id-1}.png`
     },
     image (id) {
-      return `/images/${this.mapImages}/${id}.png`
+      return `/images/${this.mapImages}/${id-1}.png`
     },
     // タイルが移動できるか判定する
     move (no) {
@@ -270,28 +270,28 @@ export default {
 <style lang="scss" scoped>
 
 .puzzle-area {
-  border-top: 20px solid #3d1bc3;
-  border-left: 20px solid #3d1bc3;
-  border-right: 20px solid #603ff2;
-  border-bottom: 20px solid #603ff2;
-  border-radius: 8px;
+  position: absolute;
   width: 540px;
   height: 540px;
-  position: absolute;
+  border-top: 20px solid #3d1bc3;
+  border-right: 20px solid #603ff2;
+  border-bottom: 20px solid #603ff2;
+  border-left: 20px solid #3d1bc3;
+  border-radius: 8px;
   background-color: #192342;
 
   .shadow {
-    border: solid 10px #192342;
+    position: relative;
     width: 500px;
     height: 500px;
-    position: relative;
+    border: solid 10px #192342;
     background-color: #4a34c2;
   }
 
   .tile {
+    position: absolute;
     width: var(--px);
     height: var(--px);
-    position: absolute;
     transition: 0.25s;
   }
 }

@@ -57,9 +57,9 @@ export default {
 
 <style lang="scss" scoped>
 .push-start {
-  height: 380px;
-  width: 370px;
   margin: 0 auto;
+  width: 370px;
+  height: 380px;
 }
 
 .title-logo {
@@ -73,22 +73,22 @@ export default {
 
 .share-area {
   margin-top: 494px;
+  margin-right: auto;
+  margin-left: auto;
   width: 528px;
   height: 248px;
-  margin-left: auto;
-  margin-right: auto;
 
   p {
     height: 23px;
-    font-family: NotoSansCJKjp;
-    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: normal;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
+    font-size: 24px;
+    font-family: NotoSansCJKjp;
     line-height: 1.5;
-    letter-spacing: normal;
-    text-align: center;
-    color: #fff;
   }
 
   &--buttons {
