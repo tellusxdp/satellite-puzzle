@@ -216,10 +216,10 @@ export default {
     },
     // 各タイルに設定する画像を指定
     imageSar (id) {
-      return `/images/${this.mapImages}/sar/${id}.png`
+      return `/images/${this.mapImages}/sar/${id-1}.png`
     },
     image (id) {
-      return `/images/${this.mapImages}/${id}.png`
+      return `/images/${this.mapImages}/${id-1}.png`
     },
     // タイルが移動できるか判定する
     move (no) {
