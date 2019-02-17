@@ -52,7 +52,7 @@ curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=3
 curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=4
 curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=5
 ```
-#### 東京ポリス
+#### 東京
 ```
 curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=3
 curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=4
@@ -110,15 +110,15 @@ docker-compose -v
 以下を実行
 ```
 git clone https://github.com/tellusxdp/satellite-puzzle.git
-cd .deploy
-sh local.sh
+cd satellite-puzzle/.deploy
+sudo sh local.sh
 ```
 
 ### 本番
 wildcard.app.tellusxdp.com.crt, wildcard.app.tellusxdp.com.keyを`/var`配下におく
 ※ wildcard.app.tellusxdp.com.crtは中間証明書と合成しておくこと
 
-その後$HOME配下に以下のシェルスクリプトを起き実行する
+その後$HOME配下に以下のシェルスクリプトを置きsudoで実行する
 ```
 #!/bin/bash
 if [ -d /var/satellite-puzzle ] ; then
@@ -147,7 +147,7 @@ curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=3
 curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=4
 curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=5
 ```
-#### 東京ポリス
+#### 東京
 ```
 curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=3
 curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=4
