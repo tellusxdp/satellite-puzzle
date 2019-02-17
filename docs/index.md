@@ -133,6 +133,33 @@ cp sado.tif satellite-puzzle/.docker
 cd /var/satellite-puzzle/.deploy && sh production.sh
 ```
 
+SARが重すぎてマルチスレッドで対応できないため、予め画像分割をしておく
+containerに入る
+```
+docker exec -it satellite-puzzle-image-processing sh
+```
+
+以下を順次実行
+※ 一気にやらないこと
+#### 琵琶湖
+```
+curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=3
+curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=4
+curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=5
+```
+#### 東京ポリス
+```
+curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=3
+curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=4
+curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=5
+```
+#### 佐渡ヶ島
+```
+curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=3
+curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=4
+curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=5
+```
+
 ## サービスへのリンク
 ### 今すぐ遊ぶなら
 https://satellite-puzzle.app.tellusxdp.com/
