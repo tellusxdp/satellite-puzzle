@@ -25,7 +25,7 @@
     ]
   },
   "scripts": {
-    "dev": "nuxt",
+    "dev": "NODE_ENV=local nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
