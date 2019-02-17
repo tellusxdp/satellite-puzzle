@@ -395,7 +395,7 @@ export default {
 
 .modal-area {
   position: absolute;
-  z-index: 20;
+  z-index: 40;
 }
 
 .loading {
