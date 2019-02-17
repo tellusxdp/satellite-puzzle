@@ -13,5 +13,6 @@
         "@nuxt/babel-preset-app"
       ]
     }
-  }
+  },
+  "plugins": ["transform-es2015-modules-commonjs"]
 }

@@ -58,7 +58,7 @@ export default {
     return selectedMap !== null
   },
   data() {
-    return { // TODO:値を変更
+    return {
       url: 'https://satellite-puzzle.app.tellusxdp.com',
       via: 'tellus_xdata',
       related: 'tellus_xdata',
@@ -69,7 +69,7 @@ export default {
         hard: 5,
       },
       difficulty: 'normal',
-      map: 'mt-fuji'
+      map: 'lake-biwako'
     }
   },
   asyncData(context) {

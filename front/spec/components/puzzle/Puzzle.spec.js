@@ -64,6 +64,10 @@ describe('Puzzle.vue', () => {
     describe('updatedMethod', () => {
       test('cTilesとcAnsが一致した場合にpuzzleCompleteをemit,isCompleteをtrueにすること', () => {  
         expect(wrapper.vm.isComplete).toBeFalsy()
+        wrapper.setData({
+          tiles: [{no:1, x:2, y: 3}, {no: 2, x: 6, y: 6}], 
+          ans: [{no:1,x:2,y:3}, {no:2, x: 5, y: 6}]
+        })
         expect(wrapper.emitted('puzzleComplete')).toBeFalsy()
         wrapper.setProps({difficulty: 'easy'})
         wrapper.setData({
