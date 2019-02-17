@@ -12,7 +12,7 @@ localVue.use(VueRouter)
 
 
 const router = new VueRouter({
-    params: { difficulty: 'normal', map: 'mt-fuji' },
+    params: { difficulty: 'normal', map: 'lake-biwako' },
     routes: [
       {path: '/difficulty/:difficulty/map', component: IndexPage}
     ],
@@ -34,17 +34,21 @@ describe('pages/difficulty/_difficulty/map/_map/index.vue', () => {
   })
   describe('methods', () => {
     describe('targetSec', () => {
-      test('SAR画像表示:0-24, 30-54秒', () => {
-        wrapper.setData({difficulty: 'normal', map: 'mt-fuji'})
+      test('SAR画像表示:0-14秒, 20-34秒, 40-54秒', () => {
+        wrapper.setData({difficulty: 'normal', map: 'lake-biwako'})
         expect(wrapper.vm.targetSec(0)).toBeTruthy()
-        expect(wrapper.vm.targetSec(24)).toBeTruthy()
-        expect(wrapper.vm.targetSec(30)).toBeTruthy()
+        expect(wrapper.vm.targetSec(14)).toBeTruthy()
+        expect(wrapper.vm.targetSec(20)).toBeTruthy()
+        expect(wrapper.vm.targetSec(34)).toBeTruthy()
+        expect(wrapper.vm.targetSec(40)).toBeTruthy()
         expect(wrapper.vm.targetSec(54)).toBeTruthy()
       })
-      test('光学画像表示:25-29, 55-59秒', () => {
-        wrapper.setData({difficulty: 'normal', map: 'mt-fuji'})
-        expect(wrapper.vm.targetSec(25)).toBeFalsy()
-        expect(wrapper.vm.targetSec(29)).toBeFalsy()
+      test('光学画像表示:15-19秒, 35-39秒, 55-59秒', () => {
+        wrapper.setData({difficulty: 'normal', map: 'lake-biwako'})
+        expect(wrapper.vm.targetSec(15)).toBeFalsy()
+        expect(wrapper.vm.targetSec(19)).toBeFalsy()
+        expect(wrapper.vm.targetSec(35)).toBeFalsy()
+        expect(wrapper.vm.targetSec(39)).toBeFalsy()
         expect(wrapper.vm.targetSec(55)).toBeFalsy()
         expect(wrapper.vm.targetSec(59)).toBeFalsy()
       })
@@ -53,19 +57,19 @@ describe('pages/difficulty/_difficulty/map/_map/index.vue', () => {
   describe('computed', () => {
     describe('selectedMap', () => {
       test('正常な値：selectedMapが取得できること', () => {
-        wrapper.setData({difficulty: 'normal', map: 'mt-fuji'})
+        wrapper.setData({difficulty: 'normal', map: 'lake-biwako'})
         expect(wrapper.vm.selectedMap).toBeTruthy()
       })
     })
     describe('mapImages', () => {
       test('正常な値：mapImagesが取得できること', () => {
-        wrapper.setData({difficulty: 'normal', map: 'mt-fuji'})
+        wrapper.setData({difficulty: 'normal', map: 'lake-biwako'})
         expect(wrapper.vm.mapImages).toBeTruthy()
       })
     })
     describe('completedImage', () => {
       test('正常な値：completedImageが取得できること', () => {
-        wrapper.setData({difficulty: 'normal', map: 'mt-fuji'})
+        wrapper.setData({difficulty: 'normal', map: 'lake-biwako'})
         expect(wrapper.vm.completedImage).toBeTruthy()
       })
     })

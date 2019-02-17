@@ -88,7 +88,7 @@ describe('store/index.js', () => {
             test('初回', () => {
                 const record =  {
                     difficulty: "normal",
-                    map: "mt-fuji",
+                    map: "lake-biwako",
                     min:10, 
                     sec: 20
                 }
@@ -99,13 +99,13 @@ describe('store/index.js', () => {
             test('２回目以降', () => {
                 const record_1 =  { // 初回
                     difficulty: "normal",
-                    map: "mt-fuji",
+                    map: "lake-biwako",
                     min:10, 
                     sec: 20
                 }
                 const record_2 =  { // 新記録
                     difficulty: "normal",
-                    map: "mt-fuji",
+                    map: "lake-biwako",
                     min:10, 
                     sec: 19
                 }
@@ -118,13 +118,13 @@ describe('store/index.js', () => {
             test('別の難易度の新記録', () => {
                 const record_1 =  { // 初回
                     difficulty: "normal",
-                    map: "mt-fuji",
+                    map: "lake-biwako",
                     min:10, 
                     sec: 20
                 }
                 const record_2 =  { // 同一記録
                     difficulty: "hard",
-                    map: "mt-fuji",
+                    map: "lake-biwako",
                     min:10, 
                     sec: 21
                 }
@@ -137,7 +137,7 @@ describe('store/index.js', () => {
             test('同じの難易度の別のマップ新記録', () => {
                 const record_1 =  { // 初回
                     difficulty: "normal",
-                    map: "mt-fuji",
+                    map: "lake-biwako",
                     min:10, 
                     sec: 20
                 }

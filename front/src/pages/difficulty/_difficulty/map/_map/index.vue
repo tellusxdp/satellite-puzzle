@@ -100,7 +100,7 @@ export default {
         hard: 5,
       },
       difficulty: 'normal',
-      map: 'mt-fuji'
+      map: 'lake-biwako'
     }
   },
     asyncData(context) {
