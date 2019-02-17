@@ -44,7 +44,7 @@ class TestCase(unittest.TestCase):
 
     def test_get_sar_tif_img_path_of_normal(self):
         _val = app._get_sar_tif_img_path('true-9-449-202')
-        self.assertEqual(_val, '/var/biwa.tif')
+        self.assertEqual(_val, '/1/6/data')
 
     def test_get_sar_tif_img_path_of_raise(self):
         with self.assertRaises(MyException):
@@ -52,12 +52,13 @@ class TestCase(unittest.TestCase):
 
     @mock.patch('app._get_sar_crop_params')
     def test_crop_and_save_convert_sar_png_img_of_normal(self, mock_get_sar_crop_params):
-        read_path = 'dst/testdata/test.tif'
-        save_path = 'dst/testdata/testtif.png'
-        pathlib.Path(save_path).unlink()
+        _read_api_path = '/1/6/data'
+        _save_path = 'dst/testdata/testtif.png'
+        if pathlib.Path(_save_path).exists():
+            pathlib.Path(_save_path).unlink()
         mock_get_sar_crop_params.return_value = [10, 10, 20, 20]
-        app._crop_and_save_convert_sar_png_img(read_path, save_path, '')
-        self.assertTrue(pathlib.Path(save_path).exists())
+        app._crop_and_save_convert_sar_png_img(_read_api_path, _save_path, '')
+        self.assertTrue(pathlib.Path(_save_path).exists())
 
 if __name__ == '__main__':
     unittest.main()
