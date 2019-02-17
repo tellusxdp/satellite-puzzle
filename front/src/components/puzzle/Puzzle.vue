@@ -270,7 +270,10 @@ export default {
 <style lang="scss" scoped>
 
 .puzzle-area {
-  border: inset 20px #5d41f3;
+  border-top: 20px solid #3d1bc3;
+  border-left: 20px solid #3d1bc3;
+  border-right: 20px solid #603ff2;
+  border-bottom: 20px solid #603ff2;
   border-radius: 8px;
   width: 540px;
   height: 540px;
