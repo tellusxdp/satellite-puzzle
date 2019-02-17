@@ -3,8 +3,8 @@
 // propsのdoRunをfalseにするとカウントアップ停止
 <template lang="pug">
   .count-up-timer
-    p.count-up-timer--text TIME
-    .count-up-timer--record
+    p.text TIME
+    .record
       span.time {{ formatMin }}
       span.time-unit 分
       span.time {{ formatSec }}
@@ -81,56 +81,55 @@ export default {
 <style lang="scss" scoped>
 .count-up-timer {
   width: 256px;
-}
 
-.count-up-timer--text {
-  margin-left: 86px;
-  // width: 60px;
-  height: 20px;
-  color: #fff;
-  letter-spacing: normal;
-  font-weight: 600;
-  font-style: italic;
-  font-stretch: normal;
-  font-size: 28px;
-  font-family: OpenSans;
-  line-height: 1.29;
-}
+  .text {
+    margin-left: 86px;
+    height: 20px;
+    color: #fff;
+    letter-spacing: normal;
+    font-weight: 600;
+    font-style: italic;
+    font-stretch: normal;
+    font-size: 28px;
+    font-family: OpenSans;
+    line-height: 1.29;
+  }
 
-.count-up-timer--record {
-  margin-top: 4px;
-  margin-left: -6px;
-  width: 256px;
-  text-align: center;
-}
+  .record {
+    margin-top: 4px;
+    margin-left: -6px;
+    width: 256px;
+    text-align: center;
 
-.time {
-  margin-left: 8px;
-  width: 67px;
-  height: 45px;
-  color: #fff;
-  text-align: center;
-  letter-spacing: normal;
-  font-weight: 800;
-  font-style: italic;
-  font-stretch: normal;
-  font-size: 61.5px;
-  font-family: OpenSans;
-  line-height: 1.63;
-}
+    .time {
+      margin-left: 8px;
+      width: 67px;
+      height: 45px;
+      color: #fff;
+      text-align: center;
+      letter-spacing: normal;
+      font-weight: 800;
+      font-style: italic;
+      font-stretch: normal;
+      font-size: 61.5px;
+      font-family: OpenSans;
+      line-height: 1.63;
+    }
 
-.time-unit {
-  margin-left: 2px;
-  width: 24px;
-  height: 23px;
-  color: #fff;
-  text-align: center;
-  letter-spacing: normal;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  font-size: 24px;
-  font-family: NotoSansCJKjp;
-  line-height: 1.5;
+    .time-unit {
+      margin-left: 2px;
+      width: 24px;
+      height: 23px;
+      color: #fff;
+      text-align: center;
+      letter-spacing: normal;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      font-size: 24px;
+      font-family: NotoSansCJKjp;
+      line-height: 1.5;
+    }
+  }
 }
 </style>

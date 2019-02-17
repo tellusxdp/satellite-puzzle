@@ -41,27 +41,27 @@ export default {
   height: 795px;
   border-radius: 4px;
   background-color: #e4e8f2;
-}
 
-.modal-contents {
-  text-align: center;
-}
+  .modal-contents {
+    text-align: center;
 
-.image-area {
-  height: 394px;
-}
+    .image-area {
+      height: 394px;
 
-.alos-2 {
-  margin-top: 74px;
-  margin-left: 0;
-}
+      .alos-2 {
+        margin-top: 74px;
+        margin-left: 0;
+      }
+    }
 
-.buton-area {
-  top: 304px;
-}
+    .button-area {
+      top: 304px;
 
-.button {
-  margin-top: 32px;
+      .button {
+        margin-top: 32px;
+      }
+    }
+  }
 }
 
 </style>

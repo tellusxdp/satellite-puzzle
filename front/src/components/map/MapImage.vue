@@ -2,9 +2,9 @@
 // clickするとonClickをemitする
 <template lang="pug">
   .puzzle-map(@click="click")
-    .puzzle-map--background
-      img.puzzle-map--image(:src="src")
-    .puzzle-map--label
+    .background
+      img.image(:src="src")
+    .label
       map-ribbon {{ mapName }}
 </template>
 
@@ -43,7 +43,7 @@ export default {
   height: 455px;
   // position: relative;
 
-  &--background {
+  .background {
     margin: auto auto;
     width: 401px;
     height: 477px;
@@ -51,13 +51,13 @@ export default {
     background-color: #fff;
   }
 
-  &--image {
+  .image {
     margin: 24px;
     width: 353px;
     height: 353px;
   }
 
-  &--label {
+  .label {
     margin-top: -124px;
     margin-left: 28px;
   }

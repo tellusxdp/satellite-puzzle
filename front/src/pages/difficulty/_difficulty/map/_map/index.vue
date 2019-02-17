@@ -1,6 +1,6 @@
 // パズル
 <template lang="pug">
-  .container
+  .page
     loading.loading(v-if="ready.delay && !ready.puzzle")
     .ready(v-show="ready.puzzle")
       .modal-background(v-if="modal")
@@ -25,7 +25,7 @@
             @puzzleComplete="stopTimer"
             @pushComplete="pushComplete")
       br
-      div.sar
+      .sar
         p ボタンを押したら、
           br
           | 完成画像が見れるよ
@@ -280,135 +280,8 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
-.timer-area {
-  padding-top: 50px;
-  width: 256px;
-}
-
-.puzzle-area {
-  padding-top: 30px;
-  padding-left: 48px;
-  width: 540px;
-  height: 540px;
-}
-
-.puzzle {
-  width: 540px;
-  height: 540px;
-}
-
-.hard-puzzle {
-  top: 50px;
-  left: 50px;
-  width: 540px;
-  height: 540px;
-}
-
-.hint-button {
-  margin-top: 80px;
-  text-align: center;
-}
-
-.giveup-button {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.sar {
-  position: relative;
-  margin-left: 20px;
-  padding-top: 70px;
-  // width: 305px;
-  height: 60px;
-  color: #192342;
-  text-align: center;
-  letter-spacing: normal;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  font-size: 24px;
-  font-family: NotoSansCJKjp;
-  line-height: 1.5;
-}
-
-.sar::before {
-  position: absolute;
-  top: 66px;
-  left: 138px;
-  width: 31px;
-  height: 74px;
-  border-left: solid #192342;
-  border-left-width: 2px;
-  content: "";
-  transform: rotate(-22deg);
-}
-
-.sar::after {
-  position: absolute;
-  top: 78px;
-  left: 462px;
-  width: 31px;
-  height: 74px;
-  border-left: solid #192342;
-  border-left-width: 2px;
-  content: "";
-  transform: rotate(22deg);
-}
-
-.hint-area {
-  position: absolute;
-  z-index: 30;
-  width: 540px;
-  height: 540px;
-  border: inset 20px #5d41f3;
-  border-radius: 8px;
-
-  .shadow {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    border: solid 10px #192342;
-  }
-}
-
-.completed-image {
-  width: 480px;
-  height: 480px;
-  background-color: white;
-  text-align: center;
-}
-
-.retire {
-  text-align: center;
-}
-
-.modal-background {
-  position: absolute;
-  width: 640px;
-  height: 1149px;
-  background-color: #10172b;
-  opacity: 0.6;
-}
-
-.modal-area {
-  position: absolute;
-  z-index: 40;
-}
-
-.loading {
-  width: 640px;
-  height: 1148px;
-  background-image:
-    url('~assets/images/background/loadingearth.png'),
-    url('~assets/images/background/background.png');
-  background-position: center 648px, center center;
-  background-size: contain, contain;
-  background-repeat: no-repeat, no-repeat;
-}
-
-.container {
+.page {
   width: 640px;
   height: 1148px;
   background-image:
@@ -418,13 +291,128 @@ export default {
   background-position: 0 0, center 648px, center center;
   background-size: initial, 1902px, contain;
   background-repeat: no-repeat, no-repeat, no-repeat;
-}
 
-.jaxa {
-  position: absolute;
-  top: 1110px;
-  left: 530px;
-  color: #5b6277;
-}
+  .loading {
+    width: 640px;
+    height: 1148px;
+    background-image:
+      url('~assets/images/background/loadingearth.png'),
+      url('~assets/images/background/background.png');
+    background-position: center 648px, center center;
+    background-size: contain, contain;
+    background-repeat: no-repeat, no-repeat;
+  }
 
+  .ready {
+    .modal-background {
+      position: absolute;
+      width: 640px;
+      height: 1149px;
+      background-color: #10172b;
+      opacity: 0.6;
+    }
+
+    .timer-area {
+      padding-top: 50px;
+      width: 256px;
+    }
+
+    .puzzle-area {
+      padding-top: 30px;
+      padding-left: 48px;
+      width: 540px;
+      height: 540px;
+
+      .hint-area {
+        position: absolute;
+        z-index: 30;
+        width: 540px;
+        height: 540px;
+        border: inset 20px #5d41f3;
+        border-radius: 8px;
+
+        .shadow {
+          position: relative;
+          width: 500px;
+          height: 500px;
+          border: solid 10px #192342;
+
+          .completed-image {
+            width: 480px;
+            height: 480px;
+            background-color: white;
+            text-align: center;
+          }
+        }
+      }
+
+      .puzzle {
+        width: 540px;
+        height: 540px;
+      }
+    }
+
+    .sar {
+      position: relative;
+      margin-left: 20px;
+      padding-top: 70px;
+      height: 60px;
+      color: #192342;
+      text-align: center;
+      letter-spacing: normal;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      font-size: 24px;
+      font-family: NotoSansCJKjp;
+      line-height: 1.5;
+
+      &::before {
+        position: absolute;
+        top: 66px;
+        left: 138px;
+        width: 31px;
+        height: 74px;
+        border-left: solid #192342;
+        border-left-width: 2px;
+        content: "";
+        transform: rotate(-22deg);
+      }
+
+      &::after {
+        position: absolute;
+        top: 78px;
+        left: 462px;
+        width: 31px;
+        height: 74px;
+        border-left: solid #192342;
+        border-left-width: 2px;
+        content: "";
+        transform: rotate(22deg);
+      }
+    }
+
+    .hint-button {
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    .giveup-button {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .modal-area {
+      position: absolute;
+      z-index: 40;
+    }
+  }
+
+  .jaxa {
+    position: absolute;
+    top: 1110px;
+    left: 530px;
+    color: #5b6277;
+  }
+}
 </style>

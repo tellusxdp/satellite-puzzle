@@ -1,12 +1,12 @@
 // トップ画面
 <template lang="pug">
-  div
+  .page
     .push-start(@click="pushStart")
       title-logo
       alos2
-    div.share-area
+    .share-area
       p ゲームをSNSでシェア
-      .share-area--buttons
+      .buttons
         facebook-share-button.facebook-share-button(
           :url="url"
         )
@@ -56,58 +56,60 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.push-start {
-  margin: 0 auto;
-  width: 370px;
-  height: 380px;
-}
+.page {
+  .push-start {
+    margin: 0 auto;
+    width: 370px;
+    height: 380px;
 
-.title-logo {
-  padding-top: 239px;
-}
+    .title-logo {
+      padding-top: 239px;
+    }
 
-.alos2 {
-  margin-top: 94px;
-  text-align: center;
-}
-
-.share-area {
-  margin-top: 494px;
-  margin-right: auto;
-  margin-left: auto;
-  width: 528px;
-  height: 248px;
-
-  p {
-    height: 23px;
-    color: #fff;
-    text-align: center;
-    letter-spacing: normal;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    font-size: 24px;
-    font-family: NotoSansCJKjp;
-    line-height: 1.5;
+    .alos2 {
+      margin-top: 94px;
+      text-align: center;
+    }
   }
 
-  &--buttons {
-    margin-top: 42px;
-    text-align: center;
-  }
+  .share-area {
+    margin-top: 494px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 528px;
+    height: 248px;
 
-  .facebook-share-button {
-    display: inline-block;
-  }
+    p {
+      height: 23px;
+      color: #fff;
+      text-align: center;
+      letter-spacing: normal;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      font-size: 24px;
+      font-family: NotoSansCJKjp;
+      line-height: 1.5;
+    }
 
-  .twitter-share-button {
-    display: inline-block;
-    margin-left: 20px;
-  }
+    .buttons {
+      margin-top: 42px;
+      text-align: center;
+    }
 
-  .hatena-share-button {
-    display: inline-block;
-    margin-left: 20px;
+    .facebook-share-button {
+      display: inline-block;
+    }
+
+    .twitter-share-button {
+      display: inline-block;
+      margin-left: 20px;
+    }
+
+    .hatena-share-button {
+      display: inline-block;
+      margin-left: 20px;
+    }
   }
 }
 
