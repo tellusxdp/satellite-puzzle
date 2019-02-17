@@ -21,7 +21,7 @@ module.exports = {
       { property: 'og:title', content: '衛星パズル' }, // ページタイトル
       { property: 'og:description', content: '衛星で撮影した画像を使って行うパズルゲームです。ゲームを通じて、衛星画像を身近な存在に！' }, // ページの説明文
       { property: 'og:site_name', content: '衛星パズル' }, // サイト名
-      { property: 'og:image', content: '/OGP_Start.jpg' }, // サムネイルのURL
+      { property: 'og:image', content: 'https://satellite-puzzle.app.tellusxdp.com/OGP_Start.png' }, // サムネイルのURL
       // Twitter
       { name: 'twitter:card', content: 'summary_large_image' }, // カード種類
       { name: 'twitter:site', content: '@tellus_xdata'}, // @ユーザー名
