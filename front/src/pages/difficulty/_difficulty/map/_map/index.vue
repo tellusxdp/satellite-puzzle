@@ -288,8 +288,8 @@ export default {
 }
 
 .puzzle-area {
-  padding-left: 48px;
   padding-top: 30px;
+  padding-left: 48px;
   width: 540px;
   height: 540px;
 }
@@ -312,65 +312,64 @@ export default {
 }
 
 .giveup-button {
-  text-align: center;
   margin-top: 10px;
+  text-align: center;
 }
 
 .sar {
-  padding-top: 70px;
   position: relative;
   margin-left: 20px;
-
+  padding-top: 70px;
   // width: 305px;
   height: 60px;
-  font-family: NotoSansCJKjp;
-  font-size: 24px;
+  color: #192342;
+  text-align: center;
+  letter-spacing: normal;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
+  font-size: 24px;
+  font-family: NotoSansCJKjp;
   line-height: 1.5;
-  letter-spacing: normal;
-  text-align: center;
-  color: #192342;
 }
 
 .sar::before {
-  content: "";
-  border-left: solid #192342;
-  border-left-width: 2px;
-  transform: rotate(-22deg);
   position: absolute;
   top: 66px;
   left: 138px;
   width: 31px;
   height: 74px;
+  border-left: solid #192342;
+  border-left-width: 2px;
+  content: "";
+  transform: rotate(-22deg);
 }
 
 .sar::after {
-  content: "";
-  border-left: solid #192342;
-  border-left-width: 2px;
-  transform: rotate(22deg);
   position: absolute;
   top: 78px;
   left: 462px;
   width: 31px;
   height: 74px;
+  border-left: solid #192342;
+  border-left-width: 2px;
+  content: "";
+  transform: rotate(22deg);
 }
 
 .hint-area {
-  border: inset 20px #5d41f3;
-  border-radius: 8px;
-  width: 540px;
-  height: 540px;
   position: absolute;
   z-index: 30;
+  width: 540px;
+  height: 540px;
+  border: inset 20px #5d41f3;
+  border-radius: 8px;
 
   .shadow {
-    border: solid 10px #192342;
+    position: relative;
     width: 500px;
     height: 500px;
-    position: relative;
+    border: solid 10px #192342;
   }
 }
 
@@ -389,8 +388,8 @@ export default {
   position: absolute;
   width: 640px;
   height: 1149px;
-  opacity: 0.6;
   background-color: #10172b;
+  opacity: 0.6;
 }
 
 .modal-area {
@@ -399,26 +398,26 @@ export default {
 }
 
 .loading {
+  width: 640px;
+  height: 1148px;
   background-image:
     url('~assets/images/background/loadingearth.png'),
     url('~assets/images/background/background.png');
-  background-repeat: no-repeat, no-repeat;
-  background-size: contain, contain;
   background-position: center 648px, center center;
-  width: 640px;
-  height: 1148px;
+  background-size: contain, contain;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .container {
+  width: 640px;
+  height: 1148px;
   background-image:
     url('~assets/images/moon/img_pzlmoon.png'),
     url('~assets/images/background/moon/background-2.png'),
     url('~assets/images/background/background.png');
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-size: initial, 1902px, contain;
   background-position: 0 0, center 648px, center center;
-  width: 640px;
-  height: 1148px;
+  background-size: initial, 1902px, contain;
+  background-repeat: no-repeat, no-repeat, no-repeat;
 }
 
 .jaxa {

@@ -165,42 +165,42 @@ export default {
 }
 
 .share-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 58px;
   margin-left: -24px;
-  text-align: center;
   height: 64px;
+  text-align: center;
   line-height: 64px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .share-area--text {
   margin-left: 40px;
   height: 23px;
-  font-family: NotoSansCJKjp;
-  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: normal;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
+  font-size: 24px;
+  font-family: NotoSansCJKjp;
   line-height: 1.5;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
 }
 
 .facebook-share-button {
+  display: inline-block;
   margin-top: 10px;
   margin-left: 2px;
   vertical-align: middle;
-  display: inline-block;
   transform: scale(0.8);
 }
 
 .twitter-share-button {
+  display: inline-block;
   margin-top: 10px;
   vertical-align: middle;
-  display: inline-block;
   transform: scale(0.8);
 }
 
@@ -210,14 +210,14 @@ export default {
 }
 
 .page {
+  width: 640px;
+  height: 1148px;
   background-image:
     url('~assets/images/moon/img_pzlmoon.png'),
     url('~assets/images/background/background.png');
-  background-repeat: no-repeat, no-repeat;
-  background-size: initial, contain;
   background-position: 0 0, center center;
-  width: 640px;
-  height: 1148px;
+  background-size: initial, contain;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .jaxa {

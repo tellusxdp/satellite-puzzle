@@ -44,17 +44,17 @@ export default {
   // position: relative;
 
   &--background {
+    margin: auto auto;
     width: 401px;
     height: 477px;
     border-radius: 4px;
     background-color: #fff;
-    margin: auto auto;
   }
 
   &--image {
+    margin: 24px;
     width: 353px;
     height: 353px;
-    margin: 24px;
   }
 
   &--label {

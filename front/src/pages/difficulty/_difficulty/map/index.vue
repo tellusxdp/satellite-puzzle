@@ -108,18 +108,18 @@ export default {
 
 <style lang="scss" scoped>
 .return {
-  padding-top: 42px;
   margin-left: 34px;
+  padding-top: 42px;
   height: 24px;
-  font-family: NotoSansCJKjp;
-  font-size: 24px;
+  color: #fff;
+  text-align: left;
+  letter-spacing: normal;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
+  font-size: 24px;
+  font-family: NotoSansCJKjp;
   line-height: 1.5;
-  letter-spacing: normal;
-  text-align: left;
-  color: #fff;
 }
 
 .map-area {
@@ -128,27 +128,27 @@ export default {
 
 .map-list {
   overflow: auto;
-  height: 1000px;
   width: 640px;
+  height: 1000px;
 }
 
 .map {
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
 }
 
 .puzzle-map {
+  margin-right: auto;
   margin-bottom: 82px;
   margin-left: auto;
-  margin-right: auto;
 }
 
 .jaxa {
   position: absolute;
   top: 1110px;
   left: 530px;
-  color: #5b6277;
   z-index: 10;
+  color: #5b6277;
 }
 
 </style>

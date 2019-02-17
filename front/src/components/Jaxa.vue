@@ -7,13 +7,13 @@
 .jaxa-c {
   width: 62px;
   height: 15px;
-  font-family: NotoSansCJKjp;
-  font-size: 20px;
+  text-align: left;
+  letter-spacing: normal;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
+  font-size: 20px;
+  font-family: NotoSansCJKjp;
   line-height: 1.8;
-  letter-spacing: normal;
-  text-align: left;
 }
 </style>
