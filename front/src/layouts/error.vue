@@ -30,25 +30,25 @@ export default {
 
 <style scoped>
 .error-text {
-  text-align: center;
   margin: 0 auto;
   padding-top: 239px;
+  text-align: center;
 }
 
 .error-image-404 {
-  text-align: center;
   margin-top: 28px;
   margin-left: 10px;
+  text-align: center;
 }
 
 .error-image-403 {
-  text-align: center;
   margin-top: 76px;
   margin-left: -24px;
+  text-align: center;
 }
 
 .error-text-505 {
-  text-align: center;
   padding-top: 440px;
+  text-align: center;
 }
 </style>

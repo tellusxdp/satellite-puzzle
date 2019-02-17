@@ -69,15 +69,15 @@ export default {
 
 <style lang="scss" scoped>
 html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
+  overflow: hidden;
+  box-sizing: border-box;
   word-spacing: 1px;
+  font-size: 16px;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  overflow: hidden;
 }
 
 *,
@@ -89,38 +89,38 @@ html {
 
 .button--green {
   display: inline-block;
-  border-radius: 4px;
+  padding: 10px 30px;
   border: 1px solid #3b8070;
+  border-radius: 4px;
   color: #3b8070;
   text-decoration: none;
-  padding: 10px 30px;
 }
 
 .button--green:hover {
-  color: #fff;
   background-color: #3b8070;
+  color: #fff;
 }
 
 .button--gray {
   display: inline-block;
-  border-radius: 4px;
+  margin-left: 15px;
+  padding: 10px 30px;
   border: 1px solid #35495e;
+  border-radius: 4px;
   color: #35495e;
   text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
 }
 
 .button--gray:hover {
-  color: #fff;
   background-color: #35495e;
+  color: #fff;
 }
 
 .contents {
-  background: url('~assets/images/background/background.png') center center / cover no-repeat;
-  background-size: contain;
   width: 640px;
   height: 1148px;
+  background: url('~assets/images/background/background.png') center center / cover no-repeat;
+  background-size: contain;
 }
 
 .background {
@@ -135,16 +135,16 @@ html {
 $scale: var(--scale);
 
 .wrapper {
-  transform: scale($scale);
-  -o-transform: scale($scale);
   -webkit-transform: scale($scale);
   -moz-transform: scale($scale);
   -ms-transform: scale($scale);
-  transform-origin: 0 0;
-  -o-transform-origin: 0 0;
+  -o-transform: scale($scale);
+  transform: scale($scale);
   -webkit-transform-origin: 0 0;
   -moz-transform-origin: 0 0;
   -ms-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 
 </style>

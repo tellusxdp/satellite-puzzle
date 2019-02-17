@@ -18,11 +18,11 @@ export default {
 <style lang="scss" scoped>
 .alos2 {
   button {
-    background-image: url('~assets/images/alos-2/alos-2.png');
-    background-repeat: no-repeat;
-    background-size: contain;
     width: 289px;
     height: 77px;
+    background-image: url('~assets/images/alos-2/alos-2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 </style>
