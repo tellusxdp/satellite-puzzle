@@ -15,6 +15,7 @@ import pathlib
 app = Flask(__name__)
 
 img_url = 'https://gisapi.opf-dev.jp'
+sar_img_url = 'http://sample-data.app.tellusxdp.com'
 map_kinds = {
     'osm': 'osm',
     'landsat8': 'landsat8',
@@ -29,14 +30,14 @@ map_kinds = {
 # 後に仕様変更される
 sar_crop_params = {
     'true-9-449-202': [1000, 7800, 23000, 33000],
-    'true-10-909-403': [],
+    'true-10-909-403': [2332, 1668, 25148, 29442],
     'true-8-226-98': [0, 0, 27720, 31440]
 }
 # SAR画像のパス、ハードコード
 sar_tif_img_path = {
-    'true-9-449-202': '/var/biwa.tif',
-    'true-10-909-403': '/var/tokyo.tif',
-    'true-8-226-98': '/var/sado.tif'
+    'true-9-449-202': '/1/6/data', # lake-biwako
+    'true-10-909-403': '/1/4/data', # city-tokyo
+    'true-8-226-98': '/1/5/data' # island-sado
 }
 
 @app.errorhandler(Exception)
@@ -74,7 +75,7 @@ def _func_op_img(save_img_dir, x, y, z, map_kind, split_n):
     try:
         # urlから取得した画像をメモリの保持
         _req_url = '%s/%s/%d/%d/%d.png' % (img_url, map_kinds[map_kind], z, x, y)
-        _res = requests.get(_req_url)
+        _res = requests.get(_req_url, stream=True)
         _img = Image.open(BytesIO(_res.content))
 
         # 光学画像のファイルパス
@@ -108,12 +109,12 @@ def _func_sar_img(save_img_dir, x, y, z, map_kind, split_n):
     # ハードコードされているmapからvalueを取得するためのkey
     key = '%s-%d-%d-%d' % (map_kinds[map_kind], z, x, y)
 
-    # SAR画像のtifのファイルパス
-    _sar_tif_img_path = _get_sar_tif_img_path(key)
+    # SAR画像のtifのapi path
+    _sar_img_api_path = _get_sar_tif_img_path(key)
 
     try:
         # SARのフル画像を規定のサイズにcropし、pngに変換してsaveする
-        _crop_and_save_convert_sar_png_img(_sar_tif_img_path, _save_sar_png_img_path, key)
+        _crop_and_save_convert_sar_png_img(_sar_img_api_path, _save_sar_png_img_path, key)
     except:
         raise MyException("couldn't save sar png img", 500)
 
@@ -134,13 +135,15 @@ def _func_sar_img(save_img_dir, x, y, z, map_kind, split_n):
             _img.close()
 
 # SARのフル画像を光学画像に合わせるようにcrop
-def _crop_and_save_convert_sar_png_img(read_sar_img_path, save_sar_png_img_path, key, op_size = 256):
+def _crop_and_save_convert_sar_png_img(read_sar_img_api_path, save_sar_png_img_path, key, op_size = 256):
     _left, _upper, _right, _lower = _get_sar_crop_params(key)
     _box = (_left, _upper, _right, _lower)
 
     _img = None
     try:
-        _img = Image.open(read_sar_img_path)
+        _req_url = '%s%s' % (sar_img_url, read_sar_img_api_path)
+        _res = requests.get(_req_url, stream=True)
+        _img = Image.open(BytesIO(_res.content))
         _img.point(lambda i:i*(1./256)).convert('L').crop(_box).resize((op_size, op_size)).save(save_sar_png_img_path, 'PNG', quality=True)
     except:
         raise MyException("couldn't crop sar full image", 500)
