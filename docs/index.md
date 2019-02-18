@@ -161,9 +161,6 @@ fi
 cd /var && git clone https://github.com/tellusxdp/satellite-puzzle.git
 cp wildcard.app.tellusxdp.com.crt satellite-puzzle/.docker
 cp wildcard.app.tellusxdp.com.key satellite-puzzle/.docker
-cp biwa.tif satellite-puzzle/.docker
-cp tokyo.tif satellite-puzzle/.docker
-cp sado.tif satellite-puzzle/.docker
 cd /var/satellite-puzzle/.deploy && sh production.sh
 ```
 
