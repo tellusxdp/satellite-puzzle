@@ -90,7 +90,7 @@ html {
 $scale: var(--scale);
 
 .background {
-  background-color: #000;
+  background: url('~assets/images/background/background.png') center center / cover no-repeat;
 
   .margin {
     margin-left: var(--mergin);
