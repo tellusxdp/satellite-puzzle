@@ -55,6 +55,11 @@ export default {
     margin: 24px;
     width: 353px;
     height: 353px;
+    filter: brightness(200%);
+    -webkit-filter: brightness(200%);
+    -moz-filter: brightness(200%);
+    -o-filter: brightness(200%);
+    -ms-filter: brightness(200%);
   }
 
   .label {

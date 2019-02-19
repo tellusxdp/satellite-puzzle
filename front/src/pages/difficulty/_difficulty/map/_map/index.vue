@@ -342,6 +342,11 @@ export default {
             height: 480px;
             background-color: white;
             text-align: center;
+            filter: brightness(200%);
+            -webkit-filter: brightness(200%);
+            -moz-filter: brightness(200%);
+            -o-filter: brightness(200%);
+            -ms-filter: brightness(200%);
           }
         }
       }
