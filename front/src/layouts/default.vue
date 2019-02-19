@@ -90,7 +90,18 @@ html {
 $scale: var(--scale);
 
 .background {
-  background-color: #000;
+  background: url('~assets/images/background/background.png');
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    bottom: -30px;
+    left: -30px;
+    right: -30px;
+    background: inherit;
+    filter: blur(30px);
+  }
 
   .margin {
     margin-left: var(--mergin);
