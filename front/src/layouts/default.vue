@@ -90,7 +90,7 @@ html {
 $scale: var(--scale);
 
 .background {
-  background-color: #000;
+  background-color: #192342;
 
   .margin {
     margin-left: var(--mergin);
