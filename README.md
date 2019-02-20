@@ -51,7 +51,7 @@ sh local.sh
 
 ## Collaborators
 * 株式会社プラハ
-  * [@shun-kanouchi](https://github.com/shin-kanouchi)
+  * [@shin-kanouchi](https://github.com/shin-kanouchi)
   * [@revenue-hack](https://github.com/revenue-hack)
 
 
