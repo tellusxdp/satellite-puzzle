@@ -288,6 +288,8 @@ export default {
     background-color: #4a34c2;
 
     .completed-image {
+      width: 480px;
+      height: 480px;
       filter: brightness(200%);
       -webkit-filter: brightness(200%);
       -moz-filter: brightness(200%);
