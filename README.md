@@ -1,91 +1,44 @@
-# satellite-puzzle
+# 衛星パズル
 
 <img src="https://user-images.githubusercontent.com/39848573/52912781-9cc65580-32f9-11e9-892b-83c71efce7ef.png" width="280">
 
-[https://tellusxdp.github.io/satellite-puzzle/](https://tellusxdp.github.io/satellite-puzzle/)
 
-## アプリ概要
-
-衛星で撮影した画像を使って行うパズルゲームです。  
+## 概要
+Tellusで提供されている2種類の衛星画像を使って行うスライドパズルゲームです。  
 ゲームを通じて、衛星画像を身近な存在に！
 
-## front
-node version 10.15  
-npm 6.4
-> Nuxt.js project
-### directory
-```
-cd front
-```
+[今すぐこのアプリで遊ぶにはこちら](https://satellite-puzzle.app.telluxdp.com)
 
-``` bash
-# install dependencies
-yarn install
+[開発者ドキュメントはこちら](https://tellusxdp.github.io/satellite-puzzle/)
 
-# serve with hot reload at localhost:3000
-$ yarn dev
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+## 依存先 (ホスト)
+* docker
+* docker-compose
 
-# generate static project
-$ yarn generate
-```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+## フロントエンド (`front/`)
+パズルアプリのUIを提供するサーバ。Nuxt.jsを採用したPWAです。
 
-## image processing
-python >= 3.6.5  
-pip 9.0.3
-### directory
-```
-cd image_processing
-```
-### local run
-```
-make
-```
-### request example
-画像種類: landsat8  
-x: 7248  
-y: 3226  
-z: 13  
-split_n: 3(画像の分割数)
-``` bash
-curl http://localhost:5000\?z\=13\&x\=7248\&y\=3226\&kind\=landsat8\&split_n\=3
-```
+### 依存先 (コンテナ内)
+* node version 10.15
+* npm 6.4
 
-### docker request example
-画像種類: landsat8  
-x: 7248  
-y: 3226  
-z: 13  
-split_n: 3(画像の分割数)  
-```
-docker exec -it satellite-puzzle-front sh
-curl http://localhost:5000\?z\=13\&x\=7248\&y\=3226\&kind\=landsat8\&split_n\=3
-```
 
-## deploy
-### production
-``` bash
-cd .deploy
-sh production.sh
-```
+## 画像処理 (`image_processing/`)
+Tellusから衛星画像を取得し、パズルで利用できるように前処理を行うサーバ。
 
-### staging
-## auto deploy
-[https://github.com/tkuchiki/ghooks-cmd-runner/releases](https://github.com/tkuchiki/ghooks-cmd-runner/releases)
-``` bash
-cd .deploy
-sh staging.sh
-```
+### 主な依存先 (コンテナ内)
+* python >= 3.6.5
+* pip 9.0.3
 
-### local
+
+## 起動
 ``` bash
 cd .deploy
 sh local.sh
 ```
-access to [http://localhost:3000](http://localhost:3000)
+
+## アプリ確認
+[http://localhost:3000](http://localhost:3000)
 
