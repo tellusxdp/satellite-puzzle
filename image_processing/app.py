@@ -15,7 +15,7 @@ import pathlib
 app = Flask(__name__)
 
 img_url = 'https://gisapi.opf-dev.jp'
-sar_img_url = 'http://sample-data.app.tellusxdp.com'
+sar_img_url = 'https://sample-data.app.tellusxdp.com'
 map_kinds = {
     'osm': 'osm',
     'landsat8': 'landsat8',
@@ -35,9 +35,9 @@ sar_crop_params = {
 }
 # SAR画像のパス、ハードコード
 sar_tif_img_path = {
-    'true-9-449-202': '/1/6/data', # lake-biwako
-    'true-10-909-403': '/1/4/data', # city-tokyo
-    'true-8-226-98': '/1/5/data' # island-sado
+    'true-9-449-202': '/1/IMG-HH-ALOS2231252870-180904-UBSL2.1GUD.tif', # lake-biwako
+    'true-10-909-403': '/1/IMG-HH-ALOS2243962900-181129-UBSR2.1GUD.tif', # city-tokyo
+    'true-8-226-98': '/1/IMG-HH-ALOS2219862850-180619-UBSR2.1GUD.tif' # island-sado
 }
 
 @app.errorhandler(Exception)
