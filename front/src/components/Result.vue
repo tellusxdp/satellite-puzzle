@@ -114,6 +114,11 @@ export default {
 .completed-image {
   width: 421px;
   height: 421px;
+  filter: brightness(200%);
+  -webkit-filter: brightness(200%);
+  -moz-filter: brightness(200%);
+  -o-filter: brightness(200%);
+  -ms-filter: brightness(200%);
 }
 
 .record {

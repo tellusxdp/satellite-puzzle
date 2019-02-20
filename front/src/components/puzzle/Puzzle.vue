@@ -9,7 +9,7 @@
         transition(
           name="fade-in"
           @after-enter="pushComplete")
-          .completed-image(
+          div(
             v-show="isComplete")
             img.completed-image(:src="completedImage")
         transition(name="fade-out")
@@ -24,7 +24,7 @@
                   @leave="tileMove(tile.no)"
                   @after-leave="tileMoved(tile.no)")
                   div(v-show="!tile.move")
-                    tile(
+                    tile.sar(
                       v-show="showSar"
                       :image="imageSar(tile.no)"
                       :size="px"
@@ -286,6 +286,14 @@ export default {
     height: 500px;
     border: solid 10px #192342;
     background-color: #4a34c2;
+
+    .completed-image {
+      filter: brightness(200%);
+      -webkit-filter: brightness(200%);
+      -moz-filter: brightness(200%);
+      -o-filter: brightness(200%);
+      -ms-filter: brightness(200%);
+    }
   }
 
   .tile {
@@ -293,12 +301,15 @@ export default {
     width: var(--px);
     height: var(--px);
     transition: 0.25s;
-  }
-}
 
-.completed-image {
-  width: 480px;
-  height: 480px;
+    .sar {
+      filter: brightness(200%);
+      -webkit-filter: brightness(200%);
+      -moz-filter: brightness(200%);
+      -o-filter: brightness(200%);
+      -ms-filter: brightness(200%);
+    }
+  }
 }
 
 .fade-in-enter-active,
