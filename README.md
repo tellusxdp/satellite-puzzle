@@ -11,6 +11,8 @@ Tellusで提供されている2種類の衛星画像を使って行うスライ�
 
 [開発者ドキュメントはこちら](https://tellusxdp.github.io/satellite-puzzle/)
 
+[Tellusとは？](https://www.tellusxdp.com)
+
 
 ## 依存先 (ホスト)
 * docker
@@ -47,4 +49,9 @@ sh local.sh
 * 株式会社プラハ
   * [@shun-kanouchi](https://github.com/shin-kanouchi)
   * [@revenue-hack](https://github.com/revenue-hack)
+
+
+-----
+
+<a href="https://www.tellusxdp.com"><img src="https://user-images.githubusercontent.com/3175456/53102763-b53fa580-356f-11e9-94d5-a934d220c6fa.png"></a>
 
