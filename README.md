@@ -1,6 +1,10 @@
 # 衛星パズル
 
-<img src="https://user-images.githubusercontent.com/39848573/52912781-9cc65580-32f9-11e9-892b-83c71efce7ef.png" width="280">
+<p align="center">
+  <a href="https://satellite-puzzle.app.tellusxdp.com">
+    <img src="https://user-images.githubusercontent.com/39848573/52912781-9cc65580-32f9-11e9-892b-83c71efce7ef.png" width="280">
+  </a>
+</p>
 
 
 ## 概要
@@ -53,5 +57,10 @@ sh local.sh
 
 -----
 
-<a href="https://www.tellusxdp.com"><img src="https://user-images.githubusercontent.com/3175456/53102763-b53fa580-356f-11e9-94d5-a934d220c6fa.png"></a>
+
+<p align="center">
+  <a href="https://www.tellusxdp.com">
+    <img src="https://user-images.githubusercontent.com/3175456/53102763-b53fa580-356f-11e9-94d5-a934d220c6fa.png">
+  </a>
+</p>
 
