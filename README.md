@@ -11,7 +11,7 @@
 Tellusで提供されている2種類の衛星画像を使って行うスライドパズルゲームです。  
 ゲームを通じて、衛星画像を身近な存在に！
 
-[今すぐこのアプリで遊ぶにはこちら](https://satellite-puzzle.app.telluxdp.com)
+[今すぐこのアプリで遊ぶにはこちら](https://satellite-puzzle.app.tellusxdp.com)
 
 [開発者ドキュメントはこちら](https://tellusxdp.github.io/satellite-puzzle/)
 
