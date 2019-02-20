@@ -42,3 +42,9 @@ sh local.sh
 ## アプリ確認
 [http://localhost:3000](http://localhost:3000)
 
+
+## Collaborators
+* 株式会社プラハ
+  * [@shun-kanouchi](https://github.com/shin-kanouchi)
+  * [@revenue-hack](https://github.com/revenue-hack)
+
