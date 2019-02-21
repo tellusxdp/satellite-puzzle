@@ -13,6 +13,7 @@ export default {
     styles () {
       return {
         '--height': `${this.height}px`,
+        '--width': `${this.width}px`,
         '--scale': this.height/1148,
         '--mergin': `${(this.width - 640 * (this.height/1148))/2}px`,
       }
@@ -91,8 +92,11 @@ $scale: var(--scale);
 
 .background {
   background: url('~assets/images/background/background.png');
+  overflow: hidden;
 
   &::before {
+    height: var(--height);
+    width: var(--width);
     content: '';
     position: absolute;
     top: -30px;
@@ -101,6 +105,10 @@ $scale: var(--scale);
     right: -30px;
     background: inherit;
     filter: blur(30px);
+    -webkit-filter: blur(30px);
+    -moz-filter: blur(30px);
+    -o-filter: blur(30px);
+    -ms-filter: blur(30px);
   }
 
   .margin {
