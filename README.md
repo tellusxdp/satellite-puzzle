@@ -6,10 +6,18 @@
   </a>
 </p>
 
+想定環境
+
+> ホストにDocker/DockerComposeが導入されていること
+
 
 ## 概要
-Tellusで提供されている2種類の衛星画像を使って行うスライドパズルゲームです。  
+[Tellus](https://www.tellusxdp.com) を利用したサンプルプロジェクトです。
+
+Tellusで提供されている2種類の衛星画像を使って行うスライドパズルゲームです。
 ゲームを通じて、衛星画像を身近な存在に！
+
+**Tellus Platformでの動作を想定しているため、それ以外の環境ではTellusAPIの利用に失敗する場合があります**
 
 [今すぐこのアプリで遊ぶにはこちら](https://satellite-puzzle.app.tellusxdp.com)
 
@@ -19,23 +27,23 @@ Tellusで提供されている2種類の衛星画像を使って行うスライ�
 
 
 ## 依存先 (ホスト)
-* docker
-* docker-compose
+* Docker
+* DockerCompose
 
 
 ## フロントエンド (`front/`)
 パズルアプリのUIを提供するサーバ。Nuxt.jsを採用したPWAです。
 
 ### 依存先 (コンテナ内)
-* node version 10.15
-* npm 6.4
+* node 10.15+
+* npm 6.4+
 
 
 ## 画像処理 (`image_processing/`)
 Tellusから衛星画像を取得し、パズルで利用できるように前処理を行うサーバ。
 
-### 主な依存先 (コンテナ内)
-* python >= 3.6.5
+### 依存先 (コンテナ内)
+* python 3.6.5+
 * pip 9.0.3
 
 
