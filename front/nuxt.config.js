@@ -9,7 +9,7 @@ module.exports = {
     CLIENT_URL: env.CLIENT_URL || 'http://localhost:3000'
   },
   head: {
-    title: 'satellite-puzzle',
+    title: '衛星パズル',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=640' },
