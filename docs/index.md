@@ -1,14 +1,29 @@
-
 # 衛星パズル
 
->OS: Ubuntu 18.04  
->python: 3.6  
->node: 10.15  
+想定環境
 
-## アプリ概要
+> ホストにDocker/DockerComposeが導入されていること  
+> Python 3.6 (コンテナ内)  
+> node 10.15 (コンテナ内)  
 
-衛星で撮影した画像を使って行うパズルゲームです。  
+
+## 目次
+* [概要](#概要)
+* [アプリ構成](#アプリ構成)
+* [デプロイ準備例 (Ubntu 18.04)](#デプロイ準備例ubuntu1804)
+* [起動](#起動)
+* [リンク](#リンク)
+* [画像分割と取得](#画像分割と取得)
+
+
+## 概要
+[Tellus](https://www.tellusxdp.com) を利用したサンプルプロジェクトです。
+
+衛星で撮影した画像を使って行うパズルゲームです。
 ゲームを通じて、衛星画像を身近な存在に！
+
+**Tellus Platformでの動作を想定しているため、それ以外の環境ではTellusAPIの利用に失敗する場合があります。また、[データポリシー](https://www.tellusxdp.com/ja/dev/data) にご注意ください。**
+
 
 ## アプリ構成
 
@@ -18,99 +33,22 @@
 | satellite-puzzle-front|衛星パズル | Nuxt.js |
 | satellite-puzzle-image-processing| 画像取得・分割 | Flask|
 
-## 依存ライブラリ
 
-`image_processing/Pipfile`を参照。
+### コンテナ内依存ライブラリ
+詳細は[image_processing/Pipfile](https://github.com/tellusxdp/satellite-puzzle/blob/master/image_processing/Pipfile)を参照してください。
 
 ```
-flask
-pillow
+flask # 簡易的なAPI作成
+pillow # 画像分割
 requests
 flask-api
 ```
 
-今回は簡易的なAPIとしてflaskを使用。  
-  
-`pillow`は画像を分割する処理をするために使用。  
 
-```  python
-# SAR画像(.tif)をAPIから取得してきて、それを画像クロップして、pngに変換してストレージに保持している
-_img = Image.open(BytesIO(_res.content))
-_img.point(lambda i:i*(1./256)).convert('L').crop(_box).resize((op_size, op_size)).save(save_sar_png_img_path, 'PNG', quality=True)
-```
+## デプロイ準備例 (Ubuntu 18.04)
+DockerとDockerComposeをインストールします。
 
-## 画像分割APIについて
-
-画像分割処理はflaskでapiになっている。  
-
-``` bash
-cd image_processing
-make devrun
-```
-
-これで`http://localhost:5000`でapiが起動。  
-  
-pythonで光学画像を取得する部分は以下で処理をしている(SAR画像もhostが違うだけで取得方法は同様)。  
-
-``` python
-# _req_url='https://gisapi.opf-dev.jp/true/9/449/202.png'
-_req_url = '%s/%s/%d/%d/%d.png' % (img_url, map_kinds[map_kind], z, x, y)
-_res = requests.get(_req_url, stream=True)
-_img = Image.open(BytesIO(_res.content))
-```
-
-### example
-
-以下が今回使用している画像を取得するパラメータ。  
-※ SAR画像がとても重いため、処理が終わるのに数分かかる場合があります。  
-
-#### 琵琶湖
-
-``` bash
-curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=3
-curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=4
-curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=5
-```
-
-#### 東京
-
-``` bash
-curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=3
-curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=4
-curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=5
-```
-
-#### 佐渡ヶ島
-
-``` bash
-curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=3
-curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=4
-curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=5
-```
-
-#### それぞれのパラメータについて
-
-|||
-|--|--|
-|kind|画像種類|
-|z|ズーム値(大きければ大きいほど、ズームになる)|
-|x|地図のx軸の値|
-|y|地図のy軸の値|
-|split_n|分割数(パズルの分割数、3の場合は3×3の9つに分割される)|
-
-
-## デプロイ用スクリプト
-
->Docker version 18.09  
->docker-compose version 1.23  
-
-### docker install
-
-まずはdockerをインストール  
-以下のシェルを実行
-
-``` bash
-#!/bin/bash
+```bash
 sudo apt update
 sudo apt install git
 sudo apt-get install -y \
@@ -136,74 +74,96 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose -v
 ```
 
-### local
-
-以下を実行
-
-``` bash
+## 起動
+```bash
 git clone https://github.com/tellusxdp/satellite-puzzle.git
 cd satellite-puzzle/.deploy
 sudo sh local.sh
 ```
 
-### 本番
+### 画像準備
+画像取得のコンテナに入ります。
 
-wildcard.app.tellusxdp.com.crt, wildcard.app.tellusxdp.com.keyを`/var`配下におく  
-※ wildcard.app.tellusxdp.com.crtは中間証明書と合成しておくこと
-
-その後$HOME配下に以下のシェルスクリプトを置きsudoで実行する
-
-``` bash
-#!/bin/bash
-if [ -d /var/satellite-puzzle ] ; then
-        rm -rf /var/satellite-puzzle
-fi
-cd /var && git clone https://github.com/tellusxdp/satellite-puzzle.git
-cp wildcard.app.tellusxdp.com.crt satellite-puzzle/.docker
-cp wildcard.app.tellusxdp.com.key satellite-puzzle/.docker
-cd /var/satellite-puzzle/.deploy && sh production.sh
-```
-
-SARが重すぎてマルチスレッドで対応できないため、予め画像分割をしておく  
-containerに入る
-
-``` bash
+```bash
 docker exec -it satellite-puzzle-image-processing sh
 ```
 
-以下を順次実行  
-※ 一気にやらないこと  
+以下を実行してパズル用の画像準備を行います。
 
-#### 琵琶湖
-
-``` bash
+```bash
 curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=3
 curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=4
 curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=5
-```
-
-#### 東京
-
-``` bash
 curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=3
 curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=4
 curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=5
-```
-
-#### 佐渡ヶ島
-
-``` bash
 curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=3
 curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=4
 curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=5
 ```
 
-## サービスへのリンク
 
-### 今すぐ遊ぶなら
+## リンク
+* [Tellus](https://www.tellusxdp.com/)
+* [今すぐこのアプリで遊ぶにはこちら](https://satellite-puzzle.app.tellusxdp.com)
 
-[https://satellite-puzzle.app.tellusxdp.com/](https://satellite-puzzle.app.tellusxdp.com/)
 
-### tellusとは？
-[https://www.tellusxdp.com/](https://www.tellusxdp.com/)
+-----
 
+
+## 画像取得と分割
+スライドパズルを実現するため、Tellusから衛星画像を取得し、パズルで利用できるように分割を行います。この処理はflaskでAPI化しています。
+
+```bash
+cd image_processing
+make devrun
+```
+
+`http://localhost:5000`で画像分割APIが起動します。
+
+### （抜粋）光学画像の取得と保存
+``` python
+_req_url = '%s/%s/%d/%d/%d.png' % (img_url, map_kinds[map_kind], z, x, y)
+_res = requests.get(_req_url, stream=True)
+_img = Image.open(BytesIO(_res.content))
+```
+
+### （抜粋）SAR画像のハンドリング
+SAR画像はGeoTIFF形式 (`.tif`) のため、クロップ・png変換してストレージに保持しています。
+
+```  python
+_img = Image.open(BytesIO(_res.content))
+_img.point(lambda i:i*(1./256)).convert('L').crop(_box).resize((op_size, op_size)).save(save_sar_png_img_path, 'PNG', quality=True)
+```
+
+### API Example
+以下が今回使用している画像をパズル用に取得するパラメータです。それぞれ光学画像とSAR画像をセットで準備します。
+
+※ SAR画像のサイズが大きいため、処理に数分かかる場合があります。
+
+#### 琵琶湖
+```bash
+curl http://localhost:5000\?z\=9\&x\=449\&y\=202\&kind\=true\&split_n\=3
+```
+
+#### 東京
+```bash
+curl http://localhost:5000\?z\=10\&x\=909\&y\=403\&kind\=true\&split_n\=4
+```
+
+#### 佐渡ヶ島
+```bash
+curl http://localhost:5000\?z\=8\&x\=226\&y\=98\&kind\=true\&split_n\=5
+```
+
+#### それぞれのパラメータについて
+
+|||
+|--|--|
+|kind|画像種類|
+|z|ズーム値(大きければ大きいほど、ズームになる)|
+|x|地図のx軸の値|
+|y|地図のy軸の値|
+|split_n|分割数(パズルの分割数、3の場合は3×3の9つに分割される)|
+
+[詳細やそれぞれの値を決める方法についてはこちら](https://maps.gsi.go.jp/development/siyou.html)
