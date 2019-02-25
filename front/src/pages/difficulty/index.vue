@@ -1,6 +1,8 @@
 // 難易度選択
 <template lang="pug">
   .page
+    .return
+      button(@click="pushIndex") ←スタート画面に戻る
     .mode MODE
     .easy
       easy-button(@onClick="pushEasy") やさしい
@@ -32,6 +34,9 @@ export default {
     HardButton,
   },
   methods: {
+    pushIndex () { // スタート画面に遷移する
+      this.$router.push('/')
+    },
     pushEasy () { // マップ選択画面（かんたん）に遷移する
       this.$router.push('/difficulty/easy/map')
     },
@@ -50,6 +55,21 @@ export default {
 
 <style lang="scss" scoped>
 .page {
+  .return {
+    margin-left: 34px;
+    padding-top: 42px;
+    height: 24px;
+    color: #fff;
+    text-align: left;
+    letter-spacing: normal;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 24px;
+    font-family: NotoSansCJKjp;
+    line-height: 1.5;
+  }
+
   .mode {
     margin: 0 auto;
     padding-top: 72px;
