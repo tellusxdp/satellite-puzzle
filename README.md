@@ -59,7 +59,7 @@ sh local.sh
 
 ## Collaborators
 * 株式会社プラハ
-  * [@shin-kanouchi](https://github.com/shin-kanouchi)
+  * [@motionweekender](https://www.instagram.com/motionweekender/)
   * [@revenue-hack](https://github.com/revenue-hack)
 
 
