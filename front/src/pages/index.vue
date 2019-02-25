@@ -21,6 +21,7 @@
           :url="url",
           :title="title"
         )
+    github-link()
 </template>
 
 <script>
@@ -29,6 +30,7 @@ import Alos2 from '~/components/buttons/Alos2'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
 import TwitterShareButton from '~/components/buttons/share/Twitter'
 import HatenaShareButton from '~/components/buttons/share/Hatena'
+import GithubLink from '~/components/buttons/Github'
 export default {
   components: {
     TitleLogo,
@@ -36,6 +38,7 @@ export default {
     FacebookShareButton,
     TwitterShareButton,
     HatenaShareButton,
+    GithubLink,
   },
   data () {
     return { // TODO: データ設定
@@ -63,7 +66,7 @@ export default {
     height: 380px;
 
     .title-logo {
-      padding-top: 239px;
+      padding-top: 200px;
     }
 
     .alos2 {
@@ -73,11 +76,11 @@ export default {
   }
 
   .share-area {
-    margin-top: 494px;
+    margin-top: 440px;
     margin-right: auto;
     margin-left: auto;
     width: 528px;
-    height: 248px;
+    height: 230px;
 
     p {
       height: 23px;
