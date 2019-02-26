@@ -56,6 +56,10 @@ sh local.sh
 ## アプリ確認
 [http://localhost:3000](http://localhost:3000)
 
+or
+
+[http://localhost:8080](http://localhost:8080) (Nginx経由)
+
 
 ## Collaborators
 * 株式会社プラハ
