@@ -5,7 +5,7 @@
       title-logo
       alos2
     .share-area
-      p ゲームをSNSでシェア！
+      p SNSでシェア！
       .buttons
         facebook-share-button.facebook-share-button(
           :url="url"
