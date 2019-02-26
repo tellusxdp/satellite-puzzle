@@ -6,7 +6,7 @@
         img(:src="src")
       .github-text
         p 開発者向けコンテンツはこちら
-        p ソースコード・ドキュメント
+        p （ソースコード・ドキュメント）
 </template>
 
 <script>
@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .github-link {
-  width: 370px;
+  width: 400px;
   height: 60px;
   margin: 0 auto;
 

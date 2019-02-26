@@ -12,7 +12,10 @@
       hard-button(@onClick="pushHard") むずかしい
     .what-is
       p.text パズルに使われている画像のひみつ
-      p.description Tellusで公開されている合成開口レーダー（SAR）の画像を使ったパズルです。SARとは、センサからマイクロ波を発射し地表面で跳ね返ってきたマイクロ波をとらえるセンサです。一般的なカメラとは違い、雲がかかっている時や雨でも撮影が可能です。ときどきカラー画像が見られるという噂も…？
+      p.description 
+        span パズルでは
+        a(:href="href", target="_blank", rel="nofollow") Tellus
+        span で公開されている合成開口レーダー（SAR）の画像を利用しています。SARとは、衛星からマイクロ波を飛ばして、その跳ね返りで地表面を"撮影"するセンサです。一般的なカメラとは違い、雲がかかっている時や夜でも撮影が可能です。パズルではときどきカラー画像が見られるという噂も…？
       .detail
         .button
           click-button(
@@ -27,6 +30,11 @@ import EasyButton from '~/components/buttons/level/EasyButton'
 import NormalButton from '~/components/buttons/level/NormalButton'
 import HardButton from '~/components/buttons/level/HardButton'
 export default {
+  data: () => {
+    return {
+      href: "https://www.tellusxdp.com",
+    }
+  },
   components: {
     ClickButton,
     EasyButton,
