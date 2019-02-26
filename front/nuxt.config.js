@@ -5,21 +5,21 @@ const env = require(`./envs/${NODE_ENV}`)
 module.exports = {
   srcDir: 'src',
   env: {
-    API_URL: env.API_URL || 'http://localhost:5000',
-    CLIENT_URL: env.CLIENT_URL || 'http://localhost:3000'
+    API_URL: env.API_URL || 'http://localhost:5000', // Image processing API
+    CLIENT_URL: env.CLIENT_URL || 'http://localhost:3000' // Front API
   },
   head: {
     title: '衛星パズル',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=640' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' },
+      { hid: 'description', name: 'description', content: '衛星で撮影した画像を使って行うスライドパズルゲームです。ゲームを通じて、衛星画像を身近な存在に！' },
       // OGP共通設定
       { prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/websaite#'},
-      { property: 'og:url', content: env.API_URL }, // ページのURLを設定
+      { property: 'og:url', content: 'https://satellite-puzzle.app.tellusxdp.com/' }, // ページのURLを設定
       { property: 'og:type', content: 'website' }, // ページの種類
       { property: 'og:title', content: '衛星パズル' }, // ページタイトル
-      { property: 'og:description', content: '衛星で撮影した画像を使って行うパズルゲームです。ゲームを通じて、衛星画像を身近な存在に！' }, // ページの説明文
+      { property: 'og:description', content: '衛星で撮影した画像を使って行うスライドパズルゲームです。ゲームを通じて、衛星画像を身近な存在に！' }, // ページの説明文
       { property: 'og:site_name', content: '衛星パズル' }, // サイト名
       { property: 'og:image', content: 'https://satellite-puzzle.app.tellusxdp.com/OGP_Start.png' }, // サムネイルのURL
       // Twitter

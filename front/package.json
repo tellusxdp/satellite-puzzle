@@ -2,7 +2,11 @@
   "name": "satellite-puzzle",
   "version": "1.0.0",
   "description": "satellite-puzzle project",
-  "author": "K.odeveloper10@gmail.com",
+  "author": "Tellus",
+  "contributors": [
+    "@motionweekender",
+    "@revenue-hack"
+  ],
   "private": true,
   "engines": {
     "node": "10",

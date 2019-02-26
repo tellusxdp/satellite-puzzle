@@ -6,7 +6,7 @@
         img(:src="src")
       .github-text
         p 開発者向けコンテンツはこちら
-        p （ソースコード・ドキュメント）
+        p (ソースコード・ドキュメント)
 </template>
 
 <script>
@@ -29,6 +29,7 @@ export default {
   a {
     display: table;
     margin: 0 auto;
+    text-decoration: none;
 
     .github-icon {
       width: 60px;
