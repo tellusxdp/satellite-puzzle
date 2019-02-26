@@ -50,7 +50,7 @@ Tellusから衛星画像を取得し、パズルで利用できるように前�
 ## 起動
 ``` bash
 cd .deploy
-sh local.sh
+./local-up.sh
 ```
 
 ## アプリ確認
