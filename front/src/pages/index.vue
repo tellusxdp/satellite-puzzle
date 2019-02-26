@@ -1,6 +1,7 @@
 // トップ画面
 <template lang="pug">
   .page
+    tellus-link
     .push-start(@click="pushStart")
       title-logo
       alos2
@@ -21,10 +22,11 @@
           :url="url",
           :title="title"
         )
-    github-link()
+    github-link
 </template>
 
 <script>
+import TellusLink from '~/components/buttons/Tellus'
 import TitleLogo from '~/components/logo/TitleLogo'
 import Alos2 from '~/components/buttons/Alos2'
 import FacebookShareButton from '~/components/buttons/share/Facebook'
@@ -33,6 +35,7 @@ import HatenaShareButton from '~/components/buttons/share/Hatena'
 import GithubLink from '~/components/buttons/Github'
 export default {
   components: {
+    TellusLink,
     TitleLogo,
     Alos2,
     FacebookShareButton,
@@ -60,13 +63,18 @@ export default {
 
 <style lang="scss" scoped>
 .page {
+  .tellus-link {
+    text-align: left;
+    padding: 20px 0 0 20px;
+  }
+
   .push-start {
     margin: 0 auto;
     width: 370px;
     height: 380px;
 
     .title-logo {
-      padding-top: 200px;
+      padding-top: 140px;
     }
 
     .alos2 {
@@ -76,11 +84,11 @@ export default {
   }
 
   .share-area {
-    margin-top: 440px;
+    margin-top: 420px;
     margin-right: auto;
     margin-left: auto;
     width: 528px;
-    height: 230px;
+    height: 200px;
 
     p {
       height: 23px;
