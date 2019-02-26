@@ -4,6 +4,11 @@ services:
     image: nginx:1.15.8-alpine
     environment:
       LANG: ja_JP.UTF-8
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "50"
     volumes:
       - ./conf/ssl/50x.html:/usr/share/nginx/html/50x.html:ro
       - ./conf/ssl/nginx.conf:/etc/nginx/nginx.conf:ro
@@ -22,6 +27,11 @@ services:
       dockerfile: "../.docker/Dockerfile"
       args:
         NODE_ENV: $NODE_ENV
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "50"
     container_name: satellite-puzzle-front
     volumes:
       - satellite-puzzle-storage:/app/src/static/images
@@ -31,6 +41,11 @@ services:
     build:
       context: ../image_processing
       dockerfile: "../.docker/image.Dockerfile"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "50"
     expose:
       - "5000"
     container_name: satellite-puzzle-image-processing
