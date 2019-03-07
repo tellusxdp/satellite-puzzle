@@ -67,6 +67,8 @@ sudo apt-get install -y docker-ce
 sudo gpasswd -a $(whoami) docker
 sudo chgrp docker /var/run/docker.sock
 sudo service docker restart
+
+# ログインし直すとdockerがsudoなしで利用できる
 docker info
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -78,7 +80,7 @@ docker-compose -v
 ```bash
 git clone https://github.com/tellusxdp/satellite-puzzle.git
 cd satellite-puzzle/.deploy
-sudo ./local-up.sh
+./local-up.sh
 ```
 
 ### 画像準備
