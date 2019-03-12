@@ -44,11 +44,11 @@ export default {
     GithubLink,
   },
   data () {
-    return { // TODO: データ設定
+    return {
       url: 'https://satellite-puzzle.app.tellusxdp.com',
       via: 'tellus_xdata',
       related: 'tellus_xdata',
-      hashtags: 'tellus, 衛星パズル',
+      hashtags: 'tellus,衛星パズル',
       text: 'ゲームを通じて、衛星画像を身近な存在に！',
       title: '衛星パズル'
     }

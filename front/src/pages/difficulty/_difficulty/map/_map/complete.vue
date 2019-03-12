@@ -62,7 +62,7 @@ export default {
       url: 'https://satellite-puzzle.app.tellusxdp.com',
       via: 'tellus_xdata',
       related: 'tellus_xdata',
-      hashtags: 'tellus, 衛星パズル',
+      hashtags: 'tellus,衛星パズル',
       difficultyMap: { // 難易度と画像分割数との対応
         easy: 3,
         normal: 4,
